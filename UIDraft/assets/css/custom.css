@@ -1,0 +1,45 @@
+
+/* all CSO colors will go here */
+.radio input[type=radio]:checked ~ .circle {
+    border-color: #fff;
+}
+
+.radio input[type=radio]:checked ~ .check {
+    background-color: #fff;
+}
+
+.table-hover>tbody>tr:hover {
+    background-color: black;
+}
+
+.activitycontent{
+	display: none;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #43a047;
+	overflow: hidden;
+}
+
+.desc{
+	color: #43a047;
+}
+
+hr {
+	border-color: #43a047;	
+}
+
+label.text-filter{
+	color: #eee;
+}
+
+/* for filter on index.html*/
+.addmargin{
+	position: relative;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.changeColor:hover {
+	cursor: pointer;
+}
