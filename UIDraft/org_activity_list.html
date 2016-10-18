@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>JPIA | Activities</title>
+
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta name="viewport" content="width=device-width" />
+
+
+		<!-- Bootstrap core CSS     -->
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+		<!--  Material Dashboard CSS    -->
+		<link href="assets/css/material-dashboard.css" rel="stylesheet" />
+
+		<link href="assets/css/activitylist.css" rel="stylesheet" />
+
+		<!--     Fonts and icons     -->
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+		<link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<div class="sidebar" data-color="purple" data-image="assets/img/sidebar-1.jpg">
+
+				<div class="logo">
+
+					<a href="http://www.creative-tim.com" class="simple-text">JPIA</a>
+				</div>
+
+
+				<div class="sidebar-wrapper">
+					<ul class="nav">
+						<li class="active">
+							<a href="org_activity_list.html">
+								<i class="material-icons">view_list</i>
+								<p>Activities</p>
+							</a>
+						</li>
+						<li>
+							<a href="org_create_activity.html">
+								<i class="material-icons">note_add</i>
+								<p>Create Activity</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+			<div class="main-panel">
+				<nav class="navbar navbar-transparent navbar-absolute">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+							<a class="navbar-brand" href="#">JPIA Activity Proposal List</a>
+						</div>
+						<div class="collapse navbar-collapse">
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<i class="material-icons">notifications</i>
+										<span class="notification">2</span>
+										<p class="hidden-lg hidden-md">Notifications</p>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Revision Issue at Activity.</a></li>
+										<li><a href="#">Your Activity has been approved!</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+										<i class="material-icons">person</i>
+										<p class="hidden-lg hidden-md">Profile</p>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Logout</a></li>
+									</ul>
+								</li>
+							</ul>
+
+							<form class="navbar-form navbar-right" role="search">
+								<div class="form-group  is-empty">
+									<input type="text" class="form-control" placeholder="Search">
+									<span class="material-input"></span>
+								</div>
+								<button type="submit" class="btn btn-white btn-round btn-just-icon">
+								<i class="material-icons">search</i><div class="ripple-container"></div>
+							</button>
+							</form>
+						</div>
+					</div>
+				</nav>
+
+				<div class="content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header" data-background-color="green">
+										<div class="row">
+											<div class="col-md-3 text-right">
+												<label class="category addmargin">Filter: </label>
+											</div>
+											<div class="col-md-3">
+												<div class="radio">
+													<label class="text-filter">
+													<input type="radio" name="optionsRadios">
+													Accepted
+												</label>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="radio">
+													<label class="text-filter">
+													<input type="radio" name="optionsRadios" checked="true">
+													Pending
+												</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="card-content table-responsive">
+										<table class="table">
+											<thead class="text-primary">
+												<th>Activity Title</th>
+												<th>Date of Submission</th>
+												<th>Status</th>
+												<th>Date Pended by CSO</th>
+											</thead>
+											<tbody>
+												<tr onclick="showContent()" class="changeColor">
+													<td>Shirt Selling</td>
+													<td>10/01/16</td>
+													<td>Pending</td>
+													<td>10/10/16</td>
+
+													<thead class="activitycontent">
+														<td colspan="4">
+															<div class="row">
+																<div class="col-md-4">
+																	<p><small><b class="desc">Activity Title:</b> Fund-raising</small></p>
+																</div>
+																<div class="col-md-4">
+																	<p><small><b class="desc">Date of Activity:</b> 10/12/2016 - 10/15/2016</small></p>
+																</div>
+																<div class="col-md-4">
+																	<p><small><b class="desc">Date of Physical Documents Submitted:</b> 10/01/2016</small></p>
+																</div>
+															</div>
+
+															<div class="row">
+																<div class="col-md-4">
+																	<p><small><b class="desc">PRS Number:</b> 952524</small></p>
+																</div>
+																<div class="col-md-2">
+																	<p><small><b class="desc">Amount:</b> ₱10000.00</small></p>
+																</div>
+																<div class="col-md-2">
+																	<p><small><b class="desc">Particulars:</b> Venue</small></p>
+																</div>
+																<div class="col-md-4">
+																	<p><small><b class="desc">Payable to:</b> Matabungkay Beach Resort & Hotel,</small></p>
+																</div>
+															</div>
+
+															<div class="row">
+																<div class="col-md-4">
+																	<p><small><b class="desc">Petty Cash Voucher:</b> </small></p>
+																</div>
+																<div class="col-md-4">
+																	<p><small><b class="desc">Deposit Official Receipt Number:</b> </small></p>
+																</div>
+															</div>
+
+															<div class="row">
+																<div class="col-md-4">
+																	<p><small><b class="desc">Actual Revenues:</b> </small></p>
+																</div>
+																<div class="col-md-4">
+																	<p><small><b class="desc">Expenses from Revenues:</b> </small></p>
+																</div>
+																<div class="col-md-4">
+																	<p><small><b class="desc">Expenses from Reinbursements:</b> </small></p>
+																</div>
+															</div>
+
+															<div class="row">
+																<div class="col-md-4">
+																	<p><small><b class="desc">Net Income/Loss:</b> </small></p>
+																</div>
+																<div class="col-md-4">
+																	<p><small><b class="desc">FRA Number:</b> </small></p>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-md-12">
+																	<p><small><b class="desc">Submitted by:</b> Eldes Gonzales(091234567)</small></p>
+																</div>
+															</div>
+
+															<section>
+																<hr>
+																<div class="row">
+																	<div class="col-md-4">
+																		<p><small><b class="desc">Status:</b> </small></p>
+																	</div>
+																	<div class="col-md-4">
+																		<p><small><b class="desc">Revisions:</b> </small></p>
+																	</div>
+																	<div class="col-md-4">
+																		<p><small><b class="desc">Date Pended by CSO Finance:</b> </small></p>
+																	</div>
+																</div>
+
+																<div class="row">
+																	<div class="col-md-4">
+																		<p><small><b class="desc">Audited by:</b> </small></p>
+																	</div>
+																	<div class="col-md-2">
+																		<p><small><b class="desc">Date Audited:</b> </small></p>
+																	</div>
+																	<div class="col-md-4">
+																		<p><small><b class="desc">Encoded by:</b> </small></p>
+																	</div>
+																	<div class="col-md-2">
+																		<p><small><b class="desc">Date Encoded:</b> </small></p>
+																	</div>
+																</div>
+
+																<div class="row">
+																	<div class="col-md-4">
+																		<p><small><b class="desc">Date Received by SLIFE:</b> </small></p>
+																	</div>
+																	<div class="col-md-3">
+																		<p><small><b class="desc">Date Pended by SFIFE:</b> </small></p>
+																	</div>
+																</div>
+
+																<div class="row">
+																	<div class="col-md-12">
+																		<p><small><b class="desc">Remarks:</b> </small></p>
+																	</div>
+																</div>
+
+																<div class="row">
+																	<div class="col-md-4">
+																		<p><small><b class="desc">Date Received by Accouting Office:</b> </small></p>
+																	</div>
+																	<div class="col-md-4">
+																		<p><small><b class="desc">Date Pended by Accounting Office:</b> </small></p>
+																	</div>
+																</div>
+
+																<div class="row">
+																	<div class="col-md-12">
+																		<p><small><b class="desc">Remarks:</b> </small></p>
+																	</div>
+																</div>
+
+																<div class="row">
+																	<div class="col-md-6">
+																		<p><small><b class="desc">Other Remarks:</b> </small></p>
+																	</div>
+																	<div class="col-md-6">
+																		<p><small><b class="desc">Resubmission to SLIFE/Notes:</b> </small></p>
+																	</div>
+																</div>
+
+
+																<div class="row">
+																	<div class="col-md-12">
+																		<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button>
+																	</div>
+																</div>
+															</section>
+														</td>
+													</thead>
+												</tr>
+												<tr>
+													<td>Minerva Hooper</td>
+													<td>Curaçao</td>
+													<td>Sinaai-Waas</td>
+													<td>$23,789</td>
+												</tr>
+												<tr>
+													<td>Sage Rodriguez</td>
+													<td>Netherlands</td>
+													<td>Baileux</td>
+													<td>$56,142</td>
+												</tr>
+												<tr>
+													<td>Philip Chaney</td>
+													<td>Korea, South</td>
+													<td>Overland Park</td>
+													<td>$38,735</td>
+												</tr>
+												<tr>
+													<td>Doris Greene</td>
+													<td>Malawi</td>
+													<td>Feldkirchen in Kärnten</td>
+													<td>$63,542</td>
+												</tr>
+												<tr>
+													<td>Mason Porter</td>
+													<td>Chile</td>
+													<td>Gloucester</td>
+													<td>$78,615</td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<footer class="footer">
+					<div class="container-fluid">
+						<nav class="pull-left">
+							<ul>
+								<li>
+									<a href="#">
+									Home
+								</a>
+								</li>
+								<li>
+									<a href="#">
+									Company
+								</a>
+								</li>
+								<li>
+									<a href="#">
+									Portfolio
+								</a>
+								</li>
+								<li>
+									<a href="#">
+									Blog
+								</a>
+								</li>
+							</ul>
+						</nav>
+						<p class="copyright pull-right">
+							&copy;
+							<script>
+								document.write(new Date().getFullYear())
+							</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+						</p>
+					</div>
+				</footer>
+			</div>
+		</div>
+	</body>
+
+	<!--   Core JS Files   -->
+	<script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets/js/material.min.js" type="text/javascript"></script>
+
+
+	<!-- Custome JS Files -->
+	<script src="assets/js/activitylist.js" type="text/javascript"></script>
+
+	<!--  Charts Plugin -->
+	<script src="assets/js/chartist.min.js"></script>
+
+	<!--  Notifications Plugin    -->
+	<script src="assets/js/bootstrap-notify.js"></script>
+
+	<!-- Material Dashboard javascript methods -->
+	<script src="assets/js/material-dashboard.js"></script>
+
+
+</html>
