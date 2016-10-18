@@ -75,7 +75,7 @@ var color = '';
 					break;
 			}
 		}
-		this.color = options.color||'red';
+		this.color = options.color||'pink';
 		this.startViewMode = this.viewMode;
 		this.weekStart = options.weekStart||this.element.data('date-weekstart') || 0;
 		this.weekEnd = this.weekStart === 0 ? 6 : this.weekStart - 1;
@@ -477,3 +477,14 @@ var color = '';
 						'</div>';
 
 }( window.jQuery );
+
+/* Custom */
+$('.datepicker1').datepicker({
+    	   weekStart:1,
+    	   color: 'pink'
+});
+        
+$('.datepicker2').datepicker({
+    	   weekStart:1,
+    	   color: 'pink'
+});

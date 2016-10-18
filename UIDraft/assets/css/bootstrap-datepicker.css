@@ -121,9 +121,9 @@ body{
 .datepicker td.active.black:hover p{
   background-color: #4a4a4a;  
 }
-.datepicker td.active.red p,
-.datepicker td.active.red:hover p{
-  background-color: #FF3A2D;  
+.datepicker td.active.pink p,
+.datepicker td.active.pink:hover p{
+  background-color: deeppink;  
 }
 
 .datepicker td.active:hover,
@@ -192,8 +192,8 @@ body{
  
 }
 
-.datepicker.red th.switch{
-    color: #ff3b30;
+.datepicker.pink th.switch{
+    color: deeppink;
 }
 .datepicker th.next,
 .datepicker th.prev {

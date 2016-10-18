@@ -11,7 +11,11 @@
 .table-hover>tbody>tr:hover {
     background-color: black;
 }
-
+.radio{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 .activitycontent{
 	display: none;
 	border-style: solid;
@@ -39,7 +43,6 @@ label.text-filter{
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
 .changeColor:hover {
 	cursor: pointer;
 }
