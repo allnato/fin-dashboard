@@ -58,6 +58,22 @@ table td{
 
 }
 
+.table-toolbar{
+  margin-bottom: 2em;
+}
+
+.dropdown{
+  display: inline-block;
+}
+
+.sort-toggle{
+  font-weight: bold;
+}
+
+#sortFieldTxt{
+  width: 90px;
+}
+
 
 table{
   background-color: white;
