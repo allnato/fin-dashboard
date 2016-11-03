@@ -21,13 +21,21 @@ tr{
   border: 1px solid #ddd;
 }
 
-/*table th {
-    width: auto !important;
+/*.table{
+  table-layout: fixed;
 }
 
-table td{
-  width: auto !important;
+.table td{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }*/
+
+.list-body, .list-date, .list-prs{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .logo-circle{
   width: 3rem;

@@ -31,10 +31,7 @@ $(document).ready(function() {
     sortTable();
   });
 
-  $('#next').click(function(event) {
-    var $table = $('#activityTable');
-    $table.bootstrapTable('nextPage')
-  });
+
 });
 
 function sortTable(){
