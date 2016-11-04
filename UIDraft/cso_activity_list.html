@@ -1,432 +1,575 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
-	<head>
-		<meta charset="utf-8" />
-		<link rel="apple-touch-icon" sizes="76x76" href=".assets/img/apple-icon.png" />
-		<link rel="icon" type="image/png" href="assets/img/favicon.png" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-		<title>CSO | Dashboard</title>
+    <title>CSO | Activity List</title>
 
-		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-		<meta name="viewport" content="width=device-width" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="viewport" content="width=device-width" />
 
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
-		<!-- Bootstrap core CSS     -->
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap-Table CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap-table.min.css">
 
-		<!--  Material Dashboard CSS    -->
-		<link href="assets/css/material-dashboard_2.css" rel="stylesheet" />
-		<link href="assets/css/custom.css" rel="stylesheet" />
-
-		<!--     Fonts and icons     -->
-		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-		<link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
-	</head>
-
-	<body>
-
-		<div class="wrapper">
-			<div class="sidebar" data-color="green" data-image="assets/img/sidebar-1.jpg">
-
-				<div class="logo">
-					<a href="#" class="simple-text">
-						CSO
-					</a>
-				</div>
+    <!--  Material Dashboard CSS    -->
+    <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 
 
-				<div class="sidebar-wrapper">
-					<ul class="nav">
-						<li class="active">
-							<a href="user.html">
-								<i class="material-icons">view_list</i>
-								<p>View All Activities</p>
-							</a>
-						</li>
-						<li>
-							<a href="icons.html">
-								<i class="material-icons">input</i>
-								<p>Logout</p>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+    <!-- Font Awesome :-) -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="assets/css/cso_table.css">
 
-		<div class="main-panel">
-			<nav class="navbar navbar-transparent navbar-absolute">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse">
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <!-- The Sidebar  -->
+      <div class="sidebar" data-color="red" data-image="">
+
+        <!-- LOGO Image and Name -->
+        <div class="logo text-center">
+          <img src="assets/img/cso_logo.png" alt="" width="150px" class=" text-center">
+          <a href="#" class="simple-text logo-name">
+  					CSO
+  				</a>
+        </div>
+        <!-- Sidebar Navigation! -->
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            <li class="active">
+              <a href="org_activity_list.html">
+                <i class="fa fa-list"></i>
+                <p>Activities</p>
+              </a>
+            </li>
+            <li>
+              <a href="cso_archive_list.html">
+                <i class="fa fa-archive"></i>
+                <p>Archive</p>
+              </a>
+            </li>
+            <li>
+              <a href="org_create_activity.html">
+                <i class="fa fa-bar-chart"></i>
+                <p>Statistics</p>
+              </a>
+            </li>
+            <li>
+              <a href="org_create_activity.html">
+                <i class="fa fa-users"></i>
+                <p>Organizations</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- The Main Panel -->
+      <div class="main-panel">
+        <!-- Main Navigation (Notification & Logout) -->
+        <nav class="navbar navbar-transparent navbar-absolute">
+          <div class="container-fluid">
+            <!-- Navbar UX -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
+            <!-- Navbar Title -->
 						</button>
-						<a class="navbar-brand" href="#">Pending Activities</a>
-					</div>
-					<div class="collapse navbar-collapse">
-						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="material-icons">notifications</i>
-									<span class="notification">5</span>
-									<p class="hidden-lg hidden-md">Notifications</p>
-								</a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Mike John responded to your email</a></li>
-									<li><a href="#">You have 5 new tasks</a></li>
-									<li><a href="#">You're now friend with Andrew</a></li>
-									<li><a href="#">Another Notification</a></li>
-									<li><a href="#">Another One</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="material-icons">person</i>
-									<p class="hidden-lg hidden-md">Profile</p>
-								</a>
-							</li>
-						</ul>
+              <a class="navbar-brand nav-title" href="#">
+                <i class="fa fa-list"></i> Activity List
+              </a>
+            </div>
 
-						<form class="navbar-form navbar-right" role="search">
-							<div class="form-group  is-empty">
-								<input type="text" class="form-control" placeholder="Search">
-								<span class="material-input"></span>
-							</div>
-							<button type="submit" class="btn btn-white btn-round btn-just-icon">
-								<i class="material-icons">search</i><div class="ripple-container"></div>
-							</button>
-						</form>
-					</div>
-				</div>
-			</nav>
+            <div class="collapse navbar-collapse">
+              <!-- Navbar Items (Right) -->
+              <ul class="nav navbar-nav navbar-right">
 
-			<div class="content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header" data-background-color="green">
-									<div class="row">
-										<div class="col-md-3 text-right">
-											<label class="category addmargin">Filter: </label>
-										</div>
-										<div class="col-md-3">
-											<div class="radio">
-												<label class="text-filter">
-													<input type="radio" name="optionsRadios">
-													Accepted
-												</label>
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="radio">
-												<label class="text-filter">
-													<input type="radio" name="optionsRadios" checked="true">
-													Pending
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card-content table-responsive">
-									<table class="table">
-										<thead class="text-primary">
-											<th>Activity Title</th>
-											<th>Organization</th>
-											<th>Date of Submission (Online)</th>
-											<th>Date of Submission (Physical)</th>
-										</thead>
-										<tbody>
-											<tr class="changeColor" data-toggle="modal" data-target="#myModal">
-												<td>Dakota Rice</td>
-												<td>Niger</td>
-												<td>Oud-Turnhout</td>
-												<td>$36,738</td>
-											</tr>
-											<tr>
-												<td>Minerva Hooper</td>
-												<td>Curaçao</td>
-												<td>Sinaai-Waas</td>
-												<td>$23,789</td>
-											</tr>
-											<tr>
-												<td>Sage Rodriguez</td>
-												<td>Netherlands</td>
-												<td>Baileux</td>
-												<td>$56,142</td>
-											</tr>
-											<tr>
-												<td>Philip Chaney</td>
-												<td>Korea, South</td>
-												<td>Overland Park</td>
-												<td>$38,735</td>
-											</tr>
-											<tr>
-												<td>Doris Greene</td>
-												<td>Malawi</td>
-												<td>Feldkirchen in Kärnten</td>
-												<td>$63,542</td>
-											</tr>
-											<tr>
-												<td>Mason Porter</td>
-												<td>Chile</td>
-												<td>Gloucester</td>
-												<td>$78,615</td>
-											</tr>
-										</tbody>
-									</table>
+                <!-- Notification -->
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle btn btn-white" data-toggle="dropdown">
+                    <i class="fa fa-bell"></i>
+                    <span class="notification">2</span>
+                    <p class="hidden-lg hidden-md">Notifications</p>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Revision Issue at Activity.</a></li>
+                    <li><a href="#">Your Activity has been approved!</a></li>
+                  </ul>
+                </li>
 
-								</div>
-							</div>
-						</div>
+                <!-- Logout -->
+                <li>
+                  <a href="" class="btn btn-white">
+                    Logout
+                    <i class="fa fa-sign-out"></i>
+                  </a>
+                </li>
 
-					</div>
-				</div>
-			</div>
+              </ul>
+            </div>
 
-			<footer class="footer">
-				<div class="container-fluid">
-					<nav class="pull-left">
-						<ul>
-							<li>
-								<a href="#">
-									Home
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									Company
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									Portfolio
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									Blog
-								</a>
-							</li>
-						</ul>
-					</nav>
-					<p class="copyright pull-right">
-						&copy;
-						<script>
-							document.write(new Date().getFullYear())
-						</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-					</p>
-				</div>
-			</footer>
-		</div>
+          </div>
+        </nav>
 
+        <div class="content">
+          <div class="container-fluid">
+            <!-- Table Actions -->
+            <div class="table-toolbar">
+              <!-- Sort Dropdown -->
+              <div class="dropdown">
+                <a href="#" class="btn btn-white dropdown-toggle sort-toggle" data-toggle="dropdown" id="sortFieldTxt">
+                  DATE
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" class="sortFieldBtn" data-field="list-head">ORG</a></li>
+                  <li><a href="#" class="sortFieldBtn" data-field="list-prs">PRS</a></li>
+                  <li><a href="#" class="sortFieldBtn" data-field="list-body">TITLE</a></li>
+                  <li><a href="#" class="sortFieldBtn" data-field="list-date">DATE</a></li>
+                </ul>
+              </div>
+              <!-- Sort Asc/Des -->
+              <button class="btn btn-white" id="sortOrderBtn">
+                <i class="fa fa-long-arrow-down" id="sortOrderIcon"></i>
+              </button>
+            </div>
+            <!-- Main Table -->
+            <table class="table table-hover table-responsive"
+            id="activityTable"
+            data-toggle="table"
+            data-show-header="false">
+              <thead>
+                <tr>
+                  <th data-field="list-head" data-align="left" data-sortable="true"></th>
+                  <th data-field="list-prs" data-sortable="true"></th>
+                  <th data-field="list-body" data-sortable="true"></th>
+                  <th data-field="list-date" data-align="right" data-sortable="true"></th>
+                  <th data-field="list-status" data-align="center"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">J</div>
+                      <div class="org-acro">JPIA</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">123456789</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Fund Raising Activity</span>
+                    <span class="list-desc">A fundraising event in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 18:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">M</div>
+                      <div class="org-acro">Math Circle</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">768472657</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Battle of the Bands</span>
+                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 19:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">T</div>
+                      <div class="org-acro">TEAMCOMM</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">678723958</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">T-Shirt Selling</span>
+                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
+                  </td>
+                  <td class="list-date">
+                    Oct 31 7:04
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">J</div>
+                      <div class="org-acro">JPIA</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">123456789</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Fund Raising Activity</span>
+                    <span class="list-desc">A fundraising event in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 18:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">M</div>
+                      <div class="org-acro">Math Circle</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">768472657</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Battle of the Bands</span>
+                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 19:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">T</div>
+                      <div class="org-acro">TEAMCOMM</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">678723958</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">T-Shirt Selling</span>
+                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
+                  </td>
+                  <td class="list-date">
+                    Oct 31 7:04
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">J</div>
+                      <div class="org-acro">JPIA</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">123456789</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Fund Raising Activity</span>
+                    <span class="list-desc">A fundraising event in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 18:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">M</div>
+                      <div class="org-acro">Math Circle</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">768472657</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Battle of the Bands</span>
+                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 19:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">T</div>
+                      <div class="org-acro">TEAMCOMM</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">678723958</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">T-Shirt Selling</span>
+                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
+                  </td>
+                  <td class="list-date">
+                    Oct 31 7:04
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">J</div>
+                      <div class="org-acro">JPIA</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">123456789</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Fund Raising Activity</span>
+                    <span class="list-desc">A fundraising event in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 18:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">M</div>
+                      <div class="org-acro">Math Circle</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">768472657</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Battle of the Bands</span>
+                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 19:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">T</div>
+                      <div class="org-acro">TEAMCOMM</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">678723958</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">T-Shirt Selling</span>
+                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
+                  </td>
+                  <td class="list-date">
+                    Oct 31 7:04
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">J</div>
+                      <div class="org-acro">JPIA</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">123456789</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Fund Raising Activity</span>
+                    <span class="list-desc">A fundraising event in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 18:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">M</div>
+                      <div class="org-acro">Math Circle</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">768472657</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Battle of the Bands</span>
+                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 19:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">T</div>
+                      <div class="org-acro">TEAMCOMM</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">678723958</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">T-Shirt Selling</span>
+                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
+                  </td>
+                  <td class="list-date">
+                    Oct 31 7:04
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">J</div>
+                      <div class="org-acro">JPIA</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">123456789</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Fund Raising Activity</span>
+                    <span class="list-desc">A fundraising event in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 18:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">M</div>
+                      <div class="org-acro">Math Circle</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">768472657</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">Battle of the Bands</span>
+                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
+                  </td>
+                  <td class="list-date">
+                    Sep 20 19:21
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="list-head">
+                      <div class="logo-circle hidden-sm hidden-xs">T</div>
+                      <div class="org-acro">TEAMCOMM</div>
+                  </td>
+                  <td class="list-prs">
+                    <span style="font-style: italic">PRS: </span>
+                    <span style="font-weight: bold">678723958</span>
+                  </td>
+                  <td class="list-body">
+                    <span class="list-title">T-Shirt Selling</span>
+                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
+                  </td>
+                  <td class="list-date">
+                    Oct 31 7:04
+                  </td>
+                  <td class="list-status">
+                    <span class="label label-warning">Pending</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" id="close" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title text-center" id="myModalLabel"><b>Proposed Activity: </b>Fund-raising</h4>
-					</div>
-					<div class="modal-body">
+    </div>
 
-						<div class="container">
-							<!-- Activity Information-->
-							<div class="col-md-6">
-								<div class="row">
+    <!-- Sort Inputs -->
+    <input type="text" value="desc" id="sortOrder" style="display: none">
+    <input type="text" value="list-date" id="sortField" style="display: none">
+  </body>
+  <!--   Core JS Files   -->
+  <script src="assets/js/jquery.js" type="text/javascript"></script>
+  <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="assets/js/bootstrap-table.min.js" type="text/javascript"></script>
+  <script src="assets/js/material.min.js" type="text/javascript"></script>
 
-									<h5> CSO Confirmation</h5>
-									<hr>
-								</div>
+  <!--  Charts Plugin -->
+  <script src="assets/js/chartist.min.js"></script>
 
-								<div class="row">
-									<div class="col-md-12">
-										<p><b class="desc">Date of Activity:</b> 10/12/2016 - 10/15/2016</p>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<p><b class="desc">Date of Physical Documents Submitted:</b> 10/01/2016</p>
-									</div>
-								</div>
+  <!--  Notifications Plugin    -->
+  <script src="assets/js/bootstrap-notify.js"></script>
 
-								<div class="row">
-									<div class="col-md-4">
-										<p><b class="desc">PRS Number:</b> 952524</p>
-									</div>
-									<div class="col-md-4">
-										<p><b class="desc">Amount:</b> ₱10000.00</p>
-									</div>
-									<div class="col-md-4">
-										<p><b class="desc">Particulars:</b> Venue</p>
-									</div>
-								</div>
+  <!-- Material Dashboard javascript methods -->
+  <script src="assets/js/material-dashboard.js"></script>
 
-								<div class="row">
-									<div class="col-md-12">
-										<p><b class="desc">Payable to:</b> Matabungkay Beach Resort & Hotel,</p>
-									</div>
-								</div>
+  <!-- Moment JS -->
+  <script src="assets/js/moment.js"></script>
 
-								<div class="row">
-									<div class="col-md-12">
-										<p><b class="desc">Petty Cash Voucher:</b> </p>
-									</div>
-								</div>
+  <script src="assets/js/cso_table.js"></script>
 
-								<div class="row">
-									<div class="col-md-12">
-										<p><b class="desc">Deposit Official Receipt Number:</b> </p>
-									</div>
-								</div>
+  <script type="text/javascript">
+    var $table = $('#activityTable');
+    $table.bootstrapTable({
+      pagination: true,
+      onlyInfoPagination: false,
+      pageSize: 12,
+      formatShowingRows: function(pageFrom, pageTo, totalRows) {
 
-								<div class="row">
-									<div class="col-md-12">
-										<p><b class="desc">Actual Revenues:</b> </p>
-									</div>
-								</div>
+      },
+      formatRecordsPerPage: function(pageNumber) {
 
-								<div class="row">
-									<div class="col-md-12">
-										<p><b class="desc">Expenses from Revenues:</b> </p>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-12">
-										<p><b class="desc">Expenses from Reinbursements:</b> </p>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-12">
-										<p><b class="desc">Net Income/Loss:</b> </p>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-12">
-										<p><b class="desc">FRA Number:</b> </p>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-12">
-										<p><b class="desc">Submitted by:</b> Eldes Gonzales(091234567)</p>
-									</div>
-								</div>
-							</div>
-
-							<!-- CSO form -->
-							<div class="col-md-6 csoform form-horizontal">
-								<div class="row">
-									<h5> CSO Confirmation</h5>
-									<hr>
-								</div>
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Status:</b> </label>
-									<input type="text" id="status" class="formie" />
-									<label for="#your-input" class="desc"><b>Revisions:</b> </label>
-									<input type="text" id="revisions" class="formie" />
-								</div>
-
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Date Pended by CSO Finance:</b> </label>
-									<input type="text" id="datePendedCSO" class="formie" />
-								</div>
-
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Audited by:</b> </label>
-									<input type="text" id="auditor" class="formie" />
-									<label for="#your-input" class="desc"><b>Date Audited:</b> </label>
-									<input type="text" id="dateAudited" class="formie" />
-								</div>
-
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Encoded by:</b>  </label>
-									<input type="text" id="encoder" class="formie" />
-									<label for="#your-input" class="desc"><b>Date Encoded:</b> </label>
-									<input type="text" id="dateEncoded" class="formie" />
-								</div>
-
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Date Received by SLIFE:</b> </label>
-									<input type="text" id="dateRecievedSLIFE" class="formie" />
-								</div>
-
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Date Pended by SLIFE:</b> </label>
-									<input type="text" id="datePendedSLIFE" class="formie" />
-								</div>
-
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Remarks:</b> </label>
-									<input type="text" id="remarks" class="formie addwidth" />
-								</div>
-
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Date Received by Accouting Office:</b> </label>
-									<input type="text" id="dateRecievedAcc" class="formie" />
-								</div>
-
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Date Pended by Accounting Office:</b> </label>
-									<input type="text" id="datePendedAcc" class="formie" />
-								</div>
-
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Remarks:</b> </label>
-									<input type="text" id="AccRemarks" class="formie addwidth" />
-								</div>
-
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Other Remarks:</b> </label>
-									<input type="text" id="SLIFERemarks" class="formie addwidth" />
-								</div>
-
-								<div class="row">
-									<label for="#your-input" class="desc"><b>Resubmission to SLIFE/Notes:</b> </label>
-									<input type="text" id="notes" class="formie addwidth" />
-								</div>
-							</div>
-						</div>
-
-
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-info btn-success" id="addcomment">Add Comment</button>
-						<button type="button" class="btn btn-info btn-simple">Edit Activity</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		</div>
-	</body>
-
-	<!--   Core JS Files   -->
-	<script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="assets/js/material.min.js" type="text/javascript"></script>
-
-
-	<!-- Custome JS Files -->
-	<script src="assets/js/custom.js" type="text/javascript"></script>
-
-	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
-
-	<!--  Notifications Plugin    -->
-	<script src="assets/js/bootstrap-notify.js"></script>
-
-	<!-- Material Dashboard javascript methods -->
-	<script src="assets/js/material-dashboard.js"></script>
-
+      },
+      formatDetailPagination: function(totalRows) {
+        return ;
+      },
+      onClickRow: function(row, $element){
+      }
+    });
+  </script>
 
 </html>

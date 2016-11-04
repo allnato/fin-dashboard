@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat/montserrat-regular.woff') format('woff'),
+    url('../fonts/Montserrat/montserrat-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.card-content .clearfix h3{
+  font-weight: 400;
+}
+
+.page-head h3{
+  font-family: 'Montserrat';
+  font-weight: bold;
+  color: #283593;
+}
+
+.card [data-background-color="purple"]{
+  background: #303f9f;
+  box-shadow: 0 12px 20px -10px rgba(63, 63, 63, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 0, 0, 0.2);
+}
+
+.fa.fa-2x{
+  font-size: 1.5em;
+}
