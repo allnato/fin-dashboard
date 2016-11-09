@@ -1,5 +1,8 @@
 $(document).ready(function() {
   $('[data-toggle="tooltip"]').tooltip();
+  $('.fa.fa-users.pull-left').each(function() {
+    $(this).css('color', randomColor({luminosity: 'dark'}));
+  });
   // Sort Order Button is Clicked
   // Change the direction of the arrow
   $('#sortOrderBtn').click(function(event) {
