@@ -55,6 +55,16 @@
       .addOrgText{
         padding-right: 15px;
       }
+      .search{
+        display: inline-block;
+        margin-left: 40px;
+      }
+      .search .form-group{
+        display: inline-block;
+      }
+      .search .input-group-addon{
+        display: inline;
+      }
       /*#sortOrderBtn{
         background-color: #bdbdbd;
       }*/
@@ -158,14 +168,18 @@
         </nav>
         <div class="content">
           <div class="container-fluid">
+            <!-- Toolbar -->
             <div class="toolbar">
               <!-- Sort Asc/Des -->
-              <button class="btn" id="sortOrderBtn">
+              <button class="btn" id="sortOrderBtn" data-toggle="tooltip" data-placement="top" title="Sort">
                 <i class="fa fa-long-arrow-down" id="sortOrderIcon"></i>
               </button>
+              <div class="input-group search">
+                <span class="input-group-addon"><i class="fa fa-lg fa-search"></i></span>
+                <input type="text" placeholder="Search" class="form-control quicksearch">
+              </div>
 
               <div class="addOrganization pull-right">
-
                 <button class="btn btn-success" id="addOrgBtn">
                   <span class="addOrgText">Add New Organization</span>
                   <i class="fa fa-plus-square"></i>
@@ -177,280 +191,280 @@
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
                     <p class="text-center org-name">
-                      <i class="fa fa-users pull-left"></i>Organization 1</p>
+                      <i class="fa fa-users pull-left"></i>ACCESS</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 2</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>AdCreate</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 3</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>AIESEC</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 4</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>AMSTUD</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 5</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>BMS</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 6</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>CES</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 7</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ChemSoc</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 8</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>CheN</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 9</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>BSS</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 10</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Cultura</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 11</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>DANUM</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 12</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ECES</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 13</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ECONORG</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 14</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ENGLICOM</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 15</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ESA</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 16</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>GAS</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 17</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>IMES</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 18</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>JPIA</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 19</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>KKK</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 20</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>LSS</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 21</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>LSCS</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 22</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>MaFIA</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 23</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>MES</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 24</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Math Circle</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 25</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>MOOMEDIA</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 26</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>NKK</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 27</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>OC</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 28</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>PhySoc</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 29</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Pilosopo</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 30</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>POLISCY</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 31</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ROTARACT</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 32</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>SOH</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 33</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>SME</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 34</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>SMS</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 35</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>SV</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 36</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>TEAMCOMM</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 37</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>UNISTO</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 38</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>UNITED</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 39</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>WG</p>
                   </div>
                 </div>
               </div>
               <div class="col-sm-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Organization 40</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>YES</p>
                   </div>
                 </div>
               </div>

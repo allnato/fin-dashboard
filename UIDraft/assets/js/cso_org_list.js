@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  $('[data-toggle="tooltip"]').tooltip();
   // Sort Order Button is Clicked
   // Change the direction of the arrow
   $('#sortOrderBtn').click(function(event) {
@@ -26,10 +27,36 @@ $(document).ready(function() {
 
 });
 
+var qsRegex;
+
 var $orgList = $('.org-list').isotope({
   itemSelector: '.col-sm-3',
   layout: 'fitRows',
   getSortData: {
     name: '.org_name'
+  },
+  filter: function() {
+    return qsRegex ? $(this).text().match( qsRegex ) : true;
   }
 });
+
+// use value of search field to filter
+var $quicksearch = $('.quicksearch').keyup( debounce( function() {
+  qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+  $orgList.isotope();
+}, 200 ) );
+
+// debounce so filtering doesn't happen every millisecond
+function debounce( fn, threshold ) {
+  var timeout;
+  return function debounced() {
+    if ( timeout ) {
+      clearTimeout( timeout );
+    }
+    function delayed() {
+      fn();
+      timeout = null;
+    }
+    timeout = setTimeout( delayed, threshold || 100 );
+  }
+}
