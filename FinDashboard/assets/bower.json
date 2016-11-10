@@ -1,0 +1,31 @@
+{
+  "name": "fin-dashboard",
+  "homepage": "https://github.com/Ollen/FIN-Dashboard",
+  "authors": [
+    "Allendale Nato <natoallendale@gmail.com>"
+  ],
+  "description": "CSO Finance Dashboard",
+  "main": "",
+  "keywords": [
+    "finance",
+    "dashboard",
+    "cso",
+    "DLSU"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "chartist": "^0.10.1",
+    "moment": "^2.15.2",
+    "isotope": "^3.0.1",
+    "font-awesome": "fontawesome#^4.7.0",
+    "hover": "Hover#^2.1.0"
+  }
+}
