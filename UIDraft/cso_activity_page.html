@@ -183,7 +183,7 @@
                           <!-- PRS, Process, and Budget -->
                           <div class="row">
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                               <div class="form-group has-feedback">
                                 <div class="input-group has-feedback">
                                   <span class="input-group-addon">
@@ -195,7 +195,7 @@
                               </div>
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                               <div class="form-group has-feedback">
                                 <div class="input-group has-feedback">
                                   <span class="input-group-addon">
@@ -208,7 +208,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                               <div class="form-group has-feedback">
                                 <div class="input-group has-feedback">
                                   <span class="input-group-addon">
@@ -216,6 +216,18 @@
                                   </span>
                                   <label for="budget" class="control-label">Budget</label>
                                   <input id="budget" name="budget" type="number" class="form-control" placeholder="Amount" step="any" min="0"/>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                              <div class="form-group has-feedback">
+                                <div class="input-group has-feedback">
+                                  <span class="input-group-addon">
+                                    <i class="fa fa-2x fa-credit-card" aria-hidden="true"></i>
+                                  </span>
+                                  <label for="FRAnum" class="control-label">FRA Number</label>
+                                  <input id="FRAnum" name="FRAnum" type="number" class="form-control" placeholder="FRA number" step="any" min="0"/>
                                 </div>
                               </div>
                             </div>
@@ -322,12 +334,27 @@
                                 </div>
                               </div>
                           </div>
-                          <div class="row">
-                            <div class="text-right">
 
-                              <button class="btn btn-info">Edit</button>
-                              <button class="btn btn-danger">Remark</button>
-                              <button class="btn btn-success">Approve</button>
+                          <div class="row">
+                            <div class="col-sm-4 col-sm-offset-4">
+                              <div class="form-group has-feedback">
+                                <div class="input-group has-feedback">
+                                  <span class="input-group-addon">
+                                    <i class="fa fa-2x fa-user"></i>
+                                  </span>
+                                  <label for="submittedBy" class="control-label">Submitted By</label>
+                                  <input id="submittedBy" name="submittedBy" class="form-control" placeholder="Submitted By"/>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-footer text-right">
+                            <div class="row">
+                              <div class="text-right">
+                                <button class="btn btn-info">Edit</button>
+                                <button class="btn btn-danger">Remark</button>
+                                <button class="btn btn-success">Approve</button>
+                              </div>
                             </div>
                           </div>
                       </div>

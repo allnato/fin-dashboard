@@ -7,6 +7,14 @@
   background: linear-gradient(60deg, #03A9F4, #1E88E5);
 }
 
+.submmitedBy{
+  display: inline-block;
+  color: black;
+}
+
+#submittedBy{
+  color: black;
+}
 .card-header input{
   font-size: 1.5em;
 }
