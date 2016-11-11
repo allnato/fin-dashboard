@@ -1464,7 +1464,7 @@ h2.title {
 }
 
 body {
-  background-color: #EEEEEE;
+  background-color: #EEEEEE !important;
   color: #3C4858;
 }
 body.inverse {

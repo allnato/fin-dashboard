@@ -22,18 +22,29 @@
 		<!-- Datepicker CSS -->
 		<link href="assets/css/bootstrap-datepicker.css" rel="stylesheet" />
 
-		<link rel="stylesheet" href="assets/css/newactivity.css">
+		<!-- Font Awesome :-) -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" href="assets/css/cso_page.css">
 		<link rel="stylesheet" href="assets/css/cso_table.css">
+		<style media="screen">
+			.dos, .datePended{
+				font-weight: bold;
+				font-style: normal;
+			}
+			.list-process{
+				font-weight: bold;
+			}
+		</style>
 
 		<!--     Fonts and icons     -->
-		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
 		<link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
 	</head>
 
 	<body>
 
 		<div class="wrapper">
-			<div class="sidebar" data-color="red" data-image="">
+			<div class="sidebar" data-color="green" data-image="">
 
 				<div class="logo text-center">
 					<!-- Logo image test -->
@@ -122,10 +133,12 @@
             <!-- Main Table -->
             <table class="table table-hover table-responsive"
             id="activityTable"
-            data-toggle="table">
+            data-toggle="table"
+						data-show-header="false">
               <thead>
                 <tr>
                   <th data-field="list-title" data-align="left" data-sortable="true">Title</th>
+									<th data-field="list-process" data-align="left" data-sortable="true">Process</th>
                   <th data-field="list-dos" data-align="right" data-sortable="true">Date Submmited</th>
                   <th data-field="list-datePended" data-align="right" data-sortable="true">Date Pended</th>
                   <th data-field="list-status" data-align="center" data-sortable="true">Status</th>
@@ -137,10 +150,13 @@
                     <span class="list-title">Fund Raising Activity </span>
                     <span class="list-desc">A fundraising event in Vito Cruz</span>
                   </td>
+									<td class="list-process">Cash Advance</td>
                   <td class="list-dos">
+										Date Submitted:
                     <span class="dos">10/01/16</span>
                   </td>
                   <td class="list-datePended">
+										Date Pended:
                     <span class="datePended">10/03/16 21:18</span>
                   </td>
                   <td class="list-status">
@@ -152,10 +168,13 @@
                     <span class="list-title">Fund Raising Activity </span>
                     <span class="list-desc">A fundraising event in Vito Cruz</span>
                   </td>
+									<td class="list-process">Cash Advance</td>
                   <td class="list-dos">
+										Date Submitted:
                     <span class="dos">10/01/16</span>
                   </td>
                   <td class="list-datePended">
+										Date Pended:
                     <span class="datePended">10/03/16 21:18</span>
                   </td>
                   <td class="list-status">
@@ -167,10 +186,13 @@
                     <span class="list-title">Fund Raising Activity </span>
                     <span class="list-desc">A fundraising event in Vito Cruz</span>
                   </td>
+									<td class="list-process">Cash Advance</td>
                   <td class="list-dos">
+										Date Submitted:
                     <span class="dos">10/01/16</span>
                   </td>
                   <td class="list-datePended">
+										Date Pended:
                     <span class="datePended">10/03/16 21:18</span>
                   </td>
                   <td class="list-status">
