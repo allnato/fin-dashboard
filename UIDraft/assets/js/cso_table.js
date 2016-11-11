@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  $('[data-toggle="tooltip"]').tooltip();
   // Sort Order Button is Clicked
   // Change the direction of the arrow
   $('#sortOrderBtn').click(function(event) {

@@ -21,6 +21,10 @@ tr{
   border: 1px solid #ddd;
 }
 
+.sortAsc{
+  display: inline-block;
+}
+
 /*.table{
   table-layout: fixed;
 }
