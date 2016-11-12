@@ -26,6 +26,7 @@
     "moment": "^2.15.2",
     "isotope": "^3.0.1",
     "font-awesome": "fontawesome#^4.7.0",
-    "hover": "Hover#^2.1.0"
+    "hover": "Hover#^2.1.0",
+    "jquery-validation": "^1.15.1"
   }
 }
