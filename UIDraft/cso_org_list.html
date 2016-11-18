@@ -29,9 +29,6 @@
     <link rel="stylesheet" href="assets/css/cso_table.css">
     <link rel="stylesheet" href="assets/css/cso_page.css">
 
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
 
     <style media="screen">
       p{
@@ -169,17 +166,20 @@
         <div class="content">
           <div class="container-fluid">
             <!-- Toolbar -->
-            <div class="toolbar">
-              <!-- Sort Asc/Des -->
-              <button class="btn" id="sortOrderBtn" data-toggle="tooltip" data-placement="top" title="Sort">
-                <i class="fa fa-long-arrow-down" id="sortOrderIcon"></i>
-              </button>
-              <div class="input-group search">
-                <span class="input-group-addon"><i class="fa fa-lg fa-search"></i></span>
-                <input type="text" placeholder="Search" class="form-control quicksearch">
+            <div class="toolbar clearfix">
+              <div class="pull-right">
+                <!-- Sort Asc/Des -->
+                <button class="btn" id="sortOrderBtn" data-toggle="tooltip" data-placement="top" title="Sort">
+                  <i class="fa fa-long-arrow-down" id="sortOrderIcon"></i>
+                </button>
+                <!-- Search -->
+                <div class="input-group search">
+                  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                  <input type="text" placeholder="Search" class="form-control quicksearch">
+                </div>
               </div>
-
-              <div class="addOrganization pull-right">
+              <!-- Add new org -->
+              <div class="addOrganization pull-left">
                 <button class="btn btn-success" id="addOrgBtn" data-toggle="modal" data-target="#addOrgModal">
                   <span class="addOrgText">Add New Organization</span>
                   <i class="fa fa-plus-square"></i>
