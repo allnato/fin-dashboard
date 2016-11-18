@@ -13,18 +13,32 @@
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Bootstrap-Table CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap-table.min.css">
-
     <!--  Material Dashboard CSS    -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 
+    <!-- Bootstrap-Table CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap-table.min.css">
+
+    <!-- Datepicker CSS -->
+    <link href="assets/css/bootstrap-datepicker.css" rel="stylesheet" />
 
     <!-- Font Awesome :-) -->
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/cso_table.css">
-
+    <link rel="stylesheet" href="assets/css/cso_page.css">
+    <style media="screen">
+      .dos, .datePended{
+        font-weight: bold;
+        font-style: normal;
+      }
+      .list-process{
+        font-weight: bold;
+      }
+      #sortFieldTxt{
+        width: auto !important;
+      }
+    </style>
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
   </head>
 
@@ -43,10 +57,23 @@
         <!-- Sidebar Navigation! -->
         <div class="sidebar-wrapper">
           <ul class="nav">
+            <li>
+              <a href="cso_create_activity.html">
+                <i class="fa fa-file-text"></i>
+                <p>New Activitiy</p>
+              </a>
+            </li>
             <li class="active">
               <a href="cso_activity_list.html">
                 <i class="fa fa-list"></i>
-                <p>Activities</p>
+                <p>CSO Activities</p>
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="cso_org_activity_list.html">
+                <i class="fa fa-list"></i>
+                <p>ORG Activities</p>
               </a>
             </li>
             <li>
@@ -124,21 +151,22 @@
 
         <div class="content">
           <div class="container-fluid">
-            <!-- Table Actions -->
+						<!-- Table Actions -->
             <div class="table-toolbar">
               <!-- Sort Dropdown -->
               <div class="dropdown" data-toggle="tooltip" data-placement="top" title="Sort by Field">
-                <a href="#" class="btn btn-white dropdown-toggle sort-toggle" data-toggle="dropdown" id="sortFieldTxt" >
-                  Date
+                <a href="#" class="btn btn-white dropdown-toggle sort-toggle" data-toggle="dropdown" id="sortFieldTxt">
+                  Title
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="#" class="sortFieldBtn" data-field="list-head">ORG</a></li>
-                  <li><a href="#" class="sortFieldBtn" data-field="list-prs">PRS</a></li>
-                  <li><a href="#" class="sortFieldBtn" data-field="list-body">Title</a></li>
-                  <li><a href="#" class="sortFieldBtn" data-field="list-date">Date</a></li>
+                  <li><a href="#" class="sortFieldBtn" data-field="list-title">Title</a></li>
+                  <li><a href="#" class="sortFieldBtn" data-field="list-process">Process</a></li>
+                  <li><a href="#" class="sortFieldBtn" data-field="list-dos">Date Submitted</a></li>
+                  <li><a href="#" class="sortFieldBtn" data-field="list-datePended">Date Pended</a></li>
+									<li><a href="#" class="sortFieldBtn" data-field="list-status">Status</a></li>
                 </ul>
               </div>
-              <!-- Sort Asc/Des -->
+							<!-- Sort Asc/Des -->
               <div class="sortAsc" data-toggle="tooltip" data-placement="top" title="Sort Up/Down">
                 <button class="btn btn-white" id="sortOrderBtn">
                   <i class="fa fa-long-arrow-down" id="sortOrderIcon"></i>
@@ -149,380 +177,75 @@
             <table class="table table-hover table-responsive"
             id="activityTable"
             data-toggle="table"
-            data-show-header="false">
+						data-show-header="false">
               <thead>
                 <tr>
-                  <th data-field="list-head" data-align="left" data-sortable="true"></th>
-                  <th data-field="list-prs" data-sortable="true"></th>
-                  <th data-field="list-body" data-sortable="true"></th>
-                  <th data-field="list-date" data-align="right" data-sortable="true"></th>
-                  <th data-field="list-status" data-align="center"></th>
+                  <th data-field="list-title" data-align="left" data-sortable="true">Title</th>
+									<th data-field="list-process" data-align="left" data-sortable="true">Process</th>
+                  <th data-field="list-dos" data-align="right" data-sortable="true">Date Submmited</th>
+                  <th data-field="list-datePended" data-align="right" data-sortable="true">Date Pended</th>
+                  <th data-field="list-status" data-align="center" data-sortable="true">Status</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">J</div>
-                      <div class="org-acro">JPIA</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">123456789</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">Fund Raising Activity</span>
+                  <td class="">
+                    <span class="list-title">Fund Raising Activity </span>
                     <span class="list-desc">A fundraising event in Vito Cruz</span>
                   </td>
-                  <td class="list-date">
-                    Sep 20 18:21
+									<td class="list-process">Cash Advance</td>
+                  <td class="list-dos">
+										Date Submitted:
+                    <span class="dos">10/01/16</span>
+                  </td>
+                  <td class="list-datePended">
+										Date Pended:
+                    <span class="datePended">10/03/16 21:18</span>
                   </td>
                   <td class="list-status">
                     <span class="label label-warning">Pending</span>
                   </td>
                 </tr>
                 <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">M</div>
-                      <div class="org-acro">Math Circle</div>
+                  <td class="">
+                    <span class="list-title">Battle of the Band </span>
+                    <span class="list-desc">Battle of the bands event in Yuchenco Hall</span>
                   </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">768472657</span>
+									<td class="list-process">Down Payment</td>
+                  <td class="list-dos">
+										Date Submitted:
+                    <span class="dos">10/01/17</span>
                   </td>
-                  <td class="list-body">
-                    <span class="list-title">Battle of the Bands</span>
-                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
-                  </td>
-                  <td class="list-date">
-                    Sep 20 19:21
+                  <td class="list-datePended">
+										Date Pended:
+                    <span class="datePended">10/26/16 06:18</span>
                   </td>
                   <td class="list-status">
                     <span class="label label-warning">Pending</span>
                   </td>
                 </tr>
                 <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">T</div>
-                      <div class="org-acro">TEAMCOMM</div>
+                  <td class="">
+                    <span class="list-title">MySQL Workshop </span>
+                    <span class="list-desc">A MySQL Workshop in Gokonwei Lobby</span>
                   </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">678723958</span>
+									<td class="list-process">Cash Advance</td>
+                  <td class="list-dos">
+										Date Submitted:
+                    <span class="dos">07/12/16</span>
                   </td>
-                  <td class="list-body">
-                    <span class="list-title">T-Shirt Selling</span>
-                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
-                  </td>
-                  <td class="list-date">
-                    Oct 31 7:04
+                  <td class="list-datePended">
+										Date Pended:
+                    <span class="datePended">07/15/16 13:05</span>
                   </td>
                   <td class="list-status">
                     <span class="label label-warning">Pending</span>
                   </td>
                 </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">J</div>
-                      <div class="org-acro">JPIA</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">123456789</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">Fund Raising Activity</span>
-                    <span class="list-desc">A fundraising event in Vito Cruz</span>
-                  </td>
-                  <td class="list-date">
-                    Sep 20 18:21
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">M</div>
-                      <div class="org-acro">Math Circle</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">768472657</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">Battle of the Bands</span>
-                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
-                  </td>
-                  <td class="list-date">
-                    Sep 20 19:21
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">T</div>
-                      <div class="org-acro">TEAMCOMM</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">678723958</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">T-Shirt Selling</span>
-                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
-                  </td>
-                  <td class="list-date">
-                    Oct 31 7:04
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">J</div>
-                      <div class="org-acro">JPIA</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">123456789</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">Fund Raising Activity</span>
-                    <span class="list-desc">A fundraising event in Vito Cruz</span>
-                  </td>
-                  <td class="list-date">
-                    Sep 20 18:21
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">M</div>
-                      <div class="org-acro">Math Circle</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">768472657</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">Battle of the Bands</span>
-                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
-                  </td>
-                  <td class="list-date">
-                    Sep 20 19:21
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">T</div>
-                      <div class="org-acro">TEAMCOMM</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">678723958</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">T-Shirt Selling</span>
-                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
-                  </td>
-                  <td class="list-date">
-                    Oct 31 7:04
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">J</div>
-                      <div class="org-acro">JPIA</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">123456789</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">Fund Raising Activity</span>
-                    <span class="list-desc">A fundraising event in Vito Cruz</span>
-                  </td>
-                  <td class="list-date">
-                    Sep 20 18:21
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">M</div>
-                      <div class="org-acro">Math Circle</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">768472657</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">Battle of the Bands</span>
-                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
-                  </td>
-                  <td class="list-date">
-                    Sep 20 19:21
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">T</div>
-                      <div class="org-acro">TEAMCOMM</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">678723958</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">T-Shirt Selling</span>
-                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
-                  </td>
-                  <td class="list-date">
-                    Oct 31 7:04
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">J</div>
-                      <div class="org-acro">JPIA</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">123456789</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">Fund Raising Activity</span>
-                    <span class="list-desc">A fundraising event in Vito Cruz</span>
-                  </td>
-                  <td class="list-date">
-                    Sep 20 18:21
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">M</div>
-                      <div class="org-acro">Math Circle</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">768472657</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">Battle of the Bands</span>
-                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
-                  </td>
-                  <td class="list-date">
-                    Sep 20 19:21
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">T</div>
-                      <div class="org-acro">TEAMCOMM</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">678723958</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">T-Shirt Selling</span>
-                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
-                  </td>
-                  <td class="list-date">
-                    Oct 31 7:04
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">J</div>
-                      <div class="org-acro">JPIA</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">123456789</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">Fund Raising Activity</span>
-                    <span class="list-desc">A fundraising event in Vito Cruz</span>
-                  </td>
-                  <td class="list-date">
-                    Sep 20 18:21
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">M</div>
-                      <div class="org-acro">Math Circle</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">768472657</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">Battle of the Bands</span>
-                    <span class="list-desc">Battle of the Bands hosted in Vito Cruz</span>
-                  </td>
-                  <td class="list-date">
-                    Sep 20 19:21
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="list-head">
-                      <div class="logo-circle hidden-sm hidden-xs">T</div>
-                      <div class="org-acro">TEAMCOMM</div>
-                  </td>
-                  <td class="list-prs">
-                    <span style="font-style: italic">PRS: </span>
-                    <span style="font-weight: bold">678723958</span>
-                  </td>
-                  <td class="list-body">
-                    <span class="list-title">T-Shirt Selling</span>
-                    <span class="list-desc">New TEAMCOMM T-Shirt</span>
-                  </td>
-                  <td class="list-date">
-                    Oct 31 7:04
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
+
               </tbody>
             </table>
-          </div>
+					</div>
         </div>
       </div>
 
@@ -533,24 +256,22 @@
     <input type="text" value="list-date" id="sortField" style="display: none">
   </body>
   <!--   Core JS Files   -->
-  <script src="assets/js/jquery.js" type="text/javascript"></script>
-  <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap-datepicker.js"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="assets/js/bootstrap-table.min.js" type="text/javascript"></script>
-  <script src="assets/js/material.min.js" type="text/javascript"></script>
+	<script src="assets/js/material.min.js" type="text/javascript"></script>
 
-  <!--  Charts Plugin -->
-  <script src="assets/js/chartist.min.js"></script>
+	<!--  Notifications Plugin    -->
+	<script src="assets/js/bootstrap-notify.js"></script>
 
-  <!--  Notifications Plugin    -->
-  <script src="assets/js/bootstrap-notify.js"></script>
+	<!-- Material Dashboard javascript methods -->
+	<script src="assets/js/material-dashboard.js"></script>
 
-  <!-- Material Dashboard javascript methods -->
-  <script src="assets/js/material-dashboard.js"></script>
+	<!-- Moment JS -->
+	<script src="assets/js/moment.js"></script>
+	<script src="assets/js/org_table.js"></script>
 
-  <!-- Moment JS -->
-  <script src="assets/js/moment.js"></script>
-
-  <script src="assets/js/cso_table.js"></script>
 
   <script type="text/javascript">
     var $table = $('#activityTable');
