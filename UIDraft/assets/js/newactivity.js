@@ -1,23 +1,39 @@
 $(document).ready(function() {
+
+  $('#processType').change(function(event) {
+    $(this).valid();
+  });
+
+  $('#dateDesc').change(function(event) {
+    $(this).valid();
+  });
+
   // Get the current Date.
-  var currDate = moment().format('MM/DD/YYYY');
-  $('.beginDate').val(currDate);
-  $('.endDate').val(currDate);
+  var currDate = new Date();
+
 
   $('.beginDate').datepicker({
-   weekStart:1
-  });
+    startDate: currDate
+  }).on('changeDate', function(){
+    $('.beginDate').valid();
+     $('.endDate').datepicker('setStartDate', new Date($(this).val()));
+  });;
 
   $('.endDate').datepicker({
-   weekStart:1
+    startDate: currDate
+  }).on('changeDate', function(){
+    $('.endDate').valid();
   });
 
-  $('.form-navigation').css('height', $('.form-main').height());
 
-  var tabHeight = Math.max($('#details').height(),$('#process').height());
+  var tabHeight = $('#details').height();
+  $('.form-navigation').css('height', tabHeight);
 
   $('#details').css('min-height', tabHeight);
   $('#process').css('min-height', tabHeight);
+  $('#finish').css('min-height', tabHeight);
+
+
 
   });
 

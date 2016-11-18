@@ -27,22 +27,17 @@
   font-size: 3em;
 }
 
-input#title{
-  color: white;
-}
-
-
 .form-navigation{
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.startDateLabel,
+/*.startDateLabel,
 .endDateLabel{
   color: white !important;
   font-size: 1.2em !important;
-}
+}*/
 
 .card-header .form-group.is-focused .form-control{
   background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(#D2D2D2, #D2D2D2);
@@ -61,7 +56,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .tab-pane .form-control{
   color: black;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 .tab-pane input.form-control[type="number"]{
@@ -69,25 +64,7 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 1.7rem;
 }
 
-#title::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.65);
-  font-size: inherit;
-}
 
-#title:-moz-placeholder { /* Firefox 18- */
-  color: rgba(255, 255, 255, 0.65);
-  font-size: inherit;
-}
-
-#title::-moz-placeholder {  /* Firefox 19+ */
-  color: rgba(255, 255, 255, 0.65);
-  font-size: inherit;
-}
-
-#title:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.65);
-  font-size: inherit;
-}
 
 .tab-pane .form-control::-webkit-input-placeholder {
 
@@ -111,20 +88,20 @@ input[type=number]::-webkit-outer-spin-button {
 
 .tab-pane .form-control[type="number"]::-webkit-input-placeholder {
 
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 .tab-pane .form-control[type="number"]:-moz-placeholder { /* Firefox 18- */
 
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 .tab-pane .form-control[type="number"]::-moz-placeholder {  /* Firefox 19+ */
 
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 .tab-pane .form-control[type="number"]:-ms-input-placeholder {
 
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
