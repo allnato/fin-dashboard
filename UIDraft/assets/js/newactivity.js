@@ -2,6 +2,7 @@ $(document).ready(function() {
   // Get the current Date.
   var currDate = moment().format('MM/DD/YYYY');
   $('.beginDate').val(currDate);
+  $('.endDate').val(currDate);
 
   $('.beginDate').datepicker({
    weekStart:1
