@@ -152,7 +152,7 @@
         <div class="content">
           <div class="container-fluid">
 						<!-- Table Actions -->
-            <div class="table-toolbar">
+            <div class="table-toolbar pull-right">
               <!-- Sort Dropdown -->
               <div class="dropdown" data-toggle="tooltip" data-placement="top" title="Sort by Field">
                 <a href="#" class="btn btn-white dropdown-toggle sort-toggle" data-toggle="dropdown" id="sortFieldTxt">
@@ -277,8 +277,14 @@
     var $table = $('#activityTable');
     $table.bootstrapTable({
       pagination: true,
+      search: true,
+      toolbar: '.table-toolbar',
+      toolbarAlign: 'right',
       onlyInfoPagination: false,
       pageSize: 12,
+      icon: {
+        search: 'fa fa-search'
+      },
       formatShowingRows: function(pageFrom, pageTo, totalRows) {
 
       },

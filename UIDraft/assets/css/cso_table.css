@@ -80,6 +80,14 @@ tr{
 
 .sort-toggle{
   font-weight: bold;
+  margin-left: 45px;
+}
+
+.search input{
+  background-image: linear-gradient(#43a047, #43a047), linear-gradient(#747272, #D2D2D2) !important;
+  color: black;
+  font-size: 1.2em;
+  font-family: 'montserrat'
 }
 
 #sortFieldTxt{
