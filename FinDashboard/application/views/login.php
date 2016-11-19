@@ -12,7 +12,6 @@
     <!-- Material Icons -->
     <link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Coming+Soon|Dosis|Fredericka+the+Great|Glass+Antiqua|Monoton|Montserrat+Alternates|Muli|Noto+Sans|Noto+Serif|Yeseva+One" rel="stylesheet"> -->
   </head>
 
   <body class="">
@@ -24,7 +23,7 @@
           </div>
           <!-- Logo -->
           <h1 class="center-align logo rubik">CSO</h1>
-
+          <h4 class="center-align finance logo rubik">finance</h4>
           <!-- Login Form -->
 
           <div class="loginForm z-depth-2 grey lighten-4">
@@ -41,7 +40,7 @@
               </div>
 
               <div class="input-field submitButton row">
-                <button type="submit" class="col s12 btn waves-effect waves-light btn-large pink">Login</button>
+                <button type="submit" class="col s12 btn waves-effect waves-light btn-large green">Login</button>
               </div>
 
             </form>
@@ -76,7 +75,8 @@
     var error = false;
     <?php
       $flash = $this->session->flashdata('error_login');
-      if(isset($flash)): ?>
+      if(isset($flash)):
+    ?>
       error = true;
     <?php endif ?>
     if(error){

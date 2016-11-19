@@ -1,0 +1,100 @@
+/*Sidebar fix for logos*/
+.sidebar .sidebar-wrapper, .off-canvas-sidebar .sidebar-wrapper{
+  height: auto !important;
+}
+
+.logo-name{
+  text-transform: none !important
+}
+
+.navbar-brand.nav-title{
+  font-weight: bold;
+  text-indent: 5px;
+}
+
+.table > tbody > tr > td{
+  padding: 12px 8px !important;
+  border: none;
+}
+
+tr{
+  border: 1px solid #ddd;
+}
+
+.sortAsc{
+  display: inline-block;
+}
+
+/*.table{
+  table-layout: fixed;
+}
+
+.table td{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}*/
+
+.list-body, .list-date, .list-prs{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logo-circle{
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 2rem;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  color: white;
+  background-color: dodgerblue;
+}
+
+.org-acro{
+  display: inline-block;
+  text-indent: 1rem;
+  /*line-height: 3rem;*/
+  font-weight: bold;
+  text-overflow: ellipsis;
+}
+
+.list-title{
+  font-weight: bold;
+}
+
+.list-desc{
+
+}
+
+.table-toolbar{
+  margin-bottom: 2em;
+}
+
+.dropdown{
+  display: inline-block;
+}
+
+.sort-toggle{
+  font-weight: bold;
+  margin-left: 45px;
+}
+
+.search input{
+  background-image: linear-gradient(#43a047, #43a047), linear-gradient(#747272, #D2D2D2) !important;
+  color: black;
+  font-size: 1.2em;
+  font-family: 'montserrat'
+}
+
+#sortFieldTxt{
+  width: 90px;
+}
+
+
+table{
+  background-color: white;
+}

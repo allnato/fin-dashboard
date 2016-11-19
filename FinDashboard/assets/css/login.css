@@ -26,7 +26,7 @@
 body::after{
   content : "";
   display: block;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-image: url('../img/bg5.jpg');
@@ -46,9 +46,10 @@ body::after{
 .logo{
   padding-bottom: 0px;
   font-weight: bold;
-  color: #054103;
+  color: #355E3B;
   font-size: 7em;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .login{
@@ -59,6 +60,15 @@ body::after{
 
 .loginForm{
   padding: 40px;
+}
+
+.finance{
+  padding-bottom: 0px;
+  color: #355E3B;
+  font-size: 3em;
+  margin-top: 0;
+  margin: 0 auto;
+  margin-bottom: 1rem;
 }
 
 .loginForm .input-field{}
