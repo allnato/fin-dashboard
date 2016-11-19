@@ -72,17 +72,30 @@
   <script src="<?php echo base_url();?>assets/js/jquery-3.1.0.min.js"></script>
   <script src="<?php echo base_url();?>assets/js/materialize.min.js"></script>
   <script type="text/javascript">
-    var error = false;
-    <?php
-      $flash = $this->session->flashdata('error_login');
-      if(isset($flash)):
-    ?>
-      error = true;
-    <?php endif ?>
-    if(error){
-      //Materialize.toast('Invalid Login Credentials', 4000);
-      $('.error').css('visibility', 'visible');
-    }
+  var error = false;
+  var logout = false;
+  <?php
+    $flash = $this->session->flashdata('error_login');
+    if(isset($flash)):
+  ?>
+    error = true;
+  <?php endif ?>
+
+  <?php
+    if(isset($logout)):
+  ?>
+   logout = true;
+   console.log('TREU');
+   <?php endif ?>
+
+  if(error){
+    //Materialize.toast('Invalid Login Credentials', 4000);
+    $('.error').css('visibility', 'visible');
+  }
+
+  if(logout){
+    Materialize.toast('Logout Successfully', 4000);
+  }
 
   </script>
 </html>

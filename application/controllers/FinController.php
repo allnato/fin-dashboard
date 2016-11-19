@@ -32,6 +32,20 @@ class FinController extends CI_Controller{
     $this->load->view('login');
   }
   /**
+   * Log out the users
+   */
+  public function logout(){
+    $data = array('logout' => 'logout');
+    // Check if session exists.
+    if($this->checkSession()){
+      // If session exist, notify user that they logged out successfully
+      $this->session->sess_destroy();
+      $this->load->view('login', $data);
+      return;
+    }
+    $this->load->view('login');
+  }
+  /**
    * Loads the CSO Admin Panel
    * @return [type] [description]
    */

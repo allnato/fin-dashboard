@@ -57,3 +57,4 @@ $route['login'] = 'FinController/login';
 $route['verifyLogin'] = 'FinController/verifyLogin';
 $route['admin'] = 'FinController/admin';
 $route['org'] = 'FinController/org';
+$route['logout'] = 'FinController/logout';
