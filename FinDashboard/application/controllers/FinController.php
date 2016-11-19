@@ -50,7 +50,6 @@ class FinController extends CI_Controller{
     }
 
     echo $this->session->userdata('name');
-
   }
 
   /**
