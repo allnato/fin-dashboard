@@ -49,6 +49,10 @@ class FinController extends CI_Controller{
       redirect(site_url('login'));
     }
 
+    // Check if org is CSO
+    if($this->session->userdata('acronym') == 'CSO'){
+      redirect(site_url('admin'));
+    }
     echo $this->session->userdata('name');
   }
 

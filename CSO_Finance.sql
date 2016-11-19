@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `cso_finance` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `cso_finance`;
--- MySQL dump 10.16  Distrib 10.1.16-MariaDB, for Win32 (AMD64)
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: cso_finance
 -- ------------------------------------------------------
--- Server version	10.1.16-MariaDB
+-- Server version	5.5.5-10.1.16-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -98,7 +98,7 @@ CREATE TABLE `organization` (
   `email` varchar(100) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`orgID`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +107,7 @@ CREATE TABLE `organization` (
 
 LOCK TABLES `organization` WRITE;
 /*!40000 ALTER TABLE `organization` DISABLE KEYS */;
-INSERT INTO `organization` VALUES (1,'Association of Computer Engineering Students','ACCESS','access@dlsu.edu.ph','access'),(2,'AdCreate Society','AdCreate','adcreate@dlsu.edu.ph','adcreate'),(3,'AIESEC-DLSU','AIESEC','aiesec@dlsu.edu.ph','aiesec'),(4,'The Organization for American Studies Students','AMSTUD','amstud@dlsu.edu.ph','amstud'),(5,'Business Management Society','BMS','bms@dlsu.edu.ph','bms'),(6,'Behavioral Science Society','BSS','bss@dlsu.edu.ph','bss'),(7,'Civil Engineering Society','CES','ces@dlsu.edu.ph','ces'),(8,'Chemistry Society','ChemSoc','chemsoc@dlsu.edu.ph','chemsoc'),(9,'Chemical Engineering Society','ChEn','chen@dlsu.edu.ph','chen'),(10,'Cultura','Cultura','dlsucultura@gmail.com','cultura'),(11,'Dalubhasaan ng mga Umuusbong na Mag-aaral ng Araling Filipino','DANUM','danum@dlsu.edu.ph','danum'),(12,'Electronic and Communications Engineering Society','ECES','eces@dlsu.edu.ph','eces'),(13,'Economics Organization','EconOrg','econorg@dlsu.edu.ph','econorg'),(14,'ENGLICOM','ENGLICOM','englicom@dlsu.edu.ph','englicom'),(15,'European Studies Association','ESA','esa@dlsu.edu.ph','esa'),(16,'Gakuen Anime Soshiki','GAS','gas.dlsu.stc@gmail.com','gas'),(17,'Industrial Management Engineering Society','IMES','imes@dlsu.edu.ph','imes'),(18,'Junior Philippine Institute of Accountants','JPIA','jpia@dlsu.edu.ph','jpia'),(19,'Kapatiran ng Kabataan para sa Kaunlaran','KKK','kkk@dlsu.edu.ph','kkk'),(20,'Ley La Salle','LSS','leylasalle@dlsu.edu.ph','lss'),(21,'La Salle Computer Society','LSCS','lscs@dlsu.edu.ph','lscs'),(22,'Management of Financial Institution Association','MaFIA','mafia@dlsu.edu.ph','mafia'),(23,'Mathematics Circle','Math Circle','mathcircle@dlsu.edu.ph','mathcircle'),(24,'Mechanical Engineering Society','MES','mes@dlsu.edu.ph','mes'),(25,'MOOMEDIA','MOOMEDIA','moomedia@dlsu.edu.ph','moomedia'),(26,'Nihon Kenkyuu Kai','NKK','nkk@dlsu.edu.ph','nkk'),(27,'Outdoor Club','OC','outdoor@dlsu.edu.ph','oc'),(28,'Physics Society','PhySoc','physoc@dlsu.edu.ph','physoc'),(29,'Samahan ng Lasalayanong Pilosopo','Pilosopo','pilosopo@dlsu.edu.ph','pilosopo'),(30,'Political Science Society','POLISCY','poliscy@dlsu.edu.ph','poliscy'),(31,'Rotaract Club of DLSU','ROTARACT','rotaract@dlsu.edu.ph','rotaract'),(32,'Sociedad de Historia','SDH','sdh@dlsu.edu.ph','sdh'),(33,'Society of Manufacturing Engineering','SME','sme@dlsu.edu.ph','sme'),(34,'Samahan ng mga Mag-aaral sa Sikolohiya','SMS','sms@dlsu.edu.ph','sms'),(35,'Societas Vitae','SV','sv@dlsu.edu.ph','sv'),(36,'Team Communications','TEAMCOMM','teamcomm@dlsu.edu.ph','teamcomm'),(37,'United International Student Organization','UNISTO','unisto@dlsu.edu.ph','unisto'),(38,'Union of Students Inspired Towards Education','UNITED','united@dlsu.edu.ph','united'),(39,'Writers’ Guild','WG','wg@dlsu.edu.ph','wg'),(40,'Young Entrepreneurs Society','YES','yes@dlsu.edu.ph','yes');
+INSERT INTO `organization` VALUES (1,'Association of Computer Engineering Students','ACCESS','access@dlsu.edu.ph','access'),(2,'AdCreate Society','AdCreate','adcreate@dlsu.edu.ph','adcreate'),(3,'AIESEC-DLSU','AIESEC','aiesec@dlsu.edu.ph','aiesec'),(4,'The Organization for American Studies Students','AMSTUD','amstud@dlsu.edu.ph','amstud'),(5,'Business Management Society','BMS','bms@dlsu.edu.ph','bms'),(6,'Behavioral Science Society','BSS','bss@dlsu.edu.ph','bss'),(7,'Civil Engineering Society','CES','ces@dlsu.edu.ph','ces'),(8,'Chemistry Society','ChemSoc','chemsoc@dlsu.edu.ph','chemsoc'),(9,'Chemical Engineering Society','ChEn','chen@dlsu.edu.ph','chen'),(10,'Cultura','Cultura','dlsucultura@gmail.com','cultura'),(11,'Dalubhasaan ng mga Umuusbong na Mag-aaral ng Araling Filipino','DANUM','danum@dlsu.edu.ph','danum'),(12,'Electronics and Communications Engineering Society','ECES','eces@dlsu.edu.ph','eces'),(13,'Economics Organization','EconOrg','econorg@dlsu.edu.ph','econorg'),(14,'ENGLICOM','ENGLICOM','englicom@dlsu.edu.ph','englicom'),(15,'European Studies Association','ESA','esa@dlsu.edu.ph','esa'),(16,'Gakuen Anime Soshiki','GAS','gas.dlsu.stc@gmail.com','gas'),(17,'Industrial Management Engineering Society','IMES','imes@dlsu.edu.ph','imes'),(18,'Junior Philippine Institute of Accountants','JPIA','jpia@dlsu.edu.ph','jpia'),(19,'Kapatiran ng Kabataan para sa Kaunlaran','KKK','kkk@dlsu.edu.ph','kkk'),(20,'Ley La Salle','LSS','leylasalle@dlsu.edu.ph','lss'),(21,'La Salle Computer Society','LSCS','lscs@dlsu.edu.ph','lscs'),(22,'Management of Financial Institution Association','MaFIA','mafia@dlsu.edu.ph','mafia'),(23,'Mathematics Circle','Math Circle','mathcircle@dlsu.edu.ph','mathcircle'),(24,'Mechanical Engineering Society','MES','mes@dlsu.edu.ph','mes'),(25,'MOOMEDIA','MOOMEDIA','moomedia@dlsu.edu.ph','moomedia'),(26,'Nihon Kenkyuu Kai','NKK','nkk@dlsu.edu.ph','nkk'),(27,'Outdoor Club','OC','outdoor@dlsu.edu.ph','oc'),(28,'Physics Society','PhySoc','physoc@dlsu.edu.ph','physoc'),(29,'Samahan ng Lasalayanong Pilosopo','Pilosopo','pilosopo@dlsu.edu.ph','pilosopo'),(30,'Political Science Society','POLISCY','poliscy@dlsu.edu.ph','poliscy'),(31,'Rotaract Club of DLSU','ROTARACT','rotaract@dlsu.edu.ph','rotaract'),(32,'Sociedad de Historia','SDH','sdh@dlsu.edu.ph','sdh'),(33,'Society of Manufacturing Engineering','SME','sme@dlsu.edu.ph','sme'),(34,'Samahan ng mga Mag-aaral sa Sikolohiya','SMS','sms@dlsu.edu.ph','sms'),(35,'Societas Vitae','SV','sv@dlsu.edu.ph','sv'),(36,'Team Communications','TEAMCOMM','teamcomm@dlsu.edu.ph','teamcomm'),(37,'United International Student Organization','UNISTO','unisto@dlsu.edu.ph','unisto'),(38,'Union of Students Inspired Towards Education','UNITED','united@dlsu.edu.ph','united'),(39,'Writers’ Guild','WG','wg@dlsu.edu.ph','wg'),(40,'Young Entrepreneurs Society','YES','yes@dlsu.edu.ph','yes'),(41,'Council of Student Organizations','CSO','cso@dlsu.edu.ph','cso');
 /*!40000 ALTER TABLE `organization` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,10 +148,6 @@ LOCK TABLES `remark` WRITE;
 /*!40000 ALTER TABLE `remark` DISABLE KEYS */;
 /*!40000 ALTER TABLE `remark` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'cso_finance'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -162,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-19 14:21:23
+-- Dump completed on 2016-11-19 22:49:04
