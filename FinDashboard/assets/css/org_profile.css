@@ -1,0 +1,16 @@
+.initials{
+  text-decoration: underline;
+  font-family: 'montserrat';
+}
+
+.orgName{
+  font-weight: bolder;
+}
+
+.orgCard{
+
+}
+
+hr{
+  border-top: 1px dashed gray !important;
+}
