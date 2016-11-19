@@ -11,22 +11,22 @@
 		<meta name="viewport" content="width=device-width" />
 
 		<!-- Bootstrap core CSS     -->
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" />
 
 		<!--  Material Dashboard CSS    -->
-		<link href="assets/css/material-dashboard.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/material-dashboard.css" rel="stylesheet" />
 
     <!-- Bootstrap-Table CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap-table.min.css">
 
 		<!-- Datepicker CSS -->
-		<link href="assets/css/bootstrap-datepicker.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/bootstrap-datepicker.css" rel="stylesheet" />
 
 		<!-- Font Awesome :-) -->
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
 
-		<link rel="stylesheet" href="assets/css/cso_table.css">
-		<link rel="stylesheet" href="assets/css/cso_page.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_table.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_page.css">
 		<style media="screen">
 			.dos, .datePended{
 				font-weight: bold;
@@ -51,7 +51,7 @@
 
 				<div class="logo text-center">
 					<!-- Logo image test -->
-					<img src="assets/img/logos/JPIA.png" alt="" width="150px" class=" text-center">
+					<img src="<?php echo base_url();?>assets/img/logos/JPIA.png" alt="" width="150px" class=" text-center">
 					<a href="#" class="simple-text">
 					JPIA
 					</a>
@@ -119,7 +119,7 @@
 
                 <!-- Logout -->
                 <li>
-                  <a href="" class="btn btn-white">
+                  <a href="<?php echo site_url('logout');?>" class="btn btn-white">
                     Logout
                     <i class="fa fa-sign-out"></i>
                   </a>
@@ -257,24 +257,24 @@
 	</body>
 
 	<!--   Core JS Files   -->
-	<script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap-datepicker.js"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="assets/js/bootstrap-table.min.js" type="text/javascript"></script>
-	<script src="assets/js/material.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.js"></script>
+	<script src="<?php echo base_url();?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url();?>assets/js/bootstrap-table.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>assets/js/material.min.js" type="text/javascript"></script>
 
 	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
+	<script src="<?php echo base_url();?>assets/js/chartist.min.js"></script>
 
 	<!--  Notifications Plugin    -->
-	<script src="assets/js/bootstrap-notify.js"></script>
+	<script src="<?php echo base_url();?>assets/js/bootstrap-notify.js"></script>
 
 	<!-- Material Dashboard javascript methods -->
-	<script src="assets/js/material-dashboard.js"></script>
+	<script src="<?php echo base_url();?>assets/js/material-dashboard.js"></script>
 
 	<!-- Moment JS -->
-	<script src="assets/js/moment.js"></script>
-	<script src="assets/js/org_table.js"></script>
+	<script src="<?php echo base_url();?>assets/js/moment.js"></script>
+	<script src="<?php echo base_url();?>assets/js/org_table.js"></script>
 
 
   <script type="text/javascript">
