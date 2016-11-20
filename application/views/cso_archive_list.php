@@ -193,7 +193,7 @@
                       <span class="datePended">{$row['datePendedCSO']}</span>
                     </td>
                     <td class="list-status">
-                      <span class="label label-warning">{$row['status']}</span>
+                      <span class="label label-success">{$row['status']}</span>
                     </td>
                   </tr>
 
