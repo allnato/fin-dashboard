@@ -49,13 +49,78 @@ class ActivityModel extends CI_Model{
 
         $this->db->where('orgID', $orgID);
         $query = $this->db->get('activity');
+
         $activity = array();
         foreach ($query->result_array() as $row) {
+          $remarks = $this->getActivityRemarksForTable($row['activityID']);
+          // In case datePendedCSO is still null, provide a message instead
+          if($remarks[0]['datePendedCSO'] == null) {
+            $row['datePendedCSO'] = "Not yet provided.";
+          }
+          else {
+            $row['datePendedCSO'] = $remarks[0]['datePendedCSO'];
+          }
+          // In case status is still null. Defaults to pending.
+          if($remarks[0]['status'] == null) {
+              $row['status'] = "Pending";
+          }
+          else {
+            $row['status'] = $remarks[0]['status'];
+          }
+
+          $row['processType'] = $this->wordify($row['processType']);
+
           array_push($activity, $row);
+
         }
         return $activity;
       }
 
+    }
+
+    public function getActivityRemarksForTable($activityID) {
+      $this->db->select('datePendedCSO, status ');
+      $this->db->where('activityID', $activityID);
+      $query = $this->db->get('remark');
+      return $query->result_array();
+    }
+
+    function wordify($processType) {
+      switch($processType) {
+        case 'DP':
+          return 'Direct Payment';
+          break;
+        case 'CA':
+          return 'Cash Advance';
+          break;
+        case 'RM':
+          return 'Reimbursement';
+          break;
+        case 'BT':
+          return 'Book Transfer';
+          break;
+        case 'LQ':
+          return 'Liquidation';
+          break;
+        case 'PCR':
+          return 'Petty Cash Replenishment';
+          break;
+        case 'NE':
+          return 'No Expense';
+          break;
+        case 'FRA':
+          return 'Fund Raising Activity Report';
+          break;
+        case 'CP':
+          return 'Change of Payee';
+          break;
+        case 'COC':
+          return 'Cancellation of Check';
+          break;
+        case 'LEA':
+          return 'List of Expenses alone';
+          break;
+      }
     }
 
 }
