@@ -85,7 +85,6 @@
     if(isset($logout)):
   ?>
    logout = true;
-   console.log('TREU');
    <?php endif ?>
 
   if(error){

@@ -37,7 +37,7 @@ class ActivityModel extends CI_Model{
     $activityData['dateSubmitted'] = date('Y-m-d H:i:s');
     $this->db->insert('activity', $activityData);
 
-     return $this->db->affected_rows() > 0;
+     return ($this->db->affected_rows() != 1) ? false : true;
    }
 
    /**
