@@ -118,8 +118,40 @@ class ActivityModel extends CI_Model{
         }
 
         $row['processType'] = $this->wordify($row['processType']);
-        
+
         array_push($activity, $row);
+
+      }
+    }
+
+      public function getAllApproved() {
+        $query = $this->db->get('activity');
+
+        $activity = array();
+        foreach ($query->result_array() as $row) {
+          $remarks = $this->getActivityRemarksForTable($row['activityID']);
+
+          // In case datePendedCSO is still null, provide a message instead
+          if($remarks[0]['datePendedCSO'] == null) {
+            $row['datePendedCSO'] = "Not yet provided.";
+          }
+          else {
+            $row['datePendedCSO'] = $remarks[0]['datePendedCSO'];
+          }
+          $row['status'] = $remarks[0]['status'];
+          if($row['PRSno'] == null) {
+            $row['PRSno'] = "N/A";
+          }
+          else {
+            $row['PRSno'] = $row['PRSno'];
+          }
+
+          $row['processType'] = $this->wordify($row['processType']);
+
+          if($row['status'] == 'Approved') {
+              array_push($activity, $row);
+          }
+
 
       }
 

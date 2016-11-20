@@ -36,8 +36,14 @@ class CSOController extends CI_Controller{
   }
 
   public function archive_list() {
+    // Redirect to login if session does not exists.
+    $this->checkSession();
+    // Load ActitivityModel.php
+    $this->load->model('ActivityModel');
+    // Retrieves all the activities of all orgs.
+    $activities['activityList'] = $this->ActivityModel->getAllApproved();
 
-    $this->load->view('cso_archive_list.php');
+    $this->load->view('cso_archive_list.php', $activities);
   }
 
   public function create_activity() {
@@ -71,7 +77,7 @@ class CSOController extends CI_Controller{
     // Load ActitivityModel.php
     $this->load->model('ActivityModel');
     // Retrieves all the activities of all orgs.
-    $activities['activityList'] = $this->ActivityModel->getAllActivities();
+    $activities['activityList'] = $this->ActivityModel->getAllApproved();
 
     $this->load->view('cso_org_activity_list.php', $activities);
 
