@@ -11,20 +11,20 @@
     <meta name="viewport" content="width=device-width" />
 
     <!-- Bootstrap core CSS     -->
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
 
 		<!--  Material Dashboard CSS    -->
-		<link href="assets/css/material-dashboard.css" rel="stylesheet" />
+		<link href="<?php echo base_url(); ?>assets/css/material-dashboard.css" rel="stylesheet" />
 
 		<!-- Datepicker CSS -->
-		<link href="assets/css/bootstrap-datepicker.css" rel="stylesheet" />
+		<link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker.css" rel="stylesheet" />
 
 
     <!-- Font Awesome :-) -->
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/newactivity.css">
-    <link rel="stylesheet" href="assets/css/cso_table.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/newactivity.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_table.css">
     <style>
       .nav.nav-pills{
         border-right: 4px dashed #2196F3;
@@ -65,7 +65,7 @@
 
         <!-- LOGO Image and Name -->
         <div class="logo text-center">
-          <img src="assets/img/cso_logo.png" alt="" width="150px" class=" text-center">
+          <img src="<?php echo base_url(); ?>assets/img/cso_logo.png" alt="" width="150px" class=" text-center">
           <a href="#" class="simple-text logo-name">
   					CSO
   				</a>
@@ -74,26 +74,26 @@
         <div class="sidebar-wrapper">
           <ul class="nav">
             <li class="active">
-              <a href="cso_create_activity.html">
+              <a href="<?php echo site_url('admin/create-activity'); ?>">
                 <i class="fa fa-file-text"></i>
-                <p>New Activitiy</p>
+                <p>New Activity</p>
               </a>
             </li>
             <li>
-              <a href="cso_activity_list.html">
+              <a href="<?php echo site_url('admin/activity-list'); ?>">
                 <i class="fa fa-list"></i>
                 <p>CSO Activities</p>
               </a>
             </li>
             <li class="divider"></li>
-            <li >
-              <a href="cso_org_activity_list.html">
+            <li>
+              <a href="<?php echo site_url('admin/org-activity-list'); ?>">
                 <i class="fa fa-list"></i>
                 <p>ORG Activities</p>
               </a>
             </li>
             <li>
-              <a href="cso_archive_list.html">
+              <a href="<?php echo site_url('admin/archive-list'); ?>">
                 <i class="fa fa-archive"></i>
                 <p>Archive</p>
               </a>
@@ -105,7 +105,7 @@
               </a>
             </li>
             <li>
-              <a href="cso_org_list.html">
+              <a href="<?php echo site_url('admin/org-list'); ?>">
                 <i class="fa fa-users"></i>
                 <p>Organizations</p>
               </a>
@@ -153,7 +153,7 @@
 
                 <!-- Logout -->
                 <li>
-                  <a href="" class="btn btn-white">
+                  <a href="<?php echo site_url('logout');?>" class="btn btn-white">
                     Logout
                     <i class="fa fa-sign-out"></i>
                   </a>
@@ -519,27 +519,27 @@
     </div>
   </body>
   <!--   Core JS Files   -->
-  <script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
-  <script src="assets/js/jquery.validate.min.js" type="text/javascript"></script>
-  <script src="assets/js/bootstrap-datepicker.js"></script>
-  <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="assets/js/material.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>assets/js/bootstrap-datepicker.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>assets/js/material.min.js" type="text/javascript"></script>
 
   <!--  Charts Plugin -->
-  <script src="assets/js/chartist.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/chartist.min.js"></script>
 
   <!--  Notifications Plugin    -->
-  <script src="assets/js/bootstrap-notify.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.js"></script>
 
   <!-- Material Dashboard javascript methods -->
-  <script src="assets/js/material-dashboard.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/material-dashboard.js"></script>
 
   <!-- Moment JS -->
-  <script src="assets/js/moment.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/moment.js"></script>
 
-  <script src="assets/js/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
-  <script src="assets/js/validateCreate.js" type="text/javascript"></script>
-  <script src="assets/js/newactivity.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>assets/js/validateCreate.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>assets/js/newactivity.js"></script>
   <script type="text/javascript"></script>
 
 
