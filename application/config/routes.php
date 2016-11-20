@@ -72,3 +72,5 @@ $route['admin/archive-list'] = 'CSOController/archive_list';
 $route['admin/create-activity'] = 'CSOController/create_activity';
 $route['admin/org-activity-list'] = 'CSOController/org_activity_list';
 $route['admin/org-list'] = 'CSOController/org_list';
+
+$route['admin/submit'] = 'CSOController/submit_activity';

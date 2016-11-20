@@ -487,7 +487,7 @@
                 			<li class="previous"><a href="#" class="btn btn-info">Previous</a></li>
                 			<li class="next last" style="display:none;"><a href="#" class="btn btn-info">Last</a></li>
                 		  <li class="next"><a href="#" class="btn btn-info">Next</a></li>
-                      <li class="finish"><button type="button" id="finishBTN" href="#" class="btn btn-success">Finish</a></li>
+                      <li class="finish"><button type="button" id="finishBTN" href="#" class="btn btn-success">Finish</button></li>
                 		</ul>
 
 									</div>

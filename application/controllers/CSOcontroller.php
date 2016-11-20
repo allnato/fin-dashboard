@@ -41,8 +41,28 @@ class CSOController extends CI_Controller{
   }
 
   public function create_activity() {
-
+    $this->checkSession();
     $this->load->view('cso_create_activity.php');
+  }
+
+  /**
+   * Submits the form data through this function and redirect to activity_list when done.
+   * @SuppressWarnings(camelCase)
+   */
+  public function submit_activity(){
+   // Load ActivityModel
+    $this->load->model('ActivityModel');
+   // Get formfields from $POST
+    $formfields = $this->input->post(NULL, true);
+   // Set flashdata to true
+    $this->session->set_flashdata('submitActivity', 'true');
+
+    // Submit to model which is then inserted to the database. This function returns true row is affected.
+    if(!$this->ActivityModel->addNewActivity($formfields)){
+      $this->session->set_flashdata('submitActivity', 'false');
+    }
+
+    redirect(site_url('admin/activity-list'));
   }
 
   public function org_activity_list() {
