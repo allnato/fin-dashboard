@@ -16,7 +16,7 @@ class OrgModel extends CI_Model{
      $this->load->database();
    }
 
-   public addNewOrg($orgData) {
+   public function addNewOrg($orgData) {
 
      $this->db->insert('organization', $orgData);
    }

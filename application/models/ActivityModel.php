@@ -120,7 +120,10 @@ class ActivityModel extends CI_Model{
         $row['processType'] = $this->wordify($row['processType']);
         $acronym = $this->getOrgAcronym($row['orgID']);
         $row['acronym'] = $acronym[0]['acronym'];
-        array_push($activity, $row);
+        if($row['status'] == 'Pending') {
+            array_push($activity, $row);
+        }
+
 
       }
 
