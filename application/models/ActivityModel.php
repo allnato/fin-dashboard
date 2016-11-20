@@ -85,22 +85,6 @@ class ActivityModel extends CI_Model{
       return $query->result_array();
     }
 
-    public function getActivityData($pageID){
-      // Store the org initials
-      $orgInitials = $this->session->userdata('acronym');
-      // Check if the page is created by the ORG.
-      $this->db->select("a.*")
-      ->from('organization as o, activity as a')
-      ->where("o.acronym = '$orgInitials' AND a.activityID = $pageID AND o.orgID = a.orgID");
-
-      $query = $this->db->get();
-      $row = array();
-      foreach ($query->row() as $key => $value) {
-        $row[$key] = $value;
-      }
-      // Return false if page does not exist within an org
-      return ($query->num_rows() != 1) ? false : $row;
-    }
 
     function wordify($processType) {
       switch($processType) {
@@ -140,4 +124,20 @@ class ActivityModel extends CI_Model{
       }
     }
 
+    public function getActivityData($pageID){
+      // Store the org initials
+      $orgInitials = $this->session->userdata('acronym');
+      // Check if the page is created by the ORG.
+      $this->db->select("a.*")
+      ->from('organization as o, activity as a')
+      ->where("o.acronym = '$orgInitials' AND a.activityID = $pageID AND o.orgID = a.orgID");
+
+      $query = $this->db->get();
+      $row = array();
+      foreach ($query->row() as $key => $value) {
+        $row[$key] = $value;
+      }
+      // Return false if page does not exist within an org
+      return ($query->num_rows() != 1) ? false : $row;
+    }
 }
