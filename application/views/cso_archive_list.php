@@ -544,7 +544,7 @@
 
     <!-- Sort Inputs -->
     <input type="text" value="desc" id="sortOrder" style="display: none">
-    <input type="text" value="list-date" id="sortField" style="display: none">
+    <input type="text" value="list-dos" id="sortField" style="display: none">
   </body>
   <!--   Core JS Files   -->
   <script src="assets/js/jquery.js" type="text/javascript"></script>
