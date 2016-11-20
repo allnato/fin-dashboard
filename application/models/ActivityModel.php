@@ -118,7 +118,7 @@ class ActivityModel extends CI_Model{
         }
 
         $row['processType'] = $this->wordify($row['processType']);
-
+        
         array_push($activity, $row);
 
       }
