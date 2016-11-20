@@ -36,6 +36,9 @@ class ActivityModel extends CI_Model{
     // Add the dateSubmitted.
     $activityData['dateSubmitted'] = date('Y-m-d H:i:s');
     $this->db->insert('activity', $activityData);
+    // Get ID of row you just inserted
+    $id['activityID'] = $this->db->insert_id();
+    $this->db->insert('remark', $id);
 
      return ($this->db->affected_rows() != 1) ? false : true;
    }
