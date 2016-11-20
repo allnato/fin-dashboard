@@ -13,14 +13,32 @@ $(document).ready(function() {
 
 
   $('.beginDate').datepicker({
-    startDate: currDate
+    startDate: currDate,
+    autoclose: true,
+    format: {
+      toDisplay: function(date, format, language){
+        return moment(new Date(date)).format('MMM DD, YYYY');
+      },
+      toValue: function(date, format, language){
+
+      }
+    }
   }).on('changeDate', function(){
     $('.beginDate').valid();
      $('.endDate').datepicker('setStartDate', new Date($(this).val()));
   });;
 
   $('.endDate').datepicker({
-    startDate: currDate
+    startDate: currDate,
+    autoclose: true,
+    format: {
+      toDisplay: function(date, format, language){
+        return moment(new Date(date)).format('MMM DD, YYYY');
+      },
+      toValue: function(date, format, language){
+
+      }
+    }
   }).on('changeDate', function(){
     $('.endDate').valid();
   });
@@ -43,4 +61,15 @@ $(document).ready(function() {
 
   $('.btn-detail').click(function() {
     $('#detail-btn').trigger('click');
+  });
+
+  $('#finishBTN').click(function() {
+    var a = $('#beginDate').val();
+    var b = $('#endDate').val();
+    var newbeginDate = moment(new Date(a)).format('YYYY-MM-DD');
+    var newendDate = moment(new Date(b)).format('YYYY-MM-DD');
+    $('#beginDate').val(newbeginDate);
+    $('#endDate').val(newendDate);
+
+    $('#createForm').submit();
   });
