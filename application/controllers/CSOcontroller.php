@@ -85,8 +85,14 @@ class CSOController extends CI_Controller{
   }
 
   public function org_list() {
-
+    $this->checkSession();
     $this->load->view('cso_org_list.php');
+  }
+
+  public function add_org() {
+    $orgData = $this->input->post(null, true);
+
+    redirect(site_url('admin/org-list'));
   }
 
   /**

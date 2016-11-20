@@ -16,6 +16,11 @@ class OrgModel extends CI_Model{
      $this->load->database();
    }
 
+   public addNewOrg($orgData) {
+
+     $this->db->insert('organization', $orgData);
+   }
+
    /**
     * Checks the login credential. If true create a Session.
     * @param  array $loginData {
