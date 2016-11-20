@@ -45,7 +45,6 @@ class OrgController extends CI_Controller{
      $this->ActivityModel->addNewActivity($formfields);
 
      redirect(site_url('org/activity-list'));
-
    }
 
 
@@ -66,8 +65,6 @@ class OrgController extends CI_Controller{
    * @param  Integer $id       activity_page ID
    * @SuppressWarnings(camelCase)
    */
-
-
   public function activity_page($initials, $pageID){
     // Redirect to login if session does not exists.
     $this->checkSession();
