@@ -5,28 +5,28 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-		<title>JPIA | Activity List</title>
+		<title><?= $this->session->userdata('acronym') ?> | Activity List</title>
 
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 		<meta name="viewport" content="width=device-width" />
 
 		<!-- Bootstrap core CSS     -->
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" />
 
 		<!--  Material Dashboard CSS    -->
-		<link href="assets/css/material-dashboard.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/material-dashboard.css" rel="stylesheet" />
 
     <!-- Bootstrap-Table CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap-table.min.css">
 
 		<!-- Datepicker CSS -->
-		<link href="assets/css/bootstrap-datepicker.css" rel="stylesheet" />
+		<link href="<?php echo base_url();?>assets/css/bootstrap-datepicker.css" rel="stylesheet" />
 
 		<!-- Font Awesome :-) -->
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
 
-		<link rel="stylesheet" href="assets/css/cso_table.css">
-		<link rel="stylesheet" href="assets/css/cso_page.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_table.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_page.css">
 		<style media="screen">
 			.dos, .datePended{
 				font-weight: bold;
@@ -51,28 +51,28 @@
 
 				<div class="logo text-center">
 					<!-- Logo image test -->
-					<img src="assets/img/logos/JPIA.png" alt="" width="150px" class=" text-center">
+					<img src="<?php echo base_url();?>assets/img/logos/<?= $this->session->userdata('acronym') ?>.png" alt="" width="150px" class=" text-center">
 					<a href="#" class="simple-text">
-					JPIA
+					<?= $this->session->userdata('acronym') ?>
 					</a>
 				</div>
 
 				<div class="sidebar-wrapper">
 					<ul class="nav">
 						<li>
-							<a href="org_create_activity.html">
+							<a href="<?= site_url('org/new-activity')?>">
 								<i class="fa fa-file-text"></i>
 								<p>New Activity</p>
 							</a>
 						</li>
 						<li class="active">
-							<a href="org_activity_list.html">
+							<a href="<?= site_url('org/activity-list')?>">
 								<i class="fa fa-list"></i>
 								<p>View Activities</p>
 							</a>
 						</li>
 						<li >
-							<a href="org_profile.html">
+							<a href="<?= site_url('org/profile')?>">
 								<i class="fa fa-users"></i>
 								<p>Org Profile</p>
 							</a>
@@ -119,7 +119,7 @@
 
                 <!-- Logout -->
                 <li>
-                  <a href="" class="btn btn-white">
+                  <a href="<?php echo site_url('logout');?>" class="btn btn-white">
                     Logout
                     <i class="fa fa-sign-out"></i>
                   </a>
@@ -170,60 +170,35 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="">
-                    <span class="list-title">Fund Raising Activity </span>
-                    <span class="list-desc">A fundraising event in Vito Cruz</span>
-                  </td>
-									<td class="list-process">Cash Advance</td>
-                  <td class="list-dos">
+
+								<?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
+								$wordify = 'wordify';
+								foreach($activityList as $row) {
+								$dos = date("M d, Y g:i A", strtotime($row['dateSubmitted']));
+
+								echo <<< EOT
+								<tr id={$row['activityID']} class={$row['activityID']}>
+									<td class="">
+										<span class="list-title">{$row['title']}</span>
+										<span class="list-desc">{$row['description']}</span>
+									</td>
+									<td class="list-process">{$row['processType']}</td>
+									<td class="list-dos">
 										Date Submitted:
-                    <span class="dos">10/01/16</span>
-                  </td>
-                  <td class="list-datePended">
+										<span class="dos">{$dos}</span>
+									</td>
+									<td class="list-datePended">
 										Date Pended:
-                    <span class="datePended">10/03/16 21:18</span>
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="">
-                    <span class="list-title">Battle of the Band </span>
-                    <span class="list-desc">Battle of the bands event in Yuchenco Hall</span>
-                  </td>
-									<td class="list-process">Down Payment</td>
-                  <td class="list-dos">
-										Date Submitted:
-                    <span class="dos">10/01/17</span>
-                  </td>
-                  <td class="list-datePended">
-										Date Pended:
-                    <span class="datePended">10/26/16 06:18</span>
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="">
-                    <span class="list-title">MySQL Workshop </span>
-                    <span class="list-desc">A MySQL Workshop in Gokonwei Lobby</span>
-                  </td>
-									<td class="list-process">Cash Advance</td>
-                  <td class="list-dos">
-										Date Submitted:
-                    <span class="dos">07/12/16</span>
-                  </td>
-                  <td class="list-datePended">
-										Date Pended:
-                    <span class="datePended">07/15/16 13:05</span>
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
+										<span class="datePended">{$row['datePendedCSO']}</span>
+									</td>
+									<td class="list-status">
+										<span class="label label-warning">{$row['status']}</span>
+									</td>
+								</tr>
+
+EOT;
+};
+								?>
 
               </tbody>
             </table>
@@ -244,7 +219,7 @@
 							&copy;
 							<script>
 								document.write(new Date().getFullYear())
-							</script> <a href="http://www.creative-tim.com">CSO</a> | College of Student Organizations
+							</script> <a href="http://www.dlsucso.com">CSO</a> | Council of Student Organizations
 						</p>
 					</div>
 				</footer>
@@ -253,28 +228,28 @@
 		</div>
 		<!-- Sort Inputs -->
     <input type="text" value="desc" id="sortOrder" style="display: none">
-    <input type="text" value="list-date" id="sortField" style="display: none">
+    <input type="text" value="list-dos" id="sortField" style="display: none">
 	</body>
 
 	<!--   Core JS Files   -->
-	<script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap-datepicker.js"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="assets/js/bootstrap-table.min.js" type="text/javascript"></script>
-	<script src="assets/js/material.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.js"></script>
+	<script src="<?php echo base_url();?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url();?>assets/js/bootstrap-table.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>assets/js/material.min.js" type="text/javascript"></script>
 
 	<!--  Charts Plugin -->
-	<script src="assets/js/chartist.min.js"></script>
+	<script src="<?php echo base_url();?>assets/js/chartist.min.js"></script>
 
 	<!--  Notifications Plugin    -->
-	<script src="assets/js/bootstrap-notify.js"></script>
+	<script src="<?php echo base_url();?>assets/js/bootstrap-notify.js"></script>
 
 	<!-- Material Dashboard javascript methods -->
-	<script src="assets/js/material-dashboard.js"></script>
+	<script src="<?php echo base_url();?>assets/js/material-dashboard.js"></script>
 
 	<!-- Moment JS -->
-	<script src="assets/js/moment.js"></script>
-	<script src="assets/js/org_table.js"></script>
+	<script src="<?php echo base_url();?>assets/js/moment.js"></script>
+	<script src="<?php echo base_url();?>assets/js/org_table.js"></script>
 
 
   <script type="text/javascript">
@@ -296,9 +271,54 @@
         return ;
       },
       onClickRow: function(row, $element){
-      }
+      },
     });
   </script>
+	<script type="text/javascript">
+
+		<?php
+			$flash = $this->session->flashdata('submitActivity');
+			if($flash == 'true'):
+		?>
+		$.notify({
+			icon: "check",
+			message: "Create Activity - Successfully added a new Activity",
+		},{
+				type: 'success',
+				timer: 4000,
+				placement: {
+						from: 'top',
+						align: 'center'
+				},
+				allow_dismiss: true,
+				newest_on_top: true,
+				mouse_over: 'pause'
+		});
+		<?php elseif($flash == 'false'): ?>
+		$.notify({
+			icon: "check",
+			message: "Create Activity - Error in creating a new activity",
+		},{
+				type: 'danger',
+				timer: 4000,
+				placement: {
+						from: 'top',
+						align: 'center'
+				},
+				allow_dismiss: true,
+				newest_on_top: true,
+				mouse_over: 'pause'
+		});
+		<?php endif; ?>
+	</script>
+
+	<script type="text/javascript">
+		var pageID = '';
+		$('#activityTable').on('click-row.bs.table', function (row, $element, field) {
+			pageID = $(field).attr('id');
+			window.location.href = "<?= site_url('org/activity-page/')  ?>" + pageID;
+		});
+	</script>
 
 
 </html>

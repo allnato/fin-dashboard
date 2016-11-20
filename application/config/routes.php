@@ -55,6 +55,20 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'FinController/login';
 $route['verifyLogin'] = 'FinController/verifyLogin';
-$route['admin'] = 'FinController/admin';
-$route['org'] = 'FinController/org';
 $route['logout'] = 'FinController/logout';
+
+$route['org'] = 'ORGController';
+$route['org/new-activity'] = 'ORGController/new_activity';
+$route['org/activity-list'] = 'ORGController/activity_list';
+$route['org/activity-page/(:num)'] = 'ORGController/activity_page/$1';
+$route['org/profile'] = 'ORGController/profile';
+
+$route['org/submit'] = 'ORGController/submit_activity';
+
+$route['admin'] = 'CSOController';
+$route['admin/activity-list'] = 'CSOController/activity_list';
+$route['admin/activity-page'] = 'CSOController/activity_page';
+$route['admin/archive-list'] = 'CSOController/archive_list';
+$route['admin/create-activity'] = 'CSOController/create_activity';
+$route['admin/org-activity-list'] = 'CSOController/org_activity_list';
+$route['admin/org-list'] = 'CSOController/org_list';

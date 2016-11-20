@@ -36,10 +36,10 @@ class FinController extends CI_Controller{
    */
   public function logout(){
     $data = array('logout' => 'logout');
+    $this->session->sess_destroy();
     // Check if session exists.
     if($this->checkSession()){
       // If session exist, notify user that they logged out successfully
-      $this->session->sess_destroy();
       $this->load->view('login', $data);
       return;
     }
@@ -51,23 +51,6 @@ class FinController extends CI_Controller{
    */
   public function admin(){
     echo "Admin";
-  }
-  /**
-   * Loads an Organization Dashboard
-   * @param  string $name The Organization's name
-   * @return [type]       [description]
-   */
-  public function org(){
-    // Check if a Session exists
-    if(!$this->checkSession()){
-      redirect(site_url('login'));
-    }
-
-    // Check if org is CSO
-    if($this->session->userdata('acronym') == 'CSO'){
-      redirect(site_url('admin'));
-    }
-    echo $this->session->userdata('name');
   }
 
   /**
@@ -100,6 +83,10 @@ class FinController extends CI_Controller{
     // If credentials is true, create session and redirect to org dashboard.
     if($resultData){
       $this->session->set_userdata($resultData);
+      // Check if the user is CSO or ORG
+      if($this->session->userdata('acronym') == 'CSO'){
+          redirect(site_url('admin'));
+      }
       redirect(site_url('org'));
     }
 
