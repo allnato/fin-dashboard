@@ -31,9 +31,9 @@ class ActivityModel extends CI_Model{
      }
     // Add orgID using Session information
     $activityData['orgID'] = $this->session->userdata('orgID');
-    // Add the timestamp
+    // Add the timestamp (Time last edited)
     $activityData['timestamp'] = date('Y-m-d H:i:s');
-    // Add the dateSubmitted. It returns a string with the format <Day of the week>,<Month><Day>, <Year> e.g (Saturday, November 29, 2016)
+    // Add the dateSubmitted.
     $activityData['dateSubmitted'] = date('Y-m-d H:i:s');
     $this->db->insert('activity', $activityData);
 
