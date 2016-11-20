@@ -228,24 +228,25 @@
 								<?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
 								$wordify = 'wordify';
 								foreach($activityList as $row) {
-								var_dump($row);
 								echo <<< EOT
-								<td class="">
-									<span class="list-title">{$row['title']}</span>
-									<span class="list-desc">{$row['description']}</span>
-								</td>
-								<td class="list-process">{$row['processType']}</td>
-								<td class="list-dos">
-									Date Submitted:
-									<span class="dos">{$row['dateSubmitted']}</span>
-								</td>
-								<td class="list-datePended">
-									Date Pended:
-									<span class="datePended">{$row['datePendedCSO']}</span>
-								</td>
-								<td class="list-status">
-									<span class="label label-warning">{$row['status']}</span>
-								</td>
+								<tr>
+									<td class="">
+										<span class="list-title">{$row['title']}</span>
+										<span class="list-desc">{$row['description']}</span>
+									</td>
+									<td class="list-process">{$row['processType']}</td>
+									<td class="list-dos">
+										Date Submitted:
+										<span class="dos">{$row['dateSubmitted']}</span>
+									</td>
+									<td class="list-datePended">
+										Date Pended:
+										<span class="datePended">{$row['datePendedCSO']}</span>
+									</td>
+									<td class="list-status">
+										<span class="label label-warning">{$row['status']}</span>
+									</td>
+								</tr>
 
 EOT;
 };
