@@ -25,6 +25,12 @@ tr{
   display: inline-block;
 }
 
+img{
+  margin-top: 30px;
+}
+
+
+
 /*.table{
   table-layout: fixed;
 }

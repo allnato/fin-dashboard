@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>JPIA | Activity Page</title>
+    <title><?= $this->session->userdata('acronym') ?> | Activity Page</title>
 
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta name="viewport" content="width=device-width" />
@@ -34,28 +34,28 @@
 
 				<div class="logo text-center">
 					<!-- Logo image test -->
-					<img src="<?php echo base_url();?>assets/img/logos/JPIA.png" alt="" width="150px" class=" text-center">
+					<img src="<?php echo base_url();?>assets/img/logos/<?= $this->session->userdata('acronym') ?>.png" alt="" width="150px" class=" text-center">
 					<a href="#" class="simple-text">
-					JPIA
+					<?= $this->session->userdata('acronym') ?>
 					</a>
 				</div>
 
         <div class="sidebar-wrapper">
 					<ul class="nav">
 						<li>
-							<a href="org_create_activity.html">
+							<a href="<?= site_url('org/new-activity')?>">
 								<i class="fa fa-file-text"></i>
 								<p>New Activity</p>
 							</a>
 						</li>
 						<li class="active">
-							<a href="org_activity_list.html">
+							<a href="<?= site_url('org/activity-list')?>">
 								<i class="fa fa-list"></i>
 								<p>View Activities</p>
 							</a>
 						</li>
 						<li>
-							<a href="org_profile.html">
+							<a href="<?= site_url('org/profile')?>">
 								<i class="fa fa-users"></i>
 								<p>Org Profile</p>
 							</a>
