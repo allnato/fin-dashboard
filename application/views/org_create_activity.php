@@ -73,19 +73,19 @@
 				<div class="sidebar-wrapper">
 					<ul class="nav">
 						<li class="active">
-							<a href="org_create_activity.html">
+							<a href="<?php echo site_url('org/new-activity'); ?>">
 								<i class="fa fa-file-text"></i>
 								<p>New Activity</p>
 							</a>
 						</li>
 						<li>
-							<a href="org_activity_list.html">
+							<a href="<?php echo site_url('org/activity-list'); ?>">
 								<i class="fa fa-list"></i>
 								<p>View Activities</p>
 							</a>
 						</li>
 						<li>
-							<a href="org_profile.html">
+							<a href="<?php echo site_url('org/profile'); ?>">
 								<i class="fa fa-users"></i>
 								<p>Org Profile</p>
 							</a>
@@ -148,7 +148,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="card theWizard">
-								<form action="#" id="createForm">
+								<form action="<?php echo site_url('org/submit'); ?>" id="createForm" method="post">
 
 									<div class="card-content">
 										<div class="row">
@@ -231,7 +231,7 @@
                                         <option value="NE">No Expense</option>
                                         <option value="FRA">Fund Raising Activity Report</option>
                                         <option value="CP">Change of Payee</option>
-                                        <option value="COC">Canvellation of Check</option>
+                                        <option value="COC">Cancellation of Check</option>
                                         <option value="LEA">List of Expenses alone</option>
                                       </select>
 																		</div>
@@ -471,7 +471,7 @@
 
 													</div>
                           <div class="tab-pane" id="finish">
-                            <h1 class="text-center text-danger">You're good to go</h1>
+                            <h1 class="text-center text-success">You're good to go</h1>
                           </div>
 												</div>
 											</div>
@@ -484,7 +484,7 @@
                 			<li class="previous"><a href="#" class="btn btn-info">Previous</a></li>
                 			<li class="next last" style="display:none;"><a href="#" class="btn btn-info">Last</a></li>
                 		  <li class="next"><a href="#" class="btn btn-info">Next</a></li>
-                      <li class="finish"><a href="#" class="btn btn-success">Finish</a></li>
+                      <li class="finish"><button type="submit" href="#" class="btn btn-success">Finish</a></li>
                 		</ul>
 
 									</div>
@@ -545,4 +545,9 @@
   <script type="text/javascript">
 
   </script>
+
+	<script>
+		$( document ).ready(function(){
+		});
+	</script>
 </html>

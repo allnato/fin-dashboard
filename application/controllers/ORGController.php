@@ -24,14 +24,34 @@ class OrgController extends CI_Controller{
    * @SuppressWarnings(camelCase)
    */
   public function new_activity(){
-    echo "new activity";
+    $pageData['acronym'] = $this->session->userdata('acronym');
+    $this->load->view('org_create_activity.php', $pageData);
   }
+  /**
+   * Submits the form data through this function and redirect to activity_list when done.
+   * @SuppressWarnings(camelCase)
+   */
+   public function submit_activity(){
+     // Load ActivityModel
+     $this->load->model('ActivityModel');
+     // Get formfields from $POST
+     $formfields = $this->input->post(NULL, true);
+     // Submit to model which is then inserted to the database. This function also returns the number of rows affected.
+     $this->ActivityModel->addNewActivity($formfields);
+
+     redirect(site_url('org/activity-list'));
+
+   }
+
+
   /**
    * Loads the org_activity_list so users can VIEW their activities.
    * @SuppressWarnings(camelCase)
    */
   public function activity_list(){
-    echo "activity-list";
+    $pageData['acronym'] = $this->session->userdata('acronym');
+
+    $this->load->view('org_activity_list.php', $pageData);
   }
   /**
    * Loads the activity_page so users can VIEW the specified acitvity.
