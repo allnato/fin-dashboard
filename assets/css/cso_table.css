@@ -21,6 +21,10 @@ tr{
   border: 1px solid #ddd;
 }
 
+tr:hover{
+  cursor: pointer;
+}
+
 .sortAsc{
   display: inline-block;
 }
