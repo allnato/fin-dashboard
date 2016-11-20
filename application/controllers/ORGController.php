@@ -37,12 +37,17 @@ class OrgController extends CI_Controller{
    * @SuppressWarnings(camelCase)
    */
    public function submit_activity(){
-     // Load ActivityModel
+    // Load ActivityModel
      $this->load->model('ActivityModel');
-     // Get formfields from $POST
+    // Get formfields from $POST
      $formfields = $this->input->post(NULL, true);
-     // Submit to model which is then inserted to the database. This function also returns the number of rows affected.
-     $this->ActivityModel->addNewActivity($formfields);
+    // Set flashdata to true
+     $this->session->set_flashdata('submitActivity', 'true');
+
+     // Submit to model which is then inserted to the database. This function returns true row is affected.
+     if(!$this->ActivityModel->addNewActivity($formfields)){
+       $this->session->set_flashdata('submitActivity', 'false');
+     }
 
      redirect(site_url('org/activity-list'));
    }

@@ -151,7 +151,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="card theWizard">
-								<form action="<?php echo site_url('org/submit'); ?>" id="createForm" method="post">
+								<form action="<?= site_url('org/submit') ?>" id="createForm" method="post">
 
 									<div class="card-content">
 										<div class="row">
@@ -548,9 +548,4 @@
   <script type="text/javascript">
 
   </script>
-
-	<script>
-		$( document ).ready(function(){
-		});
-	</script>
 </html>

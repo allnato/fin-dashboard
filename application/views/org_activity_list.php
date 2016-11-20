@@ -299,6 +299,42 @@
       }
     });
   </script>
+	<script type="text/javascript">
 
+		<?php
+			$flash = $this->session->flashdata('submitActivity');
+			if($flash == 'true'):
+		?>
+		$.notify({
+			icon: "check",
+			message: "Create Activity - Successfully added a new Activity",
+		},{
+				type: 'success',
+				timer: 4000,
+				placement: {
+						from: 'top',
+						align: 'center'
+				},
+				allow_dismiss: true,
+				newest_on_top: true,
+				mouse_over: 'pause'
+		});
+		<?php elseif($flash == 'false'): ?>
+		$.notify({
+			icon: "check",
+			message: "Create Activity - Error in creating a new activity",
+		},{
+				type: 'danger',
+				timer: 4000,
+				placement: {
+						from: 'top',
+						align: 'center'
+				},
+				allow_dismiss: true,
+				newest_on_top: true,
+				mouse_over: 'pause'
+		});
+		<?php endif; ?>
+	</script>
 
 </html>
