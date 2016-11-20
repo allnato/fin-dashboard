@@ -17,7 +17,37 @@ class CSOController extends CI_Controller{
    * The Controller will load the homepage if a session exists.
    */
   public function index(){
-    echo "ADMIN";
+    redirect(site_url('admin/activity-list'));
+  }
+
+  public function activity_list() {
+
+    $this->load->view('cso_activity_list.php');
+  }
+
+  public function activity_page() {
+
+    $this->load->view('cso_activity_page.php');
+  }
+
+  public function archive_list() {
+
+    $this->load->view('cso_archive_list.php');
+  }
+
+  public function create_activity() {
+
+    $this->load->view('cso_create_activity.php');
+  }
+
+  public function org_activity_list() {
+
+    $this->load->view('cso_org_activity_list.php');
+  }
+
+  public function org_list() {
+
+    $this->load->view('cso_org_list.php');
   }
 
 
