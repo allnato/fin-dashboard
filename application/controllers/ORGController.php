@@ -33,6 +33,23 @@ class OrgController extends CI_Controller{
 
 
   /**
+   * Submits the form data through this function and redirect to activity_list when done.
+   * @SuppressWarnings(camelCase)
+   */
+   public function submit_activity(){
+     // Load ActivityModel
+     $this->load->model('ActivityModel');
+     // Get formfields from $POST
+     $formfields = $this->input->post(NULL, true);
+     // Submit to model which is then inserted to the database. This function also returns the number of rows affected.
+     $this->ActivityModel->addNewActivity($formfields);
+
+     redirect(site_url('org/activity-list'));
+
+   }
+
+
+  /**
    * Loads the org_activity_list so users can VIEW their activities.
    * @SuppressWarnings(camelCase)
    */
