@@ -21,8 +21,13 @@ class CSOController extends CI_Controller{
   }
 
   public function activity_list() {
-
-    $this->load->view('cso_activity_list.php');
+    // Redirect to login if session does not exists.
+    $this->checkSession();
+    // Load ActitivityModel.php
+    $this->load->model('ActivityModel');
+    // Retrieves an array of activities that belongs to the org with the provided orgID
+    $activities['activityList'] = $this->ActivityModel->getOrgActivities($this->session->userdata('orgID'));
+    $this->load->view('cso_activity_list.php', $activities);
   }
 
   public function activity_page() {
@@ -41,14 +46,34 @@ class CSOController extends CI_Controller{
   }
 
   public function org_activity_list() {
+    // Redirect to login if session does not exists.
+    $this->checkSession();
+    // Load ActitivityModel.php
+    $this->load->model('ActivityModel');
+    // Retrieves all the activities of all orgs.
+    $activities['activityList'] = $this->ActivityModel->getAllActivities();
 
-    $this->load->view('cso_org_activity_list.php');
+    $this->load->view('cso_org_activity_list.php', $activities);
+
+
   }
 
   public function org_list() {
 
     $this->load->view('cso_org_list.php');
   }
+
+  /**
+   * Checks if a Session Exists.
+   * @return bool returns true if a session exists, otherwise False
+   */
+  public function checkSession(){
+    if($this->session->has_userdata('email')){
+      return;
+    }
+    redirect(site_url('login'));
+  }
+
 
 
 }

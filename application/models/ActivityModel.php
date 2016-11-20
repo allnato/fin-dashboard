@@ -88,6 +88,45 @@ class ActivityModel extends CI_Model{
       return $query->result_array();
     }
 
+    public function getAllActivities() {
+      $query = $this->db->get('activity');
+
+      $activity = array();
+      foreach ($query->result_array() as $row) {
+        $remarks = $this->getActivityRemarksForTable($row['activityID']);
+
+        // In case datePendedCSO is still null, provide a message instead
+        if($remarks[0]['datePendedCSO'] == null) {
+          $row['datePendedCSO'] = "Not yet provided.";
+        }
+        else {
+          $row['datePendedCSO'] = $remarks[0]['datePendedCSO'];
+        }
+        // In case status is still null. Defaults to pending.
+        if($remarks[0]['status'] == null) {
+            $row['status'] = "Pending";
+        }
+        else {
+          $row['status'] = $remarks[0]['status'];
+        }
+
+        if($row['PRSno'] == null) {
+          $row['PRSno'] = "N/A";
+        }
+        else {
+          $row['PRSno'] = $row['PRSno'];
+        }
+
+        $row['processType'] = $this->wordify($row['processType']);
+
+        array_push($activity, $row);
+
+      }
+
+
+      return $activity;
+    }
+
     function wordify($processType) {
       switch($processType) {
         case 'DP':
