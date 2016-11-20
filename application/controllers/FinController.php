@@ -27,7 +27,12 @@ class FinController extends CI_Controller{
   public function login(){
     // Check if sesssion exists.
     if($this->checkSession()){
-      redirect(site_url('org'));
+      if($this->session->userdata('acronym') == 'CSO'){
+          redirect(site_url('admin'));
+      }
+      else {
+        redirect(site_url('org'));
+      }
     }
     $this->load->view('login');
   }
