@@ -20,25 +20,25 @@ class ActivityModel extends CI_Model{
    * Adds the form data to the database. It returns the number of rows affected by the query.
    * @SuppressWarnings(camelCase)
    */
-   public function addNewActivity($formfields) {
+    public function addNewActivity($formfields) {
 
-     $activityData = array();
-     // Checks every form field. Append only those fields with input. This is done to make sure that the DB does not change NULL columns to 0
-     foreach($formfields as $key => $value) {
+      $activityData = array();
+      // Checks every form field. Append only those fields with input. This is done to make sure that the DB does not change NULL columns to 0
+      foreach($formfields as $key => $value) {
        if($value != "") {
          $activityData[$key] = $value;
        }
-     }
-    // Add orgID using Session information
-    $activityData['orgID'] = $this->session->userdata('orgID');
-    // Add the timestamp (Time last edited)
-    $activityData['timestamp'] = date('Y-m-d H:i:s');
-    // Add the dateSubmitted.
-    $activityData['dateSubmitted'] = date('Y-m-d H:i:s');
-    $this->db->insert('activity', $activityData);
-    // Get ID of row you just inserted
-    $id['activityID'] = $this->db->insert_id();
-    $this->db->insert('remark', $id);
+      }
+      // Add orgID using Session information
+      $activityData['orgID'] = $this->session->userdata('orgID');
+      // Add the timestamp (Time last edited)
+      $activityData['timestamp'] = date('Y-m-d H:i:s');
+      // Add the dateSubmitted.
+      $activityData['dateSubmitted'] = date('Y-m-d H:i:s');
+      $this->db->insert('activity', $activityData);
+      // Get ID of row you just inserted
+      $orgId['activityID'] = $this->db->insert_id();
+      $this->db->insert('remark', $orgId);
 
      return ($this->db->affected_rows() != 1) ? false : true;
    }
@@ -57,17 +57,14 @@ class ActivityModel extends CI_Model{
         foreach ($query->result_array() as $row) {
           $remarks = $this->getActivityRemarksForTable($row['activityID']);
           // In case datePendedCSO is still null, provide a message instead
-          if($remarks[0]['datePendedCSO'] == null) {
-            $row['datePendedCSO'] = "Not yet provided.";
-          }
-          else {
+          $row['datePendedCSO'] = "Not yet provided.";
+          if($remarks[0]['datePendedCSO'] != null) {
             $row['datePendedCSO'] = $remarks[0]['datePendedCSO'];
           }
+
           // In case status is still null. Defaults to pending.
-          if($remarks[0]['status'] == null) {
-              $row['status'] = "Pending";
-          }
-          else {
+          $row['status'] = "Pending";
+          if($remarks[0]['status'] != null) {
             $row['status'] = $remarks[0]['status'];
           }
 
@@ -86,6 +83,23 @@ class ActivityModel extends CI_Model{
       $this->db->where('activityID', $activityID);
       $query = $this->db->get('remark');
       return $query->result_array();
+    }
+
+    public function getActivityData($pageID){
+      // Store the org initials
+      $orgInitials = $this->session->userdata('acronym');
+      // Check if the page is created by the ORG.
+      $this->db->select("a.*")
+      ->from('organization as o, activity as a')
+      ->where("o.acronym = '$orgInitials' AND a.activityID = $pageID AND o.orgID = a.orgID");
+
+      $query = $this->db->get();
+      $row = array();
+      foreach ($query->row() as $key => $value) {
+        $row[$key] = $value;
+      }
+      // Return false if page does not exist within an org
+      return ($query->num_rows() != 1) ? false : $row;
     }
 
     function wordify($processType) {

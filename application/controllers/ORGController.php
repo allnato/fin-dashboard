@@ -74,11 +74,18 @@ class OrgController extends CI_Controller{
    * @param  Integer $id       activity_page ID
    * @SuppressWarnings(camelCase)
    */
-  public function activity_page($initials, $pageID){
+  public function activity_page($pageID){
     // Redirect to login if session does not exists.
     $this->checkSession();
-    echo $initials;
-    echo $pageID;
+    // Load ActitivityModel.php
+    $this->load->model('ActivityModel');
+    // Check if page is created by the organization.
+    if(!$activity['activityData'] = $this->ActivityModel->getActivityData($pageID)){
+      // Show 404 :-(
+      show_404();
+    }
+
+    $this->load->view('org_activity_page', $activity);
   }
 
 
