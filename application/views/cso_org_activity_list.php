@@ -174,14 +174,15 @@
               </thead>
               <tbody>
                 <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
-                  $letter = substr($this->session->userdata('acronym'), 0, 1);
+
                   foreach($activityList as $row) {
+                    $letter = substr($row['acronym'], 0, 1);
                     echo <<< EOT
 
                     <tr>
                       <td class="list-head">
                           <div class="logo-circle hidden-sm hidden-xs">{$letter}</div>
-                          <div class="org-acro">{$this->session->userdata('acronym')}</div>
+                          <div class="org-acro">{$row['acronym']}</div>
                       </td>
                       <td class="list-prs">
                         <span style="font-style: italic">PRS: </span>

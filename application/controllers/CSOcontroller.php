@@ -77,7 +77,7 @@ class CSOController extends CI_Controller{
     // Load ActitivityModel.php
     $this->load->model('ActivityModel');
     // Retrieves all the activities of all orgs.
-    $activities['activityList'] = $this->ActivityModel->getAllApproved();
+    $activities['activityList'] = $this->ActivityModel->getAllActivities();
 
     $this->load->view('cso_org_activity_list.php', $activities);
 

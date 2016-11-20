@@ -118,10 +118,13 @@ class ActivityModel extends CI_Model{
         }
 
         $row['processType'] = $this->wordify($row['processType']);
-
+        $acronym = $this->getOrgAcronym($row['orgID']);
+        $row['acronym'] = $acronym[0]['acronym'];
         array_push($activity, $row);
 
       }
+
+      return $activity;
     }
 
       public function getAllApproved() {
@@ -157,6 +160,14 @@ class ActivityModel extends CI_Model{
 
 
       return $activity;
+    }
+
+    function getOrgAcronym($orgID) {
+      $this->db->select('acronym');
+      $this->db->where('orgID', $orgID);
+      $query = $this->db->get('organization');
+
+      return $query->result_array();
     }
 
     function wordify($processType) {
