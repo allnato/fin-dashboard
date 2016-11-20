@@ -85,45 +85,6 @@ class ActivityModel extends CI_Model{
       return $query->result_array();
     }
 
-
-    function wordify($processType) {
-      switch($processType) {
-        case 'DP':
-          return 'Direct Payment';
-          break;
-        case 'CA':
-          return 'Cash Advance';
-          break;
-        case 'RM':
-          return 'Reimbursement';
-          break;
-        case 'BT':
-          return 'Book Transfer';
-          break;
-        case 'LQ':
-          return 'Liquidation';
-          break;
-        case 'PCR':
-          return 'Petty Cash Replenishment';
-          break;
-        case 'NE':
-          return 'No Expense';
-          break;
-        case 'FRA':
-          return 'Fund Raising Activity Report';
-          break;
-        case 'CP':
-          return 'Change of Payee';
-          break;
-        case 'COC':
-          return 'Cancellation of Check';
-          break;
-        case 'LEA':
-          return 'List of Expenses alone';
-          break;
-      }
-    }
-
     public function getActivityData($pageID){
       // Store the org initials
       $orgInitials = $this->session->userdata('acronym');
@@ -139,5 +100,43 @@ class ActivityModel extends CI_Model{
       }
       // Return false if page does not exist within an org
       return ($query->num_rows() != 1) ? false : $row;
+    }
+
+    function wordify($processType) {
+      switch($processType) {
+        case 'DP':
+        return 'Direct Payment';
+        break;
+        case 'CA':
+        return 'Cash Advance';
+        break;
+        case 'RM':
+        return 'Reimbursement';
+        break;
+        case 'BT':
+        return 'Book Transfer';
+        break;
+        case 'LQ':
+        return 'Liquidation';
+        break;
+        case 'PCR':
+        return 'Petty Cash Replenishment';
+        break;
+        case 'NE':
+        return 'No Expense';
+        break;
+        case 'FRA':
+        return 'Fund Raising Activity Report';
+        break;
+        case 'CP':
+        return 'Change of Payee';
+        break;
+        case 'COC':
+        return 'Cancellation of Check';
+        break;
+        case 'LEA':
+        return 'List of Expenses alone';
+        break;
+      }
     }
 }
