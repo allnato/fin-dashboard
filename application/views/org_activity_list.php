@@ -170,64 +170,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="">
-                    <span class="list-title">Fund Raising Activity </span>
-                    <span class="list-desc">A fundraising event in Vito Cruz</span>
-                  </td>
-									<td class="list-process">Cash Advance</td>
-                  <td class="list-dos">
-										Date Submitted:
-                    <span class="dos">10/01/16</span>
-                  </td>
-                  <td class="list-datePended">
-										Date Pended:
-                    <span class="datePended">10/03/16 21:18</span>
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="">
-                    <span class="list-title">Battle of the Band </span>
-                    <span class="list-desc">Battle of the bands event in Yuchenco Hall</span>
-                  </td>
-									<td class="list-process">Down Payment</td>
-                  <td class="list-dos">
-										Date Submitted:
-                    <span class="dos">10/01/17</span>
-                  </td>
-                  <td class="list-datePended">
-										Date Pended:
-                    <span class="datePended">10/26/16 06:18</span>
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="">
-                    <span class="list-title">MySQL Workshop </span>
-                    <span class="list-desc">A MySQL Workshop in Gokonwei Lobby</span>
-                  </td>
-									<td class="list-process">Cash Advance</td>
-                  <td class="list-dos">
-										Date Submitted:
-                    <span class="dos">07/12/16</span>
-                  </td>
-                  <td class="list-datePended">
-										Date Pended:
-                    <span class="datePended">07/15/16 13:05</span>
-                  </td>
-                  <td class="list-status">
-                    <span class="label label-warning">Pending</span>
-                  </td>
-                </tr>
 
 								<?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
 								$wordify = 'wordify';
 								foreach($activityList as $row) {
+								$dos = date("M d, Y g:i A", strtotime($row['dateSubmitted']));
 								echo <<< EOT
 								<tr>
 									<td class="">
@@ -237,7 +184,7 @@
 									<td class="list-process">{$row['processType']}</td>
 									<td class="list-dos">
 										Date Submitted:
-										<span class="dos">{$row['dateSubmitted']}</span>
+										<span class="dos">{$dos}</span>
 									</td>
 									<td class="list-datePended">
 										Date Pended:
@@ -280,7 +227,7 @@ EOT;
 		</div>
 		<!-- Sort Inputs -->
     <input type="text" value="desc" id="sortOrder" style="display: none">
-    <input type="text" value="list-date" id="sortField" style="display: none">
+    <input type="text" value="list-dos" id="sortField" style="display: none">
 	</body>
 
 	<!--   Core JS Files   -->
