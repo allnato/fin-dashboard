@@ -60,7 +60,11 @@ class OrgController extends CI_Controller{
   public function activity_list(){
     // Redirect to login if session does not exists.
     $this->checkSession();
-    $this->load->view('org_activity_list');
+    // Load ActitivityModel.php
+    $this->load->model('ActivityModel');
+    // Retrieves an array of activities that belongs to the org with the provided orgID
+    $activities['activityList'] = $this->ActivityModel->getOrgActivities($this->session->userdata('orgID'));
+    $this->load->view('org_activity_list', $activities);
   }
 
 

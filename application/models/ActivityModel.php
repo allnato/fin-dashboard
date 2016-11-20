@@ -40,4 +40,22 @@ class ActivityModel extends CI_Model{
      return ($this->db->affected_rows() != 1) ? false : true;
    }
 
+   /**
+    * Retreives all the activities by the org who is currently logged in
+    * @return [type] [description]
+    */
+    public function getOrgActivities($orgID) {
+      if($orgID != "" || $orgID != null) {
+
+        $this->db->where('orgID', $orgID);
+        $query = $this->db->get('activity');
+        $activity = array();
+        foreach ($query->result_array() as $row) {
+          array_push($activity, $row);
+        }
+        return $activity;
+      }
+
+    }
+
 }

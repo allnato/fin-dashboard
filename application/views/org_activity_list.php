@@ -225,6 +225,76 @@
                   </td>
                 </tr>
 
+								<?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
+								$wordify = 'wordify';
+								$datetify = 'datetify';
+								foreach($activityList as $row) {
+								echo <<< EOT
+								<td class="">
+									<span class="list-title">{$row['title']}</span>
+									<span class="list-desc">{$row['description']}</span>
+								</td>
+								<td class="list-process">{$wordify($row['processType'])}</td>
+								<td class="list-dos">
+									Date Submitted:
+									<span class="dos">{$datetify($row['dateSubmitted'])}</span>
+								</td>
+								<td class="list-datePended">
+									Date Pended:
+									<span class="datePended">07/15/16 13:05</span>
+								</td>
+								<td class="list-status">
+									<span class="label label-warning">Pending</span>
+								</td>
+
+EOT;
+};
+								function wordify($processType) {
+									switch($processType) {
+										case 'DP':
+											return 'Direct Payment';
+											break;
+										case 'CA':
+											return 'Cash Advance';
+											break;
+										case 'RM':
+											return 'Reimbursement';
+											break;
+										case 'BT':
+											return 'Book Transfer';
+											break;
+										case 'LQ':
+											return 'Liquidation';
+											break;
+										case 'PCR':
+											return 'Petty Cash Replenishment';
+											break;
+										case 'NE':
+											return 'No Expense';
+											break;
+										case 'FRA':
+											return 'Fund Raising Activity Report';
+											break;
+										case 'CP':
+											return 'Change of Payee';
+											break;
+										case 'COC':
+											return 'Cancellation of Check';
+										  break;
+										case 'LEA':
+											return 'List of Expenses alone';
+											break;
+									}
+								}
+
+								function datetify($date) {
+									$time = strtotime($date);
+									$newFormat = date('m/d/Y', $time);
+									return $newFormat;
+								}
+
+								?>
+
               </tbody>
             </table>
 					</div>
@@ -244,7 +314,7 @@
 							&copy;
 							<script>
 								document.write(new Date().getFullYear())
-							</script> <a href="http://www.creative-tim.com">CSO</a> | College of Student Organizations
+							</script> <a href="http://www.dlsucso.com">CSO</a> | Council of Student Organizations
 						</p>
 					</div>
 				</footer>
@@ -296,7 +366,7 @@
         return ;
       },
       onClickRow: function(row, $element){
-      }
+      },
     });
   </script>
 	<script type="text/javascript">
