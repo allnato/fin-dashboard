@@ -33,7 +33,7 @@ $(document).ready(function() {
 var qsRegex;
 
 var $orgList = $('.org-list').isotope({
-  itemSelector: '.col-sm-3',
+  itemSelector: '.col-xs-3',
   layout: 'fitRows',
   getSortData: {
     name: '.org_name'
