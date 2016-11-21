@@ -56,7 +56,7 @@
               </a>
             </li>
             <li class="divider"></li>
-            <li class="active">
+            <li>
               <a href="<?php echo site_url('admin/org-activity-list'); ?>">
                 <i class="fa fa-list"></i>
                 <p>ORG Activities</p>
@@ -140,7 +140,7 @@
               <!-- Page toolbar (back, status) -->
               <div class="page-toolbar">
                 <!-- Back Button -->
-                <a href="<?= site_url('admin/activity-list') ?>" class="btn btn-white" data-toggle="tooltip" data-placement="right" title="Back to List">
+                <a href="javascript:history.back()" class="btn btn-white" data-toggle="tooltip" data-placement="right" title="Back to List">
                   <li class="fa fa-chevron-left"></li>
                 </a>
                 <!-- Status -->

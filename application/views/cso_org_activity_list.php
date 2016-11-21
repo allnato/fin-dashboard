@@ -179,7 +179,7 @@
                     $letter = substr($row['acronym'], 0, 1);
                     echo <<< EOT
 
-                    <tr>
+                    <tr id={$row['activityID']}>
                       <td class="list-head">
                           <div class="logo-circle hidden-sm hidden-xs">{$letter}</div>
                           <div class="org-acro">{$row['acronym']}</div>
@@ -256,6 +256,15 @@ EOT;
       onClickRow: function(row, $element){
       }
     });
+
+    $('#activityTable').on('click-row.bs.table', function (row, $element, field) {
+			pageID = $(field).attr('id');
+      initials = $(field).find('.org-acro').text().trim();
+      console.log(pageID);
+      console.log(initials);
+      window.location.href = "<?= site_url('admin/activity-page/')  ?>" + initials + "/" + pageID;
+
+		});
   </script>
 
 </html>

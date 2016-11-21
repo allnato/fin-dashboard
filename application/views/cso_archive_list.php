@@ -174,28 +174,32 @@
                 </tr>
               </thead>
               <tbody>
-                  <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
+                <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
+
                   foreach($activityList as $row) {
-                  $dos = date("M d, Y g:i A", strtotime($row['dateSubmitted']));
-                  echo <<< EOT
-                  <tr>
-                    <td class="">
-                      <span class="list-title">{$row['title']}</span>
-                      <span class="list-desc">{$row['description']}</span>
-                    </td>
-                    <td class="list-process">{$row['processType']}</td>
-                    <td class="list-dos">
-                      Date Submitted:
-                      <span class="dos">{$dos}</span>
-                    </td>
-                    <td class="list-datePended">
-                      Date Pended:
-                      <span class="datePended">{$row['datePendedCSO']}</span>
-                    </td>
-                    <td class="list-status">
-                      <span class="label label-success">{$row['status']}</span>
-                    </td>
-                  </tr>
+                    $letter = substr($row['acronym'], 0, 1);
+                    echo <<< EOT
+
+                    <tr id={$row['activityID']}>
+                      <td class="list-head">
+                          <div class="logo-circle hidden-sm hidden-xs">{$letter}</div>
+                          <div class="org-acro">{$row['acronym']}</div>
+                      </td>
+                      <td class="list-prs">
+                      <span style="font-style: italic">PRS: </span>
+                      <span style="font-weight: bold">{$row['PRSno']}</span>
+                      </td>
+                      <td class="list-body">
+                        <span class="list-title">{$row['title']}</span>
+                        <span class="list-desc">{$row['description']}</span>
+                      </td>
+                      <td class="list-date">
+                        {$row['dateSubmitted']}
+                      </td>
+                      <td class="list-status">
+                        <span class="label label-warning">{$row['status']}</span>
+                      </td>
+                    </tr>
 
 EOT;
 };
@@ -253,6 +257,15 @@ EOT;
       onClickRow: function(row, $element){
       }
     });
+
+    $('#activityTable').on('click-row.bs.table', function (row, $element, field) {
+			pageID = $(field).attr('id');
+      initials = $(field).find('.org-acro').text().trim();
+      console.log(pageID);
+      console.log(initials);
+      window.location.href = "<?= site_url('admin/activity-page/')  ?>" + initials + "/" + pageID;
+
+		});
   </script>
 
 </html>

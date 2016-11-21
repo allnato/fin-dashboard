@@ -163,6 +163,8 @@ class ActivityModel extends CI_Model{
           }
 
           $row['processType'] = $this->wordify($row['processType']);
+          $acronym = $this->getOrgAcronym($row['orgID']);
+          $row['acronym'] = $acronym[0]['acronym'];
 
           if($row['status'] == 'Approved') {
               array_push($activity, $row);

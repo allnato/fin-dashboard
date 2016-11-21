@@ -190,7 +190,7 @@
                 foreach($activityList as $row) {
                 $dos = date("M d, Y g:i A", strtotime($row['dateSubmitted']));
                 echo <<< EOT
-                <tr>
+                <tr id={$row['activityID']}>
                   <td class="">
                     <span class="list-title">{$row['title']}</span>
                     <span class="list-desc">{$row['description']}</span>
@@ -266,6 +266,13 @@ EOT;
       },
       onClickRow: function(row, $element){
       }
+    });
+
+    $('#activityTable').on('click-row.bs.table', function (row, $element, field) {
+      pageID = $(field).attr('id');
+      console.log(pageID);
+      window.location.href = "<?= site_url("admin/activity-page/CSO")  ?>" +  "/" + pageID;
+
     });
   </script>
 
