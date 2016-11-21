@@ -600,7 +600,7 @@
 
                       </div>
                       <div class="tab-pane" id="remarks">
-                      <form method="post" action="">
+                      <form id="remarksSubmit" method="post" action="<?= site_url('admin/remark-activity') ?>">
                         <!-- CSO Panel -->
                         <div class="panel panel-success">
                           <div class="panel-heading">
@@ -629,7 +629,7 @@
                                       <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="revisionsCSO" class="control-label">Number of Revisions</label>
-                                    <input id="revisionsCSO" name="revisionsCSO" type="number" class="form-control" placeholder="Revisions" step="any" min="0"/>
+                                    <input id="revisionsCSO" name="revisions" type="number" class="form-control" placeholder="Revisions" step="any" min="0"/>
                                   </div>
                                 </div>
                               </div>
@@ -928,8 +928,8 @@
                </span>
 						</h4>
 						<div class="modalButtons text-center">
-							<button class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
-							<button class="btn btn-success btn-lg" id="">Remark Activity</button>
+							<button class="btn btn-info btn-lg" data-dismiss="modal" id="contEdit">Continue Editing</button>
+							<button type="submit" form="remarksSubmit" class="btn btn-success btn-lg" id="">Remark Activity</button>
 						</div>
 
 		      </div>

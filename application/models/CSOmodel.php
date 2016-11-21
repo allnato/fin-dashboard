@@ -95,4 +95,11 @@ class CSOmodel extends CI_Model{
      return ($this->db->affected_rows() != 1) ? false : true;
    }
 
+   public function updateRemarks($remarkData) {
+     $this->db->where('activityID', $remarkData['activityID']);
+     $this->db->replace('remark', $remarkData);
+
+     return ($this->db->affected_rows() != 1) ? false : true;
+   }
+
 }

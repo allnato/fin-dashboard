@@ -196,8 +196,14 @@ class CSOController extends CI_Controller{
 
   public function remark_activity() {
     $this->load->model('CSOmodel');
-
     $remarkData = $this->input->post(null, true);
+    if($remarkData['datePendedCSO'] != '' || $remarkData['datePendedSLIFE'] != '' || $remarkData['datePendedAcc'] != '' ) {
+      $remarkData['status'] = 'Pending';
+    }
+
+    $this->CSOmodel->updateRemarks($remarkData);
+
+    redirect(site_url('admin/org-activity-list'));
 
   }
 
