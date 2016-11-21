@@ -80,3 +80,4 @@ $route['admin/newOrg'] = 'CSOController/newOrganization';
 $route['admin/remark-activity'] = 'CSOController/remark_activity';
 $route['admin/approve'] = 'CSOController/approve_activity';
 $route['admin/decline'] = 'CSOController/decline_activity';
+$route['admin/delete'] = 'CSOController/deleteOrganization';

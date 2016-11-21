@@ -80,6 +80,13 @@ class CSOmodel extends CI_Model{
     return ($this->db->affected_rows() != 1) ? false : true;
    }
 
+   public function deleteOrganization($orgData) {
+
+     $this->db->where('orgID', $orgData['orgID']);
+     $this->db->delete('organization');
+
+   }
+
    public function updateActivityStatus($activityData) {
 
      $this->db->where('activityID', $activityData['activityID']);
