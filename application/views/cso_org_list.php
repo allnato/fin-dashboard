@@ -202,288 +202,24 @@
             </div>
             <!-- Org list -->
             <div class="org-list">
-              <div class="col-sm-3">
+
+
+
+              <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
+              foreach($initials as $name) {
+              echo <<< EOT
+              <div class="col-xs-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
                     <p class="text-center org-name">
-                      <i class="fa fa-users pull-left"></i>ACCESS</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>AdCreate</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>AIESEC</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>AMSTUD</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>BMS</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>CES</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ChemSoc</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>CheN</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>BSS</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Cultura</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>DANUM</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ECES</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ECONORG</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ENGLICOM</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ESA</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>GAS</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>IMES</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>JPIA</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>KKK</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>LSS</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>LSCS</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>MaFIA</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>MES</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Math Circle</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>MOOMEDIA</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>NKK</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>OC</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>PhySoc</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>Pilosopo</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>POLISCY</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>ROTARACT</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>SOH</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>SME</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>SMS</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>SV</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>TEAMCOMM</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>UNISTO</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>UNITED</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>WG</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card hvr-grow-shadow">
-                  <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>YES</p>
+                      <i class="fa fa-users pull-left"></i>{$name['acronym']}</p>
                   </div>
                 </div>
               </div>
 
+EOT;
+};
+              ?>
             </div>
 
 
@@ -559,4 +295,11 @@
 
   <script src="<?php echo base_url(); ?>assets/js/cso_org_list.js"></script>
 
+  <script type="text/javascript">
+    $('.card').click(function(event) {
+      console.log($(this).find('.org-name').text());
+      window.location.href = "<?= site_url('admin/org/')  ?>" + $(this).find('.org-name').text().trim();
+    });
+
+  </script>
 </html>

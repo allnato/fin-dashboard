@@ -39,9 +39,18 @@ class CSOController extends CI_Controller{
    * @return [type] [description]
    * @SuppressWarnings(camelCase)
    */
-  public function activity_page() {
+  public function activity_page($orgInitials,$pageID) {
+    // Redirect to login if session does not exists.
+    $this->checkSession();
+    // Load ActitivityModel.php
+    $this->load->model('CSOmodel');
+    // Check if page is created by the organization.
+    if(!$activity['activityData'] = $this->CSOmodel->getActivityData($pageID, $orgInitials)){
+      // Show 404 :-(
+      show_404();
+    }
 
-    $this->load->view('cso_activity_page.php');
+    $this->load->view('cso_activity_page', $activity);
   }
 
   /**
@@ -113,7 +122,9 @@ class CSOController extends CI_Controller{
    */
   public function org_list() {
     $this->checkSession();
-    $this->load->view('cso_org_list.php');
+    $this->load->model('CSOmodel');
+    $data = $this->CSOmodel->getAllOrgInitials();
+    $this->load->view('cso_org_list.php', $data);
   }
 
   /**
@@ -146,12 +157,21 @@ class CSOController extends CI_Controller{
   public function view_org($orgInitials){
     // Get and check if org exists via initials.
     $this->load->model('CSOmodel');
-    $org;
-    if(!$org = $this->CSOmodel->getOrgData($orgInitials)){
+    $orgData;
+    if(!$orgData = $this->CSOmodel->getOrgData($orgInitials)){
       show_404();
     }
 
-    echo "HORRAY";
+    // Get Org Activities
+    $this->load->model('ActivityModel');
+    $orgActivities = $this->ActivityModel->getOrgActivities($orgData['orgID']);
+
+    $data = array(
+      'orgData' => $orgData,
+      'orgActivities' => $orgActivities
+    );
+
+    $this->load->view('cso_org_profile.php', $data);
   }
 
 

@@ -384,7 +384,7 @@
                                       <i class="fa fa-2x fa-file-text"></i>
                                     </span>
                                     <label for="DORno" class="control-label">Deposit Official Receipt Number</label>
-                                    <input disabled value="<?= $activityDatap['DORno']?>" id="DORno" name="DORno" type="number" step="any" class="form-control" placeholder="Deposit Official Receipt Number(Required for LQ)"/>
+                                    <input disabled value="<?= $activityData['DORno']?>" id="DORno" name="DORno" type="number" step="any" class="form-control" placeholder="Deposit Official Receipt Number(Required for LQ)"/>
                                   </div>
                                 </div>
                               </div>
@@ -439,7 +439,7 @@
                                       <i class="fa fa-2x fa-file-text"></i>
                                     </span>
                                     <label for="PCVno" class="control-label">Petty Cash Voucher Number</label>
-                                    <input disabled value="<?= $activityDatap['PCVno']?>" id="PCVno" name="PCVno" type="number" step="any" class="form-control" placeholder="Petty Cash Voucher Number (Required for PCR)"/>
+                                    <input disabled value="<?= $activityData['PCVno']?>" id="PCVno" name="PCVno" type="number" step="any" class="form-control" placeholder="Petty Cash Voucher Number (Required for PCR)"/>
                                   </div>
                                 </div>
                               </div>

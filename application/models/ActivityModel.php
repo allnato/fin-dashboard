@@ -94,10 +94,7 @@ class ActivityModel extends CI_Model{
       ->where("o.acronym = '$orgInitials' AND a.activityID = $pageID AND o.orgID = a.orgID");
 
       $query = $this->db->get();
-      $row = array();
-      foreach ($query->row() as $key => $value) {
-        $row[$key] = $value;
-      }
+      $row = $query->row_array();
       // Return false if page does not exist within an org
       return ($query->num_rows() != 1) ? false : $row;
     }
