@@ -21,6 +21,14 @@ class OrgModel extends CI_Model{
      $this->db->insert('organization', $orgData);
    }
 
+   public function getFundID($orgID) {
+     $this->db->select('fundID');
+     $this->db->where('orgID', $orgID);
+     $query = $this->db->get('organization');
+
+     return $query->result_array();
+   }
+
    /**
     * Checks the login credential. If true create a Session.
     * @param  array $loginData {

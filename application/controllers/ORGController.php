@@ -96,10 +96,14 @@ class OrgController extends CI_Controller{
   public function profile(){
     // Redirect to login if session does not exists.
     $this->checkSession();
-
+    $orgID = $this->session->userdata('orgID');
     // Load the model
     $this->load->model('ActivityModel');
-    $activities['activityList'] = $this->ActivityModel->getOrgActivities($this->session->userdata('orgID'));
+    $this->load->model('FundModel');
+    $this->load->model('OrgModel');
+    $activities['activityList'] = $this->ActivityModel->getOrgActivities($orgID);
+    $orgFundID = $this->OrgModel->getFundID($orgID);
+    $activities['orgFundData'] = $this->FundModel->retrieveOrgTotalFunds($orgFundID[0]['fundID']);
 
     $this->load->view('org_profile', $activities);
   }

@@ -165,11 +165,16 @@ class CSOController extends CI_Controller{
 
     // Get Org Activities
     $this->load->model('ActivityModel');
+    $this->load->model('FundModel');
+    $this->load->model('OrgModel');
     $orgActivities = $this->ActivityModel->getOrgActivities($orgData['orgID']);
+    $orgFundID = $this->OrgModel->getFundID($orgData['orgID']);
+    $orgFundData = $this->FundModel->retrieveOrgTotalFunds($orgFundID[0]['fundID']);
 
     $data = array(
       'orgData' => $orgData,
-      'orgActivities' => $orgActivities
+      'orgActivities' => $orgActivities,
+      'orgFundData' => $orgFundData,
     );
 
     $this->load->view('cso_org_profile.php', $data);

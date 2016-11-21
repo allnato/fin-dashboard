@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CSOmodel extends CI_Model{
+class FundModel extends CI_Model{
   /**
    * CRUD for the Organization Table.
    *
@@ -16,13 +16,18 @@ class CSOmodel extends CI_Model{
      $this->load->database();
    }
 
-   public function retrieveOrgTotalFunds($orgID){
+   public function retrieveOrgTotalFunds($fundID){
      // Retrieve funds of orgs
-     $this->db->where('orgID', $orgiD);
+     $this->db->where('fundID', $fundID);
      $query = $this->db->get('fund');
+     $data = $query->result_array();
+
+     $data[0]['initBalance'] = number_format(floatval($data[0]['initBalance']), 2, '.', ',');
+     $data[0]['netChange'] = number_format(floatval($data[0]['netChange']), 2, '.', ',');
+     $data[0]['currBalance'] = number_format(floatval($data[0]['currBalance']), 2, '.', ',');
 
      if($query->num_rows() == 1) {
-       return $query->result_array();
+       return $data;
      }
      else {
        return false;
