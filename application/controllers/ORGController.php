@@ -108,7 +108,6 @@ class OrgController extends CI_Controller{
     $this->load->view('org_profile', $activities);
   }
 
-
   /**
    * Checks if a Session Exists.
    * @return bool returns true if a session exists, otherwise False

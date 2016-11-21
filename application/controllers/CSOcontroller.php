@@ -180,6 +180,16 @@ class CSOController extends CI_Controller{
     $this->load->view('cso_org_profile.php', $data);
   }
 
+  public function newOrganization() {
+    $this->load->model('CSOModel');
+    $orgData = $this->input->post(null, true);
+
+    $this->CSOModel->addOrganization($orgData);
+
+
+    redirect(site_url('admin/activity-list'));
+  }
+
 
 
 }
