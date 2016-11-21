@@ -30,4 +30,12 @@ class CSOmodel extends CI_Model{
 
    }
 
+   public function addTotalFund($fundData) {
+     $this->db->where('orgID', $fundData['orgID']);
+     $this->db->replace('fund', $fundData);
+
+     return ($this->db->affected_rows() != 1) ? false : true;
+
+   }
+
 }
