@@ -157,6 +157,9 @@
         <div class="content">
           <div class="container-fluid">
             <!-- Org Title Card -->
+            <div class="profile-toolbar text-right">
+              <button type="button" class="btn" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-user-times"></i> Delete Org</button>
+            </div>
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2">
                 <div class="card orgCard">
@@ -294,6 +297,30 @@ EOT;
         </div>
       </div>
     </div>
+    <!-- Delete Organization -->
+		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="DeclineModal" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title text-center" id="myModalLabel">Delete Org</h3>
+		      </div>
+		      <div class="modal-body">
+		        <h4 class="text-center">
+							You are about to Delete <br>
+               <span style="font-weight: bold">
+                 <?= $orgData['acronym'] ?> <br> <?= $orgData['name'] ?>
+               </span>
+						</h4>
+						<div class="modalButtons text-center">
+							<button class="btn btn-lg" id="contEdit">Cancel</button>
+							<button class="btn btn-danger btn-lg" id="">Delete</button>
+						</div>
+
+		      </div>
+		    </div>
+		  </div>
+		</div>
     <!-- Sort Inputs -->
     <input type="text" value="desc" id="sortOrder" style="display: none">
     <input type="text" value="list-dos" id="sortField" style="display: none">
