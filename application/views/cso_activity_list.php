@@ -188,6 +188,12 @@
 
                 <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
                 foreach($activityList as $row) {
+                  if($row['status'] == "Pending") {
+                    $buttonType = "warning";
+                  }
+                  elseif($row['status'] == "Declined") {
+                    $buttonType = "danger";
+                  }
                 $dos = date("M d, Y g:i A", strtotime($row['dateSubmitted']));
                 echo <<< EOT
                 <tr id={$row['activityID']}>
@@ -205,13 +211,14 @@
                     <span class="datePended">{$row['datePendedCSO']}</span>
                   </td>
                   <td class="list-status">
-                    <span class="label label-warning">{$row['status']}</span>
+                    <span class="label label-$buttonType">{$row['status']}</span>
                   </td>
                 </tr>
 
 EOT;
 };
                 ?>
+
 
               </tbody>
             </table>

@@ -875,6 +875,7 @@
               <form method="post" action="<?= site_url('admin/approve') ?>">
 							<button class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
                 <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
+                <input type="hidden" name="status" value="Approved" />
 							  <button type="submit" class="btn btn-success btn-lg">Approve Activity</button>
               </form>
 						</div>
@@ -899,9 +900,10 @@
                </span>
 						</h4>
 						<div class="modalButtons text-center">
-              <form method="post" action="<?= site_url('admin/approve') ?>">
+              <form method="post" action="<?= site_url('admin/decline') ?>">
 							<button class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
                 <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
+                <input type="hidden" name="status" value="Declined" />
 							  <button type="submit" class="btn btn-danger btn-lg">Decline Activity</button>
               </form>
 						</div>
