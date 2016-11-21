@@ -16,4 +16,8 @@ class CSOmodel extends CI_Model{
      $this->load->database();
    }
 
+   public function retrieveTotalFunds(){
+     // Retrieve funds of orgs
+   }
+
 }
