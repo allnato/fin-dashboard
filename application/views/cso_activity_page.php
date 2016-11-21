@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_table.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_page.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/activitypage.css">
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">

@@ -1,0 +1,14 @@
+label.control-label {
+    font-size: 1.3em !important;
+    color: #757575 !important;
+}
+
+input.form-control {
+    font-size: 1.4em;
+    color: #009688;
+    font-weight: bold !important;
+}
+
+i.fa.fa-2x {
+    font-size: 1.8em;
+}

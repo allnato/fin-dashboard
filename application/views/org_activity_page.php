@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_table.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_page.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/activitypage.css">
 
 
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
