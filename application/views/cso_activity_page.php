@@ -173,7 +173,7 @@
                             </a>
                           </li>
                           <li>
-                            <a href="#remarks" data-toggle="tab">
+                            <a href="#remarks" data-toggle="tab" class="tabremark">
                               <i class="fa fa-2x fa-pencil"></i>
                               Remarks
                               <div class="ripple-container"></div>
@@ -322,7 +322,7 @@
                             <div class="row">
                               <div class="text-center">
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
-                                <button type="button" class="btn">Revise</button>
+                                <button type="button" class="btn reviseBTN">Revise</button>
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
                               </div>
                             </div>
@@ -591,7 +591,7 @@
                             <div class="row">
                               <div class="text-center">
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
-                                <button type="button" class="btn">Revise</button>
+                                <button type="button" class="btn reviseBTN">Revise</button>
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
                               </div>
                             </div>
@@ -1012,6 +1012,10 @@
   <script type="text/javascript">
     $('#contEdit').click(function(event) {
       $('#confirmModal').modal('hide');
+    });
+
+    $('.reviseBTN').click(function(event) {
+      $('.tabremark').trigger('click');
     });
   </script>
 
