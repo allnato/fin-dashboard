@@ -156,6 +156,7 @@ class CSOController extends CI_Controller{
    */
   public function view_org($orgInitials){
     // Get and check if org exists via initials.
+    $orgInitials = urldecode($orgInitials);
     $this->load->model('CSOmodel');
     $orgData;
     if(!$orgData = $this->CSOmodel->getOrgData($orgInitials)){
