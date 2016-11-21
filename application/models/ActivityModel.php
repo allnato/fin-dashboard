@@ -102,6 +102,91 @@ class ActivityModel extends CI_Model{
       return ($query->num_rows() != 1) ? false : $row;
     }
 
+    public function getAllActivities() {
+      $query = $this->db->get('activity');
+
+      $activity = array();
+      foreach ($query->result_array() as $row) {
+        $remarks = $this->getActivityRemarksForTable($row['activityID']);
+
+        // In case datePendedCSO is still null, provide a message instead
+        if($remarks[0]['datePendedCSO'] == null) {
+          $row['datePendedCSO'] = "Not yet provided.";
+        }
+        else {
+          $row['datePendedCSO'] = $remarks[0]['datePendedCSO'];
+        }
+        // In case status is still null. Defaults to pending.
+        if($remarks[0]['status'] == null) {
+            $row['status'] = "Pending";
+        }
+        else {
+          $row['status'] = $remarks[0]['status'];
+        }
+
+        if($row['PRSno'] == null) {
+          $row['PRSno'] = "N/A";
+        }
+        else {
+          $row['PRSno'] = $row['PRSno'];
+        }
+
+        $row['processType'] = $this->wordify($row['processType']);
+        $acronym = $this->getOrgAcronym($row['orgID']);
+        $row['acronym'] = $acronym[0]['acronym'];
+        if($row['status'] == 'Pending') {
+            array_push($activity, $row);
+        }
+
+
+      }
+
+      return $activity;
+    }
+
+    public function getAllApproved() {
+        $query = $this->db->get('activity');
+
+        $activity = array();
+        foreach ($query->result_array() as $row) {
+          $remarks = $this->getActivityRemarksForTable($row['activityID']);
+
+          // In case datePendedCSO is still null, provide a message instead
+          if($remarks[0]['datePendedCSO'] == null) {
+            $row['datePendedCSO'] = "Not yet provided.";
+          }
+          else {
+            $row['datePendedCSO'] = $remarks[0]['datePendedCSO'];
+          }
+          $row['status'] = $remarks[0]['status'];
+          if($row['PRSno'] == null) {
+            $row['PRSno'] = "N/A";
+          }
+          else {
+            $row['PRSno'] = $row['PRSno'];
+          }
+
+          $row['processType'] = $this->wordify($row['processType']);
+
+          if($row['status'] == 'Approved') {
+              array_push($activity, $row);
+          }
+
+
+      }
+
+
+      return $activity;
+    }
+
+    function getOrgAcronym($orgID) {
+      $this->db->select('acronym');
+      $this->db->where('orgID', $orgID);
+      $query = $this->db->get('organization');
+
+      return $query->result_array();
+    }
+
     function wordify($processType) {
       switch($processType) {
         case 'DP':
