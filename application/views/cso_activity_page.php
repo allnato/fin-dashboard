@@ -187,7 +187,7 @@
                   <div class="card-content">
                     <div class="clearfix page-head">
                       <h3 class="pull-left">
-                        <span class="org-name"><?= $this->session->userdata('acronym') ?> - </span>
+                        <span class="org-name"><?= $activityData['acronym'] ?> - </span>
                         <span class="activity-title"><?= $activityData['title']?></span>
                       </h3>
                       <h3 class="pull-right">
@@ -314,6 +314,16 @@
                                   <label for="description" class="control-label">Activity Description (Optional)</label>
                                   <textarea disabled value="<?= $activityData['description'] ?>" class="form-control" rows="2" id="description" name="description" placeholder="Enter Activity Description Here."></textarea>
                                 </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card-footer text-center">
+                            <div class="row">
+                              <div class="text-center">
+                                <button type="button" class="btn btn-danger">Decline</button>
+                                <button type="button" class="btn">Revise</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
                               </div>
                             </div>
                           </div>
@@ -577,7 +587,15 @@
                             <h1 class="text-center">N/A</h1>
 
                           <?php endif ?>
-
+                          <div class="card-footer text-center">
+                            <div class="row">
+                              <div class="text-center">
+                                <button type="button" class="btn btn-danger">Decline</button>
+                                <button type="button" class="btn">Revise</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
                       </div>
@@ -840,6 +858,30 @@
         </div>
       </div>
     </div>
+    <!-- Approve modal -->
+		<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="ConfirmModal" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title text-center" id="myModalLabel">Approve Activity</h3>
+		      </div>
+		      <div class="modal-body">
+		        <h4 class="text-center">
+							You are about to approve <br>
+               <span style="font-weight: bold">
+                 <?= $activityData['acronym'] ?> - <?= $activityData['title'] ?>
+               </span>
+						</h4>
+						<div class="modalButtons text-center">
+							<button class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
+							<button class="btn btn-success btn-lg">Approve Activity</button>
+						</div>
+
+		      </div>
+		    </div>
+		  </div>
+		</div>
   </body>
   <!--   Core JS Files   -->
   <script src="<?php echo base_url();?>assets/js/jquery.js" type="text/javascript"></script>
@@ -879,6 +921,13 @@
       },
       onClickRow: function(row, $element){
       }
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    $('#contEdit').click(function(event) {
+      $('#confirmModal').modal('hide');
     });
   </script>
 

@@ -33,7 +33,7 @@ class CSOmodel extends CI_Model{
 
    public function getActivityData($pageID, $orgInitials){
      // Check if the page is created by the ORG.
-     $this->db->select("a.*")
+     $this->db->select("*")
      ->from('organization as o, activity as a')
      ->where("o.acronym = '$orgInitials' AND a.activityID = $pageID AND o.orgID = a.orgID");
 
@@ -47,7 +47,7 @@ class CSOmodel extends CI_Model{
      $this->db->select('acronym');
      $query = $this->db->get('organization');
      $row = $query->result_array();
-     
+
      $data['initials'] = $row;
 
      return $data;

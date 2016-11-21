@@ -3,12 +3,16 @@ label.control-label {
     color: #757575 !important;
 }
 
-input.form-control {
-    font-size: 1.4em;
-    color: #009688;
+input.form-control, select {
+    font-size: 1.4em !important;
+    color: #009688 !important;
     font-weight: bold !important;
 }
 
 i.fa.fa-2x {
     font-size: 1.8em;
+}
+
+.card-footer button{
+  margin: 15px 25px;
 }
