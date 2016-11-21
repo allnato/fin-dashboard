@@ -131,11 +131,6 @@ class CSOController extends CI_Controller{
    * [add_org description]
    * @SuppressWarnings(camelCase)
    */
-  public function add_org() {
-    $orgData = $this->input->post(null, true);
-
-    redirect(site_url('admin/org-list'));
-  }
 
   /**
    * Checks if a Session Exists.
@@ -181,7 +176,7 @@ class CSOController extends CI_Controller{
   }
 
   public function newOrganization() {
-    $this->load->model('CSOModel');
+    $this->load->model('CSOmodel');
     $orgData = $this->input->post(null, true);
 
     $this->CSOModel->addOrganization($orgData);
@@ -191,18 +186,24 @@ class CSOController extends CI_Controller{
   }
 
   public function remark_activity() {
-    $this->load->model('CSOModel');
+    $this->load->model('CSOmodel');
 
     $remarkData = $this->input->post(null, true);
 
   }
 
   public function approve_activity() {
-
+    $this->load->model('CSOmodel');
+    $approveData = $this->input->post(null, true);
+    $this->CSOmodel->updateActivityStatus($approveData);
+    redirect(site_url('admin/org-activity-list'));
   }
 
   public function decline_activity() {
-
+    $this->load->model('CSOmodel');
+    $declineData = $this->input->post(null, true);
+    $this->CSOmodel->updateActivityStatus($declineData);
+    redirect(site_url('admin/org-activity-list'));
   }
 
 

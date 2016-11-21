@@ -118,6 +118,7 @@ class ActivityModel extends CI_Model{
         }
         else {
           $row['status'] = $remarks[0]['status'];
+
         }
 
         if($row['PRSno'] == null) {
@@ -130,7 +131,7 @@ class ActivityModel extends CI_Model{
         $row['processType'] = $this->wordify($row['processType']);
         $acronym = $this->getOrgAcronym($row['orgID']);
         $row['acronym'] = $acronym[0]['acronym'];
-        if($row['status'] == 'Pending') {
+        if($row['status'] == 'Pending' || $row['status'] == 'Declined') {
             array_push($activity, $row);
         }
 

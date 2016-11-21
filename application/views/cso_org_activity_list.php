@@ -177,6 +177,12 @@
 
                   foreach($activityList as $row) {
                     $letter = substr($row['acronym'], 0, 1);
+                    if($row['status'] == "Pending") {
+                      $buttonType = "warning";
+                    }
+                    elseif($row['status'] == "Declined") {
+                      $buttonType = "danger";
+                    }
                     echo <<< EOT
 
                     <tr id={$row['activityID']}>
@@ -196,7 +202,7 @@
                         {$row['dateSubmitted']}
                       </td>
                       <td class="list-status">
-                        <span class="label label-warning">{$row['status']}</span>
+                        <span class="label label-$buttonType">{$row['status']}</span>
                       </td>
                     </tr>
 
