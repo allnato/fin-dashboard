@@ -107,7 +107,7 @@
             <li>
               <a href="<?php echo site_url('admin/archive-list'); ?>">
                 <i class="fa fa-archive"></i>
-                <p>Archive</p>
+                <p>Approved</p>
               </a>
             </li>
             <li>
