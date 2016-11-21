@@ -39,7 +39,7 @@ class CSOmodel extends CI_Model{
    }
 
    public function deductCurrBalance() {
-
+     // Every approved liquidation should deduct org balance
    }
 
 }
