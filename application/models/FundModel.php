@@ -16,8 +16,18 @@ class CSOmodel extends CI_Model{
      $this->load->database();
    }
 
-   public function retrieveTotalFunds(){
+   public function retrieveOrgTotalFunds($orgID){
      // Retrieve funds of orgs
+     $this->db->where('orgID', $orgiD);
+     $query = $this->db->get('fund');
+
+     if($query->num_rows() == 1) {
+       return $query->result_array();
+     }
+     else {
+       return false;
+     }
+
    }
 
 }
