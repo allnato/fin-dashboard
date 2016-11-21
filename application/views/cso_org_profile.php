@@ -158,7 +158,7 @@
           <div class="container-fluid">
             <!-- Org Title Card -->
             <div class="profile-toolbar text-right">
-              <button type="button" class="btn" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-user-times"></i> Delete Org</button>
+              <!-- <button type="button" class="btn" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-user-times"></i> Delete Org</button> -->
             </div>
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2">
@@ -263,8 +263,13 @@
                 <tbody>
 
                   <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
-                  $wordify = 'wordify';
                   foreach($orgActivities as $row) {
+                    if($row['status'] == "Pending") {
+                      $buttonType = "warning";
+                    }
+                    elseif($row['status'] == "Declined") {
+                      $buttonType = "danger";
+                    }
                   $dos = date("M d, Y g:i A", strtotime($row['dateSubmitted']));
                   echo <<< EOT
                   <tr id={$row['activityID']}>
@@ -282,13 +287,14 @@
                       <span class="datePended">{$row['datePendedCSO']}</span>
                     </td>
                     <td class="list-status">
-                      <span class="label label-warning">{$row['status']}</span>
+                      <span class="label label-$buttonType">{$row['status']}</span>
                     </td>
                   </tr>
 
 EOT;
 };
                   ?>
+
 
                 </tbody>
               </table>
@@ -307,14 +313,17 @@ EOT;
 		      </div>
 		      <div class="modal-body">
 		        <h4 class="text-center">
-							You are about to Delete <br>
+							You are about to delete <br>
                <span style="font-weight: bold">
                  <?= $orgData['acronym'] ?> <br> <?= $orgData['name'] ?>
                </span>
 						</h4>
 						<div class="modalButtons text-center">
-							<button class="btn btn-lg" id="contEdit">Cancel</button>
-							<button class="btn btn-danger btn-lg" id="">Delete</button>
+              <form method="post" action="<?= site_url('admin/delete') ?>">
+							<button class="btn btn-info btn-lg" id="contEdit">Cancel</button>
+                <input type="hidden" name="orgID" value="<?= $orgData['orgID'] ?>" />
+							  <button type="submit" class="btn btn-danger btn-lg">Delete <?= $orgData['acronym'] ?></button>
+              </form>
 						</div>
 
 		      </div>

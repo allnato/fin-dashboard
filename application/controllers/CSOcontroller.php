@@ -179,10 +179,19 @@ class CSOController extends CI_Controller{
     $this->load->model('CSOmodel');
     $orgData = $this->input->post(null, true);
 
-    $this->CSOModel->addOrganization($orgData);
+    $this->CSOmodel->addOrganization($orgData);
 
 
-    redirect(site_url('admin/activity-list'));
+    redirect(site_url('admin/org-list'));
+  }
+
+  public function deleteOrganization() {
+    $this->load->model('CSOmodel');
+    $orgData = $this->input->post(null, true);
+
+    $this->CSOmodel->deleteOrganization($orgData);
+
+    redirect(site_url('admin/org-list'));
   }
 
   public function remark_activity() {
