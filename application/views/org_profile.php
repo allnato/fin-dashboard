@@ -154,7 +154,7 @@
               <div class="col-sm-4">
                 <div class="card">
                   <div class="card-header text-center"  data-background-color="blue">
-                    <h2>PhP 200,000</h2>
+                    <h2>PhP <?php echo $orgFundData['0']['initBalance'] ?></h2>
                   </div>
                   <div class="card-content text-center">
                     <h3>
@@ -169,7 +169,7 @@
               <div class="col-sm-4">
                 <div class="card">
                   <div class="card-header text-center" data-background-color="green">
-                    <h2>PhP 200,000</h2>
+                    <h2>PhP <?php echo $orgFundData['0']['currBalance'] ?></h2>
                   </div>
                   <div class="card-content text-center">
                     <h3>
@@ -184,7 +184,7 @@
               <div class="col-sm-4">
                 <div class="card">
                   <div class="card-header text-center" data-background-color="red">
-                    <h2>PhP 200,000</h2>
+                    <h2>PhP <?php echo $orgFundData['0']['netChange'] ?></h2>
                   </div>
                   <div class="card-content text-center">
                     <h3>
