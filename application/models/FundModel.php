@@ -38,4 +38,8 @@ class CSOmodel extends CI_Model{
 
    }
 
+   public function deductCurrBalance() {
+
+   }
+
 }
