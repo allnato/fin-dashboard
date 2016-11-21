@@ -834,6 +834,14 @@
                               </div>
                             </div>
 
+                            <div class="card-footer text-center">
+                              <div class="row">
+                                <div class="text-center">
+                                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#remarkModal">Submit Remark</button>
+                                </div>
+                              </div>
+                            </div>
+
                           </div>
                         </div>
                       </form>
@@ -888,6 +896,30 @@
 						<div class="modalButtons text-center">
 							<button class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
 							<button class="btn btn-danger btn-lg" id="declineBTN">Decline Activity</button>
+						</div>
+
+		      </div>
+		    </div>
+		  </div>
+		</div>
+    <!-- Remark modal -->
+		<div class="modal fade" id="remarkModal" tabindex="-1" role="dialog" aria-labelledby="DeclineModal" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title text-center" id="myModalLabel">Remark Activity</h3>
+		      </div>
+		      <div class="modal-body">
+		        <h4 class="text-center">
+							You are about to submit a remark <br>
+               <span style="font-weight: bold">
+                 <?= $activityData['acronym'] ?> - <?= $activityData['title'] ?>
+               </span>
+						</h4>
+						<div class="modalButtons text-center">
+							<button class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
+							<button class="btn btn-success btn-lg" id="">Remark Activity</button>
 						</div>
 
 		      </div>
