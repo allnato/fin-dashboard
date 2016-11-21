@@ -238,24 +238,30 @@ EOT;
             <h4 class="modal-title">Add New Organization</h4>
           </div>
           <div class="modal-body">
-            <form action="">
+            <form action="<?= site_url('admin/newOrg') ?>" method="post">
               <div class="input-group">
                 <span class="input-group-addon">
                   <i class="fa fa-id-card fa-lg"></i>
                 </span>
-                <input type="text" class="form-control" placeholder="Organization Name">
+                <input type="text" class="form-control" placeholder="Organization Name" name="name">
               </div>
               <div class="input-group">
                 <span class="input-group-addon">
                   <i class="fa fa-trash fa-lg"></i>
                 </span>
-                <input type="text" class="form-control" placeholder="Org Initials (e.g. ACCESS, LSCS, MaFia)">
+                <input type="text" class="form-control" placeholder="Org Initials (e.g. ACCESS, LSCS, MaFia)" name="acronym">
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="fa fa-address-book"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="DLSU email of the organization" name="email">
               </div>
               <div class="input-group">
                 <span class="input-group-addon">
                   <i class="fa fa-unlock-alt fa-lg"></i>
                 </span>
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" placeholder="Password" name="password">
               </div>
               <div class="input-group">
                 <span class="input-group-addon">
@@ -263,12 +269,12 @@ EOT;
                 </span>
                 <input type="password" class="form-control" placeholder="Retype Password">
               </div>
-            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Discard</button>
-            <button type="button" class="btn btn-success">Create</button>
+            <button type="submit" href="#" class="btn btn-success">Create</button>
           </div>
+          </form>
         </div>
       </div>
     </div>

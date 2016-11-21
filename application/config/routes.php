@@ -65,6 +65,7 @@ $route['org/profile'] = 'ORGController/profile';
 
 $route['org/submit'] = 'ORGController/submit_activity';
 
+
 $route['admin'] = 'CSOController';
 $route['admin/activity-list'] = 'CSOController/activity_list';
 $route['admin/activity-page/(:any)/(:num)'] = 'CSOController/activity_page/$1/$2';
@@ -75,4 +76,4 @@ $route['admin/org-list'] = 'CSOController/org_list';
 $route['admin/org/(:any)'] = 'CSOController/view_org/$1';
 
 $route['admin/submit'] = 'CSOController/submit_activity';
-$route['admin/addOrg'] = 'CSOController/add_org';
+$route['admin/newOrg'] = 'CSOController/newOrganization';

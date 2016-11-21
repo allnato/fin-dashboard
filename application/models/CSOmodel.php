@@ -54,4 +54,30 @@ class CSOmodel extends CI_Model{
 
    }
 
+   public function addOrganization($orgData) {
+
+
+    $this->db->insert('organization', $orgData);
+    $orgID = $this->db->insert_id();
+
+    $initial = array(
+      'initBalance' => 0,
+      'netChange' => 0,
+      'fundID' => $orgID,
+    );
+
+    $fund = array(
+      'fundID' => $orgID,
+    );
+
+    $this->db->where('orgID', $orgID);
+    $this->db->update('organization', $fund);
+
+    $this->db->insert('fund', $initial);
+    // $this->db->where('fundID', $orgID);
+    // $this->db->update('fund', $initial);
+
+    return ($this->db->affected_rows() != 1) ? false : true;
+   }
+
 }
