@@ -573,38 +573,25 @@
                             <div class="row">
 
                               <!-- Date Pended by CSO -->
-                              <div class="col-sm-4">
+                              <div class="col-sm-6">
                                 <div class="form-group has-feedback">
                                   <div class="input-group has-feedback">
                                     <span class="input-group-addon">
                                       <i class="fa fa-2x fa-calendar"></i>
                                     </span>
                                     <label for="datePendedCSO" class="control-label">Date Pended by CSO</label>
-                                    <input id="datePendedCSO" name="datePendedCSO" type="text" class="form-control" placeholder="Date Pended by CSO Finance" />
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- Status -->
-                              <div class="col-sm-4">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-map-pin"></i>
-                                    </span>
-                                    <label for="statusCSO" class="control-label">Status</label>
-                                    <input id="statusCSO" name="statusCSO" type="number" class="form-control"
-                                    placeholder="Status" />
+                                    <input id="datePendedCSO" onkeydown="return false" name="datePendedCSO" type="text" class="form-control" placeholder="Date Pended by CSO Finance" />
                                   </div>
                                 </div>
                               </div>
                               <!-- Revisions -->
-                              <div class="col-sm-4">
+                              <div class="col-sm-6">
                                 <div class="form-group has-feedback">
                                   <div class="input-group has-feedback">
                                     <span class="input-group-addon">
                                       <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
                                     </span>
-                                    <label for="revisionsCSO" class="control-label">Revisions</label>
+                                    <label for="revisionsCSO" class="control-label">Number of Revisions</label>
                                     <input id="revisionsCSO" name="revisionsCSO" type="number" class="form-control" placeholder="Revisions" step="any" min="0"/>
                                   </div>
                                 </div>
@@ -621,7 +608,7 @@
                                       <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="dateAudited" class="control-label">Date Audited</label>
-                                    <input id="dateAudited" name="dateAudited" type="text" class="form-control" placeholder=" Date Audited"/>
+                                    <input id="dateAudited" onkeydown="return false" name="dateAudited" type="text" class="form-control" placeholder=" Date Audited"/>
                                   </div>
                                 </div>
                               </div>
@@ -651,7 +638,7 @@
                                       <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="dateEncoded" class="control-label">Date Encoded</label>
-                                    <input id="dateEncoded" name="dateEncoded" type="text" class="form-control" placeholder="Date Encoded"/>
+                                    <input id="dateEncoded" onkeydown="return false" name="dateEncoded" type="text" class="form-control" placeholder="Date Encoded"/>
                                   </div>
                                 </div>
                               </div>
@@ -705,8 +692,8 @@
                                     <span class="input-group-addon">
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
-                                    <label for="dateReceivedSLIFE" class="control-label">Date Received by SLIFE</label>
-                                    <input id="dateReceivedSLIFE" name="dateReceivedSLIFE" type="text" class="form-control" placeholder="Date Received by SLIFE"/>
+                                    <label for="dateReceivedSLIFE"  class="control-label">Date Received by SLIFE</label>
+                                    <input id="dateReceivedSLIFE" onkeydown="return false" name="dateReceivedSLIFE" type="text" class="form-control" placeholder="Date Received by SLIFE"/>
                                   </div>
                                 </div>
                               </div>
@@ -717,8 +704,8 @@
                                     <span class="input-group-addon">
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
-                                    <label for="datePendedSLIFE" class="control-label">Date Pended by SLIFE</label>
-                                    <input id="datePendedSLIFE" name="datePendedSLIFE" type="text" class="form-control" placeholder="Date Pended by SLIFE"/>
+                                    <label for="datePendedSLIFE"  class="control-label">Date Pended by SLIFE</label>
+                                    <input id="datePendedSLIFE" onkeydown="return false" name="datePendedSLIFE" type="text" class="form-control" placeholder="Date Pended by SLIFE"/>
                                   </div>
                                 </div>
                               </div>
@@ -759,7 +746,7 @@
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="dateReceivedAcc" class="control-label">Date Received by Accounting Office</label>
-                                    <input id="dateReceivedAcc" name="dateReceivedAcc" type="text" class="form-control" placeholder="Date Received by Accounting Office"/>
+                                    <input id="dateReceivedAcc" onkeydown="return false" name="dateReceivedAcc" type="text" class="form-control" placeholder="Date Received by Accounting Office"/>
                                   </div>
                                 </div>
                               </div>
@@ -771,7 +758,7 @@
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="datePendedAcc" class="control-label">Date Pended by Accounting Office</label>
-                                    <input id="datePendedAcc" name="datePendedAcc" type="text" class="form-control" placeholder="Date Pended by Accounting Office"/>
+                                    <input id="datePendedAcc" onkeydown="return false" name="datePendedAcc" type="text" class="form-control" placeholder="Date Pended by Accounting Office"/>
                                   </div>
                                 </div>
                               </div>
@@ -825,6 +812,7 @@
   <!--   Core JS Files   -->
   <script src="<?php echo base_url();?>assets/js/jquery.js" type="text/javascript"></script>
   <script src="<?php echo base_url();?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.js"></script>
   <script src="<?php echo base_url();?>assets/js/bootstrap-table.min.js" type="text/javascript"></script>
   <script src="<?php echo base_url();?>assets/js/material.min.js" type="text/javascript"></script>
 
@@ -843,6 +831,78 @@
   <script src="<?php echo base_url();?>assets/js/cso_table.js"></script>
 
   <script type="text/javascript">
+  $(document).ready(function() {
+    $('#datePendedCSO').datepicker({
+      autoclose: true,
+      format: {
+        toDisplay: function(date, format, language){
+          return moment(new Date(date)).format('MMM DD, YYYY');
+        },
+        toValue: function(date, format, language){
+        }
+      }
+    });
+    $('#dateAudited').datepicker({
+      autoclose: true,
+      format: {
+        toDisplay: function(date, format, language){
+          return moment(new Date(date)).format('MMM DD, YYYY');
+        },
+        toValue: function(date, format, language){
+        }
+      }
+    });
+    $('#dateEncoded').datepicker({
+      autoclose: true,
+      format: {
+        toDisplay: function(date, format, language){
+          return moment(new Date(date)).format('MMM DD, YYYY');
+        },
+        toValue: function(date, format, language){
+        }
+      }
+    });
+    $('#dateReceivedSLIFE').datepicker({
+      autoclose: true,
+      format: {
+        toDisplay: function(date, format, language){
+          return moment(new Date(date)).format('MMM DD, YYYY');
+        },
+        toValue: function(date, format, language){
+        }
+      }
+    });
+    $('#datePendedSLIFE').datepicker({
+      autoclose: true,
+      format: {
+        toDisplay: function(date, format, language){
+          return moment(new Date(date)).format('MMM DD, YYYY');
+        },
+        toValue: function(date, format, language){
+        }
+      }
+    });
+    $('#dateReceivedAcc').datepicker({
+      autoclose: true,
+      format: {
+        toDisplay: function(date, format, language){
+          return moment(new Date(date)).format('MMM DD, YYYY');
+        },
+        toValue: function(date, format, language){
+        }
+      }
+    });
+    $('#datePendedAcc').datepicker({
+      autoclose: true,
+      format: {
+        toDisplay: function(date, format, language){
+          return moment(new Date(date)).format('MMM DD, YYYY');
+        },
+        toValue: function(date, format, language){
+        }
+      }
+    });
+  });
 
     var $table = $('#activityTable');
     $table.bootstrapTable({
