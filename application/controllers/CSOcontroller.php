@@ -19,7 +19,11 @@ class CSOController extends CI_Controller{
   public function index(){
     redirect(site_url('admin/activity-list'));
   }
-
+  /**
+   * [activity_list description]
+   * @return [type] [description]
+   * @SuppressWarnings(camelCase)
+   */
   public function activity_list() {
     // Redirect to login if session does not exists.
     $this->checkSession();
@@ -30,11 +34,21 @@ class CSOController extends CI_Controller{
     $this->load->view('cso_activity_list.php', $activities);
   }
 
+  /**
+   * [activity_page description]
+   * @return [type] [description]
+   * @SuppressWarnings(camelCase)
+   */
   public function activity_page() {
 
     $this->load->view('cso_activity_page.php');
   }
 
+  /**
+   * [archive_list description]
+   * @return [type] [description]
+   * @SuppressWarnings(camelCase)
+   */
   public function archive_list() {
     // Redirect to login if session does not exists.
     $this->checkSession();
@@ -46,6 +60,11 @@ class CSOController extends CI_Controller{
     $this->load->view('cso_archive_list.php', $activities);
   }
 
+  /**
+   * [create_activity description]
+   * @return [type] [description]
+   * @SuppressWarnings(camelCase)
+   */
   public function create_activity() {
     $this->checkSession();
     $this->load->view('cso_create_activity.php');
@@ -71,6 +90,11 @@ class CSOController extends CI_Controller{
     redirect(site_url('admin/activity-list'));
   }
 
+  /**
+   * [org_activity_list description]
+   * @return [type] [description]
+   * @SuppressWarnings(camelCase)
+   */
   public function org_activity_list() {
     // Redirect to login if session does not exists.
     $this->checkSession();
@@ -80,15 +104,22 @@ class CSOController extends CI_Controller{
     $activities['activityList'] = $this->ActivityModel->getAllActivities();
 
     $this->load->view('cso_org_activity_list.php', $activities);
-
-
   }
 
+  /**
+   * [org_list description]
+   * @return [type] [description]
+   * @SuppressWarnings(camelCase)
+   */
   public function org_list() {
     $this->checkSession();
     $this->load->view('cso_org_list.php');
   }
 
+  /**
+   * [add_org description]
+   * @SuppressWarnings(camelCase)
+   */
   public function add_org() {
     $orgData = $this->input->post(null, true);
 
@@ -104,6 +135,23 @@ class CSOController extends CI_Controller{
       return;
     }
     redirect(site_url('login'));
+  }
+
+  /**
+   * [view_org description]
+   * @param  [type] $orgInitials [description]
+   * @return [type]              [description]
+   * @SuppressWarnings(camelCase)
+   */
+  public function view_org($orgInitials){
+    // Get and check if org exists via initials.
+    $this->load->model('CSOmodel');
+    $org;
+    if(!$org = $this->CSOmodel->getOrgData($orgInitials)){
+      show_404();
+    }
+
+    echo "HORRAY";
   }
 
 

@@ -47,13 +47,4 @@ class OrgModel extends CI_Model{
      return $orgData;
    }
 
-   /**
-    * Gets all the data of an organization
-    * @param string The email of the organization.
-    * @return [type] [description]
-    */
-   public function getOrgData($email){
-
-   }
-
 }

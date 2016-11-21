@@ -108,7 +108,6 @@ class ActivityModel extends CI_Model{
       $activity = array();
       foreach ($query->result_array() as $row) {
         $remarks = $this->getActivityRemarksForTable($row['activityID']);
-
         // In case datePendedCSO is still null, provide a message instead
         if($remarks[0]['datePendedCSO'] == null) {
           $row['datePendedCSO'] = "Not yet provided.";
