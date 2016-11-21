@@ -828,7 +828,7 @@
 
                                     <label for="notes" class="control-label">SLIFE Resubmission/Notes</label>
                                     <textarea class="form-control" rows="4" id="notes" name="notes" placeholder="Enter Remarks here."></textarea>
-                                    <input type="hidden" value="<?= $activityData['activityID'] ?>" />
+                                    <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
                                   </div>
                                 </div>
                               </div>
@@ -836,8 +836,10 @@
 
                           </div>
                         </div>
+
                       </form>
                       </div>
+
                     </div>
                   </div>
                 </div>
@@ -862,8 +864,11 @@
                </span>
 						</h4>
 						<div class="modalButtons text-center">
+              <form method="post" action="<?= site_url('admin/approve') ?>">
 							<button class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
-							<button class="btn btn-success btn-lg">Approve Activity</button>
+                <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
+							  <button type="submit" class="btn btn-success btn-lg">Approve Activity</button>
+              </form>
 						</div>
 
 		      </div>
@@ -886,8 +891,11 @@
                </span>
 						</h4>
 						<div class="modalButtons text-center">
+              <form method="post" action="<?= site_url('admin/approve') ?>">
 							<button class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
-							<button class="btn btn-danger btn-lg" id="declineBTN">Decline Activity</button>
+                <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
+							  <button type="submit" class="btn btn-danger btn-lg">Decline Activity</button>
+              </form>
 						</div>
 
 		      </div>
