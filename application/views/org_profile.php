@@ -39,6 +39,9 @@
 			#sortFieldTxt{
 				width: auto !important;
 			}
+      .card .card-header h2{
+        font-weight: bold !important;
+      }
 		</style>
 
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
@@ -150,28 +153,50 @@
               <!-- Money Tracking 1 -->
               <div class="col-sm-4">
                 <div class="card">
-                  <div class="card-header card-chart"  data-background-color="blue">
+                  <div class="card-header text-center"  data-background-color="blue">
+                    <h2>PhP 200,000</h2>
                   </div>
-                  <div class="card-content">
+                  <div class="card-content text-center">
+                    <h3>
+                      <span style="font-weight: bold">Beginning Balance</span>
+                      <br>
+                      (as of August 24, 2015, start of the AY)
+                    </h3>
                   </div>
                 </div>
               </div>
               <!-- Money Tracking 2 -->
               <div class="col-sm-4">
                 <div class="card">
-                  <div class="card-header card-chart" data-background-color="orange">
+                  <div class="card-header text-center" data-background-color="green">
+                    <h2>PhP 200,000</h2>
                   </div>
-                  <div class="card-content"></div>
+                  <div class="card-content text-center">
+                    <h3>
+                      <span style="font-weight: bold">Current Balance</span>
+                      <br>
+                      (as of Today)
+
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-header text-center" data-background-color="red">
+                    <h2>PhP 200,000</h2>
+                  </div>
+                  <div class="card-content text-center">
+                    <h3>
+
+                      <span style="font-weight: bold">Net Change in Fund Balance</span>
+                      <br>
+                      (as of Today)
+                    </h3>
+                  </div>
                 </div>
               </div>
               <!-- Money Tracking 3 -->
-              <div class="col-sm-4">
-                <div class="card">
-                  <div class="card-header card-chart" data-background-color="green">
-                  </div>
-                  <div class="card-content"></div>
-                </div>
-              </div>
             </div>
 
             <hr>
