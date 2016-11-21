@@ -929,7 +929,7 @@
 						</h4>
 						<div class="modalButtons text-center">
 							<button class="btn btn-info btn-lg" data-dismiss="modal" id="contEdit">Continue Editing</button>
-							<button type="submit" form="remarksSubmit" class="btn btn-success btn-lg" id="">Remark Activity</button>
+							<button type="button" class="btn btn-success btn-lg" id="submitBTN">Remark Activity</button>
 						</div>
 
 		      </div>
@@ -967,6 +967,7 @@
             return moment(new Date(date)).format('MMM DD, YYYY');
           },
           toValue: function(date, format, language){
+            return moment(new Date(date)).format('YYYY-MM-DD');
           }
         }
       });
@@ -1048,6 +1049,32 @@
       onClickRow: function(row, $element){
       }
     });
+
+    $('#submitBTN').click(function() {
+      var a = $('#dateAudited').val();
+      var b = $('#datePendedCSO').val();
+      var c = $('#dateEncoded').val();
+      var d = $('#dateReceivedSLIFE').val();
+      var e = $('#datePendedSLIFE').val();
+      var f = $('#dateReceivedAcc').val();
+      var g = $('#datePendedAcc').val();
+      var newdateAudited = moment(new Date(a)).format('YYYY-MM-DD');
+      var newdatePendedCSO = moment(new Date(b)).format('YYYY-MM-DD');
+      var newdateEncoded = moment(new Date(c)).format('YYYY-MM-DD');
+      var newdateReceivedSLIFE = moment(new Date(d)).format('YYYY-MM-DD');
+      var newdatePendedSLIFE = moment(new Date(e)).format('YYYY-MM-DD');
+      var newdateReceivedAcc = moment(new Date(f)).format('YYYY-MM-DD');
+      var newdatePendedAcc = moment(new Date(g)).format('YYYY-MM-DD');
+      $('#dateAudited').val(newdateAudited);
+      $('#datePendedCSO').val(newdatePendedCSO);
+      $('#dateEncoded').val(dateEncoded);
+      $('#dateReceivedSLIFE').val(dateReceivedSLIFE);
+      $('#datePendedSLIFE').val(datePendedSLIFE);
+      $('#dateReceivedAcc').val(dateReceivedAcc);
+      $('#datePendedAcc').val(datePendedAcc);
+
+      $('#remarksSubmit').submit();
+    });
   </script>
 
 
@@ -1059,6 +1086,7 @@
     $('.reviseBTN').click(function(event) {
       $('.tabremark').trigger('click');
     });
+
   </script>
 
 </html>

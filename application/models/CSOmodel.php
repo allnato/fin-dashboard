@@ -90,14 +90,14 @@ class CSOmodel extends CI_Model{
    public function updateActivityStatus($activityData) {
 
      $this->db->where('activityID', $activityData['activityID']);
-     $this->db->replace('remark', $activityData);
+     $this->db->update('remark', $activityData);
 
      return ($this->db->affected_rows() != 1) ? false : true;
    }
 
    public function updateRemarks($remarkData) {
      $this->db->where('activityID', $remarkData['activityID']);
-     $this->db->replace('remark', $remarkData);
+     $this->db->update('remark', $remarkData);
 
      return ($this->db->affected_rows() != 1) ? false : true;
    }
