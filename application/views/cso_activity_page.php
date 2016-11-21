@@ -312,7 +312,7 @@
                                   </span>
 
                                   <label for="description" class="control-label">Activity Description (Optional)</label>
-                                  <textarea disabled value="<?= $activityData['description'] ?>" class="form-control" rows="2" id="description" name="description" placeholder="Enter Activity Description Here."></textarea>
+                                  <input disabled value="<?= $activityData['description'] ?>" class="form-control" rows="2" id="description" name="description" placeholder="Enter Activity Description Here."></input>
                                 </div>
                               </div>
                             </div>
@@ -600,7 +600,7 @@
 
                       </div>
                       <div class="tab-pane" id="remarks">
-
+                      <form method="post" action="">
                         <!-- CSO Panel -->
                         <div class="panel panel-success">
                           <div class="panel-heading">
@@ -828,6 +828,7 @@
 
                                     <label for="notes" class="control-label">SLIFE Resubmission/Notes</label>
                                     <textarea class="form-control" rows="4" id="notes" name="notes" placeholder="Enter Remarks here."></textarea>
+                                    <input type="hidden" value="<?= $activityData['activityID'] ?>" />
                                   </div>
                                 </div>
                               </div>
@@ -835,7 +836,7 @@
 
                           </div>
                         </div>
-
+                      </form>
                       </div>
                     </div>
                   </div>

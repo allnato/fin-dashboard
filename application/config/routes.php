@@ -77,3 +77,6 @@ $route['admin/org/(:any)'] = 'CSOController/view_org/$1';
 
 $route['admin/submit'] = 'CSOController/submit_activity';
 $route['admin/newOrg'] = 'CSOController/newOrganization';
+$route['admin/remark-activity'] = 'CSOController/remark_activity';
+$route['admin/approve'] = 'CSOController/approve_activity';
+$route['admin/decline'] = 'CSOController/decline_activity';

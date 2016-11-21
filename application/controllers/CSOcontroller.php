@@ -190,6 +190,21 @@ class CSOController extends CI_Controller{
     redirect(site_url('admin/activity-list'));
   }
 
+  public function remark_activity() {
+    $this->load->model('CSOModel');
+
+    $remarkData = $this->input->post(null, true);
+
+  }
+
+  public function approve_activity() {
+
+  }
+
+  public function decline_activity() {
+
+  }
+
 
 
 }
