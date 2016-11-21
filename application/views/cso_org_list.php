@@ -207,12 +207,12 @@
 
               <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
               foreach($initials as $name) {
+              $trim = trim($name['acronym']);
               echo <<< EOT
               <div class="col-xs-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name">
-                      <i class="fa fa-users pull-left"></i>{$name['acronym']}</p>
+                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>{$trim}</p>
                   </div>
                 </div>
               </div>
