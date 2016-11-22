@@ -675,7 +675,8 @@
                                       <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="dateEncoded" class="control-label">Date Encoded</label>
-                                    <input id="dateEncoded" onkeydown="return false" name="dateEncoded" type="text" class="form-control" placeholder="Date Encoded"/>
+                                    <input id="dateEncoded" onkeydown="return false" name="dateEncoded" type="text" class="form-control" placeholder="Date Encoded" />
+
                                   </div>
                                 </div>
                               </div>
@@ -730,7 +731,7 @@
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="dateReceivedSLIFE"  class="control-label">Date Received by SLIFE</label>
-                                    <input id="dateReceivedSLIFE" onkeydown="return false" name="dateReceivedSLIFE" type="text" class="form-control" placeholder="Date Received by SLIFE"/>
+                                    <input id="dateReceivedSLIFE" onkeydown="return false" name="dateReceivedSLIFE" type="text" class="form-control" placeholder="Date Received by SLIFE" />
                                   </div>
                                 </div>
                               </div>
@@ -742,7 +743,7 @@
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="datePendedSLIFE"  class="control-label">Date Pended by SLIFE</label>
-                                    <input id="datePendedSLIFE" onkeydown="return false" name="datePendedSLIFE" type="text" class="form-control" placeholder="Date Pended by SLIFE"/>
+                                    <input id="datePendedSLIFE" onkeydown="return false" name="datePendedSLIFE" type="text" class="form-control" placeholder="Date Pended by SLIFE" />
                                   </div>
                                 </div>
                               </div>
@@ -783,7 +784,7 @@
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="dateReceivedAcc" class="control-label">Date Received by Accounting Office</label>
-                                    <input id="dateReceivedAcc" onkeydown="return false" name="dateReceivedAcc" type="text" class="form-control" placeholder="Date Received by Accounting Office"/>
+                                    <input id="dateReceivedAcc" onkeydown="return false" name="dateReceivedAcc" type="text" class="form-control" placeholder="Date Received by Accounting Office" />
                                   </div>
                                 </div>
                               </div>
@@ -795,7 +796,7 @@
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="datePendedAcc" class="control-label">Date Pended by Accounting Office</label>
-                                    <input id="datePendedAcc" onkeydown="return false" name="datePendedAcc" type="text" class="form-control" placeholder="Date Pended by Accounting Office"/>
+                                    <input id="datePendedAcc" onkeydown="return false" name="datePendedAcc" type="text" class="form-control" placeholder="Date Pended by Accounting Office" />
                                   </div>
                                 </div>
                               </div>
@@ -1058,6 +1059,7 @@
       var e = $('#datePendedSLIFE').val();
       var f = $('#dateReceivedAcc').val();
       var g = $('#datePendedAcc').val();
+      console.log(a,b,c,d,e,f,g);
       var newdateAudited = moment(new Date(a)).format('YYYY-MM-DD');
       var newdatePendedCSO = moment(new Date(b)).format('YYYY-MM-DD');
       var newdateEncoded = moment(new Date(c)).format('YYYY-MM-DD');
@@ -1065,13 +1067,35 @@
       var newdatePendedSLIFE = moment(new Date(e)).format('YYYY-MM-DD');
       var newdateReceivedAcc = moment(new Date(f)).format('YYYY-MM-DD');
       var newdatePendedAcc = moment(new Date(g)).format('YYYY-MM-DD');
-      $('#dateAudited').val(newdateAudited);
-      $('#datePendedCSO').val(newdatePendedCSO);
-      $('#dateEncoded').val(dateEncoded);
-      $('#dateReceivedSLIFE').val(dateReceivedSLIFE);
-      $('#datePendedSLIFE').val(datePendedSLIFE);
-      $('#dateReceivedAcc').val(dateReceivedAcc);
-      $('#datePendedAcc').val(datePendedAcc);
+      console.log(newdateAudited,newdatePendedCSO, newdateEncoded, newdateReceivedSLIFE, newdatePendedSLIFE, newdateReceivedAcc, newdatePendedAcc );
+      if($('#dateAudited').val().length > 1) {
+        $('#dateAudited').val(newdateAudited);
+        console.log('a okay ', $('#dateAudited').text(newdateAudited));
+      }
+      if($('#datePendedCSO').val().length > 1) {
+        $('#datePendedCSO').val(newdatePendedCSO);
+        console.log('b okay ', $('#datePendedCSO').text(newdatePendedCSO));
+      }
+      if($('#dateEncoded').val().length > 1) {
+        $('#dateEncoded').val(newdateEncoded);
+        console.log('c okay ', $('#dateEncoded').text(dateEncoded));
+      }
+      if($('#dateReceivedSLIFE').val().length > 1) {
+        $('#dateReceivedSLIFE').val(newdateReceivedSLIFE);
+        console.log('d okay ', $('#dateReceivedSLIFE').text(newdateReceivedSLIFE));
+      }
+      if($('#datePendedSLIFE').val().length > 1) {
+        $('#datePendedSLIFE').val(newdatePendedSLIFE);
+        console.log('e okay ', $('#datePendedSLIFE').text(newdatePendedSLIFE));
+      }
+      if($('#dateReceivedAcc').val().length > 1) {
+        $('#dateReceivedAcc').val(newdateReceivedAcc);
+        console.log('f okay ',   $('#dateReceivedAcc').text(newdateReceivedAcc));
+      }
+      if($('#datePendedAcc').val().length > 1) {
+        $('#datePendedAcc').val(newdatePendedAcc);
+        console.log('g okay ', $('#datePendedAcc').text(newdatePendedAcc));
+      }
 
       $('#remarksSubmit').submit();
     });

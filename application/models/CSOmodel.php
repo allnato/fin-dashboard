@@ -88,7 +88,12 @@ class CSOmodel extends CI_Model{
    }
 
    public function updateActivityStatus($activityData) {
-
+    //  foreach ($activityDa as $key => $value) {
+    //    if($value == "0000-00-00") {
+    //      $value = "";
+    //    }
+    //  }
+     array_filter($activityData, 'strlen');
      $this->db->where('activityID', $activityData['activityID']);
      $this->db->update('remark', $activityData);
 
@@ -96,6 +101,8 @@ class CSOmodel extends CI_Model{
    }
 
    public function updateRemarks($remarkData) {
+     
+     var_dump($remarkData);
      $this->db->where('activityID', $remarkData['activityID']);
      $this->db->update('remark', $remarkData);
 
