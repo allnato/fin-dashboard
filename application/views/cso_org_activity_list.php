@@ -177,11 +177,14 @@
 
                   foreach($activityList as $row) {
                     $letter = substr($row['acronym'], 0, 1);
-                    if($row['status'] == "Pending") {
+                    if($row['status'] == "Pending" ) {
                       $buttonType = "warning";
                     }
                     elseif($row['status'] == "Declined") {
                       $buttonType = "danger";
+                    }
+                    elseif($row['status'] == "Approved") {
+                      $buttonType = "success";
                     }
                     echo <<< EOT
 

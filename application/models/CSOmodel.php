@@ -43,6 +43,17 @@ class CSOmodel extends CI_Model{
      return ($query->num_rows() != 1) ? false : $row;
    }
 
+   public function getRemarksData($activityID) {
+     $this->db->select("*")
+     ->from('remark as o, activity as a')
+     ->where("o.activityID = $activityID AND a.activityID = $activityID");
+
+     $query = $this->db->get();
+     $row = $query->row_array();
+     // Return false if page does not exist within an org
+     return ($query->num_rows() != 1) ? false : $row;
+   }
+
    public function getAllOrgInitials(){
      $this->db->select('acronym');
      $query = $this->db->get('organization');
@@ -101,7 +112,7 @@ class CSOmodel extends CI_Model{
    }
 
    public function updateRemarks($remarkData) {
-     
+
      var_dump($remarkData);
      $this->db->where('activityID', $remarkData['activityID']);
      $this->db->update('remark', $remarkData);
