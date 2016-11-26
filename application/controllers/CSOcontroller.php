@@ -53,7 +53,7 @@ class CSOController extends CI_Controller{
       // Show 404 :-(
       show_404();
     }
-    
+
 
     $this->load->view('cso_activity_page', $activity);
   }

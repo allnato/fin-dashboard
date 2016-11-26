@@ -1118,6 +1118,7 @@ EOT;
 
       $('#remarksSubmit').submit();
     });
+    
   </script>
 
 
