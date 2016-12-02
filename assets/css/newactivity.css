@@ -51,6 +51,14 @@
   font-weight: 500;
 }
 
+li.active a[data-toggle=tab] {
+  cursor: default;
+}
+
+li a[data-toggle=tab]{
+  cursor: not-allowed;
+}
+
 /*.startDateLabel,
 .endDateLabel{
   color: white !important;
