@@ -49,6 +49,11 @@ class CSOController extends CI_Controller{
       // Show 404 :-(
       show_404();
     }
+    if(!$activity['remarksData'] = $this->CSOmodel->getRemarksData($activity['activityData']['activityID'])){
+      // Show 404 :-(
+      show_404();
+    }
+
 
     $this->load->view('cso_activity_page', $activity);
   }
@@ -196,8 +201,14 @@ class CSOController extends CI_Controller{
 
   public function remark_activity() {
     $this->load->model('CSOmodel');
-
     $remarkData = $this->input->post(null, true);
+    if($remarkData['datePendedCSO'] != '' || $remarkData['datePendedSLIFE'] != '' || $remarkData['datePendedAcc'] != '' ) {
+      $remarkData['status'] = 'Pending';
+    }
+
+    $this->CSOmodel->updateRemarks($remarkData);
+
+    redirect(site_url('admin/org-activity-list'));
 
   }
 

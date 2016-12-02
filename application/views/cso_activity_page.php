@@ -145,8 +145,27 @@
                 </a>
                 <!-- Status -->
                 <h3 style="display: inline-block" class="pull-right">
-                  <label class="label label-warning">
-                    Pending
+                  <?php
+
+                    if($remarksData['status'] == "Pending" || $remarksData['status'] == "" || $remarksData['status'] == "null" ) {
+                      $buttonType = "warning";
+                      $remarksData['status'] = "Pending";
+                    }
+                    elseif($remarksData['status'] == "Declined") {
+                      $buttonType = "danger";
+                    }
+                    elseif($remarksData['status'] == "Approved") {
+                      $buttonType = "success";
+                    }
+
+
+                    echo <<< EOT
+
+                    <label class="label label-$buttonType">
+EOT;
+
+                     ?>
+                    <?= $remarksData['status'] ?>
                   </label>
                 </h3>
               </div>
@@ -600,7 +619,7 @@
 
                       </div>
                       <div class="tab-pane" id="remarks">
-                      <form method="post" action="">
+                      <form id="remarksSubmit" method="post" action="<?= site_url('admin/remark-activity') ?>">
                         <!-- CSO Panel -->
                         <div class="panel panel-success">
                           <div class="panel-heading">
@@ -617,7 +636,7 @@
                                       <i class="fa fa-2x fa-calendar"></i>
                                     </span>
                                     <label for="datePendedCSO" class="control-label">Date Pended by CSO</label>
-                                    <input id="datePendedCSO" onkeydown="return false" name="datePendedCSO" type="text" class="form-control" placeholder="Date Pended by CSO Finance" />
+                                    <input id="datePendedCSO" onkeydown="return false" name="datePendedCSO" value="<?= $remarksData['datePendedCSO'] ?>" type="text" class="form-control" placeholder="Date Pended by CSO Finance" />
                                   </div>
                                 </div>
                               </div>
@@ -629,7 +648,7 @@
                                       <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="revisionsCSO" class="control-label">Number of Revisions</label>
-                                    <input id="revisionsCSO" name="revisionsCSO" type="number" class="form-control" placeholder="Revisions" step="any" min="0"/>
+                                    <input id="revisionsCSO" name="revisions" type="number" value="<?= $remarksData['revisions'] ?>" class="form-control" placeholder="Revisions" step="any" min="0"/>
                                   </div>
                                 </div>
                               </div>
@@ -645,7 +664,7 @@
                                       <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="dateAudited" class="control-label">Date Audited</label>
-                                    <input id="dateAudited" onkeydown="return false" name="dateAudited" type="text" class="form-control" placeholder=" Date Audited"/>
+                                    <input id="dateAudited" onkeydown="return false" name="dateAudited" value="<?= $remarksData['dateAudited'] ?>" type="text" class="form-control" placeholder=" Date Audited"/>
                                   </div>
                                 </div>
                               </div>
@@ -657,7 +676,7 @@
                                       <i class="fa fa-user fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="auditedBy" class="control-label">Audited By</label>
-                                    <input id="auditedBy" name="auditedBy" type="text" class="form-control" placeholder="Audited By"/>
+                                    <input id="auditedBy" name="auditedBy" type="text" value="<?= $remarksData['auditedBy'] ?>" class="form-control" placeholder="Audited By"/>
                                   </div>
                                 </div>
                               </div>
@@ -675,7 +694,8 @@
                                       <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="dateEncoded" class="control-label">Date Encoded</label>
-                                    <input id="dateEncoded" onkeydown="return false" name="dateEncoded" type="text" class="form-control" placeholder="Date Encoded"/>
+                                    <input id="dateEncoded" onkeydown="return false" name="dateEncoded" value="<?= $remarksData['dateEncoded'] ?>" type="text" class="form-control" placeholder="Date Encoded" />
+
                                   </div>
                                 </div>
                               </div>
@@ -688,7 +708,7 @@
                                       <i class="fa fa-user fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="encodedBy" class="control-label">Encoded By</label>
-                                    <input id="encodedBy" name="encodedBy" type="text" class="form-control" placeholder="Encoded By"/>
+                                    <input id="encodedBy" name="encodedBy" type="text" value="<?= $remarksData['encodedBy'] ?>" class="form-control" placeholder="Encoded By"/>
                                   </div>
                                 </div>
                               </div>
@@ -705,7 +725,7 @@
                                     </span>
 
                                     <label for="CSOremarks" class="control-label">CSO Remarks</label>
-                                    <textarea class="form-control" rows="4" id="CSOremarks" name="CSOremarks" placeholder="Enter Remarks here."></textarea>
+                                    <textarea class="form-control" rows="4" id="CSOremarks" name="CSOremarks" placeholder="Enter Remarks here."><?= $remarksData['CSOremarks'] ?></textarea>
                                   </div>
                                 </div>
                               </div>
@@ -730,7 +750,7 @@
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="dateReceivedSLIFE"  class="control-label">Date Received by SLIFE</label>
-                                    <input id="dateReceivedSLIFE" onkeydown="return false" name="dateReceivedSLIFE" type="text" class="form-control" placeholder="Date Received by SLIFE"/>
+                                    <input id="dateReceivedSLIFE" onkeydown="return false" name="dateReceivedSLIFE" type="text" value="<?= $remarksData['dateReceivedSLIFE'] ?>" class="form-control" placeholder="Date Received by SLIFE" />
                                   </div>
                                 </div>
                               </div>
@@ -742,7 +762,7 @@
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="datePendedSLIFE"  class="control-label">Date Pended by SLIFE</label>
-                                    <input id="datePendedSLIFE" onkeydown="return false" name="datePendedSLIFE" type="text" class="form-control" placeholder="Date Pended by SLIFE"/>
+                                    <input id="datePendedSLIFE" onkeydown="return false" name="datePendedSLIFE" value="<?= $remarksData['datePendedSLIFE'] ?>" type="text" class="form-control" placeholder="Date Pended by SLIFE" />
                                   </div>
                                 </div>
                               </div>
@@ -759,7 +779,7 @@
                                     </span>
 
                                     <label for="SLIFEremarks" class="control-label">SLIFE Remarks</label>
-                                    <textarea class="form-control" rows="4" id="SLIFEremarks" name="SLIFEremarks" placeholder="Enter Remarks here."></textarea>
+                                    <textarea class="form-control" rows="4" id="SLIFEremarks" name="SLIFEremarks" placeholder="Enter Remarks here."><?= $remarksData['SLIFEremarks'] ?></textarea>
                                   </div>
                                 </div>
                               </div>
@@ -783,7 +803,7 @@
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="dateReceivedAcc" class="control-label">Date Received by Accounting Office</label>
-                                    <input id="dateReceivedAcc" onkeydown="return false" name="dateReceivedAcc" type="text" class="form-control" placeholder="Date Received by Accounting Office"/>
+                                    <input id="dateReceivedAcc" onkeydown="return false" name="dateReceivedAcc" value="<?= $remarksData['dateReceivedAcc'] ?>" type="text" class="form-control" placeholder="Date Received by Accounting Office" />
                                   </div>
                                 </div>
                               </div>
@@ -795,7 +815,7 @@
                                       <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
                                     </span>
                                     <label for="datePendedAcc" class="control-label">Date Pended by Accounting Office</label>
-                                    <input id="datePendedAcc" onkeydown="return false" name="datePendedAcc" type="text" class="form-control" placeholder="Date Pended by Accounting Office"/>
+                                    <input id="datePendedAcc" onkeydown="return false" name="datePendedAcc" type="text" value="<?= $remarksData['datePendedAcc'] ?>" class="form-control" placeholder="Date Pended by Accounting Office" />
                                   </div>
                                 </div>
                               </div>
@@ -811,7 +831,7 @@
                                       <i class="fa fa-bookmark fa-2x"></i>
                                     </span>
                                     <label for="Accremarks" class="control-label">Accounting Office Remarks</label>
-                                    <textarea class="form-control" rows="4" id="Accremarks" name="Accremarks" placeholder="Enter Remarks here."></textarea>
+                                    <textarea class="form-control" rows="4" id="Accremarks" name="AccRemarks" placeholder="Enter Remarks here."><?= $remarksData['AccRemarks'] ?></textarea>
                                   </div>
                                 </div>
                               </div>
@@ -827,7 +847,7 @@
                                     </span>
 
                                     <label for="notes" class="control-label">SLIFE Resubmission/Notes</label>
-                                    <textarea class="form-control" rows="4" id="notes" name="notes" placeholder="Enter Remarks here."></textarea>
+                                    <textarea class="form-control" rows="4" id="notes" name="notes" placeholder="Enter Remarks here."><?= $remarksData['notes'] ?></textarea>
                                     <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
                                   </div>
                                 </div>
@@ -928,8 +948,8 @@
                </span>
 						</h4>
 						<div class="modalButtons text-center">
-							<button class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
-							<button class="btn btn-success btn-lg" id="">Remark Activity</button>
+							<button class="btn btn-info btn-lg" data-dismiss="modal" id="contEdit">Continue Editing</button>
+							<button type="button" class="btn btn-success btn-lg" id="submitBTN">Remark Activity</button>
 						</div>
 
 		      </div>
@@ -967,6 +987,7 @@
             return moment(new Date(date)).format('MMM DD, YYYY');
           },
           toValue: function(date, format, language){
+            return moment(new Date(date)).format('YYYY-MM-DD');
           }
         }
       });
@@ -1048,6 +1069,56 @@
       onClickRow: function(row, $element){
       }
     });
+
+    $('#submitBTN').click(function() {
+      var a = $('#dateAudited').val();
+      var b = $('#datePendedCSO').val();
+      var c = $('#dateEncoded').val();
+      var d = $('#dateReceivedSLIFE').val();
+      var e = $('#datePendedSLIFE').val();
+      var f = $('#dateReceivedAcc').val();
+      var g = $('#datePendedAcc').val();
+      console.log(a,b,c,d,e,f,g);
+      var newdateAudited = moment(new Date(a)).format('YYYY-MM-DD');
+      var newdatePendedCSO = moment(new Date(b)).format('YYYY-MM-DD');
+      var newdateEncoded = moment(new Date(c)).format('YYYY-MM-DD');
+      var newdateReceivedSLIFE = moment(new Date(d)).format('YYYY-MM-DD');
+      var newdatePendedSLIFE = moment(new Date(e)).format('YYYY-MM-DD');
+      var newdateReceivedAcc = moment(new Date(f)).format('YYYY-MM-DD');
+      var newdatePendedAcc = moment(new Date(g)).format('YYYY-MM-DD');
+      console.log(newdateAudited,newdatePendedCSO, newdateEncoded, newdateReceivedSLIFE, newdatePendedSLIFE, newdateReceivedAcc, newdatePendedAcc );
+      if($('#dateAudited').val().length > 1) {
+        $('#dateAudited').val(newdateAudited);
+        console.log('a okay ', $('#dateAudited').text(newdateAudited));
+      }
+      if($('#datePendedCSO').val().length > 1) {
+        $('#datePendedCSO').val(newdatePendedCSO);
+        console.log('b okay ', $('#datePendedCSO').text(newdatePendedCSO));
+      }
+      if($('#dateEncoded').val().length > 1) {
+        $('#dateEncoded').val(newdateEncoded);
+        console.log('c okay ', $('#dateEncoded').text(dateEncoded));
+      }
+      if($('#dateReceivedSLIFE').val().length > 1) {
+        $('#dateReceivedSLIFE').val(newdateReceivedSLIFE);
+        console.log('d okay ', $('#dateReceivedSLIFE').text(newdateReceivedSLIFE));
+      }
+      if($('#datePendedSLIFE').val().length > 1) {
+        $('#datePendedSLIFE').val(newdatePendedSLIFE);
+        console.log('e okay ', $('#datePendedSLIFE').text(newdatePendedSLIFE));
+      }
+      if($('#dateReceivedAcc').val().length > 1) {
+        $('#dateReceivedAcc').val(newdateReceivedAcc);
+        console.log('f okay ',   $('#dateReceivedAcc').text(newdateReceivedAcc));
+      }
+      if($('#datePendedAcc').val().length > 1) {
+        $('#datePendedAcc').val(newdatePendedAcc);
+        console.log('g okay ', $('#datePendedAcc').text(newdatePendedAcc));
+      }
+
+      $('#remarksSubmit').submit();
+    });
+    
   </script>
 
 
@@ -1059,6 +1130,7 @@
     $('.reviseBTN').click(function(event) {
       $('.tabremark').trigger('click');
     });
+
   </script>
 
 </html>
