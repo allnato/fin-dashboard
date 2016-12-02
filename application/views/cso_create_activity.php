@@ -492,7 +492,12 @@
 
 													</div>
                           <div class="tab-pane" id="finish">
-                            <h1 class="text-center text-success">You're good to go</h1>
+														<div class="finish-message">
+
+															<h1 class="text-center raleway">You're good to go <i class="fa fa-check text-success"></i></h1>
+															<p class="text-center text-success">Recheck or change the process by clicking the "previous" button.</p>
+
+														</div>
                           </div>
 												</div>
 											</div>
