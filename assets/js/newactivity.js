@@ -50,6 +50,7 @@ $(document).ready(function() {
   $('#details').css('min-height', tabHeight);
   $('#process').css('min-height', tabHeight);
   $('#finish').css('min-height', tabHeight);
+  $('.finish-message').css('min-height', tabHeight);
 
 
 

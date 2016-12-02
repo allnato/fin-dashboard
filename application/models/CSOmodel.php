@@ -19,7 +19,7 @@ class CSOmodel extends CI_Model{
    /**
     * Gets all the data of an organization
     * @param string The initlas of the organization.
-    * @return mixed - returns false if org does not exists
+    * @return mixed - returns false if org does not exists, otherwise return the list of org data.
     */
    public function getOrgData($initials){
 

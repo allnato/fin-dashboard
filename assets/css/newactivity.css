@@ -33,6 +33,24 @@
   justify-content: center;
 }
 
+.finish-message{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.finish-message h1{
+  font-weight: bold;
+  font-family: raleway;
+  font-size: 6em;
+  color: #343434;
+}
+
+.finish-message p{
+  font-size: 2em;
+  font-family: raleway;
+  font-weight: 500;
+}
+
 /*.startDateLabel,
 .endDateLabel{
   color: white !important;
