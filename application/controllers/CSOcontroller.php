@@ -53,6 +53,7 @@ class CSOController extends CI_Controller{
       // Show 404 :-(
       show_404();
     }
+    $activity['orgInitials'] = $orgInitials;
     $this->load->view('cso_activity_page', $activity);
   }
 
@@ -212,15 +213,18 @@ class CSOController extends CI_Controller{
 
   public function approve_activity() {
     $this->load->model('CSOmodel');
-    $approveData = $this->input->post(null, true);
-    $this->CSOmodel->updateActivityStatus($approveData);
-    redirect(site_url('admin/org-activity-list'));
+    $approveData['activityID'] = $this->input->post('activityID', true);
+    $approveData['status'] = $this->input->post('status', true);
+    $orgAcronym = $this->input->post('acronym', true);
+    $this->CSOmodel->updateActivityStatus($approveData, $orgAcronym);
+    // redirect(site_url('admin/org-activity-list'));
   }
 
   public function decline_activity() {
     $this->load->model('CSOmodel');
+    $orgAcronym = '';
     $declineData = $this->input->post(null, true);
-    $this->CSOmodel->updateActivityStatus($declineData);
+    $this->CSOmodel->updateActivityStatus($declineData, $orgAcronym);
     redirect(site_url('admin/org-activity-list'));
   }
 

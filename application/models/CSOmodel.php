@@ -98,22 +98,68 @@ class CSOmodel extends CI_Model{
 
    }
 
-   public function updateActivityStatus($activityData) {
+   public function updateActivityStatus($activityData, $acronym) {
     //  foreach ($activityDa as $key => $value) {
     //    if($value == "0000-00-00") {
     //      $value = "";
     //    }
     //  }
      array_filter($activityData, 'strlen');
+
      $this->db->where('activityID', $activityData['activityID']);
      $this->db->update('remark', $activityData);
+
+     // Get FundID from Organization table
+     $this->db->select('fundID');
+     $this->db->where('acronym', $acronym);
+     $query = $this->db->get('organization');
+     $FundIDresult = $query->result();
+
+     // Get budget from Activity table
+     $this->db->select('budget');
+     $this->db->where('activityID', $activityData['activityID']);
+     $query2 = $this->db->get('activity');
+     $Budgetresult = $query2->result();
+     //  var_dump($FundIDresult[0]->fundID);
+     // Get CurrentBalance from Fund table
+     $this->db->select('netChange');
+     $this->db->where('fundID', $FundIDresult[0]->fundID);
+     $query3 = $this->db->get('fund');
+     $NetChangeresult = $query3->result();
+
+     $budget = $Budgetresult[0]->budget;
+
+     // Check if the type of activity is Change of Payee or Cancellation of Checque
+
+     $this->db->select('processType');
+     $this->db->where('activityID', $activityData['activityID']);
+     $query4 = $this->db->get('activity');
+     $ProcessTyperesult = $query4->result();
+
+     if($ProcessTyperesult[0]->processType == 'CP') {
+       $budget = '70';
+     }
+     else if($ProcessTyperesult[0]->processType == 'COC') {
+       $budget = '40';
+     }
+
+     else if($ProcessTyperesult[0]->processType == 'NE') {
+       $budget = '0';
+     }
+     // Perform arithmetic on currBalance and budget
+     $newBalance['netChange'] = $budget + $NetChangeresult[0]->netChange;
+     $newBalance['netChange'] = floatval($newBalance['netChange']);
+     $this->db->where('fundID', $FundIDresult[0]->fundID);
+     $this->db->update('fund', $newBalance);
+
+
 
      return ($this->db->affected_rows() != 1) ? false : true;
    }
 
    public function updateRemarks($remarkData) {
 
-     var_dump($remarkData);
+
      $this->db->where('activityID', $remarkData['activityID']);
      $this->db->update('remark', $remarkData);
 

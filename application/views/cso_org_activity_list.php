@@ -177,6 +177,7 @@
 
                   foreach($activityList as $row) {
                     $letter = substr($row['acronym'], 0, 1);
+                    $buttonType = "warning";
                     if($row['status'] == "Pending" ) {
                       $buttonType = "warning";
                     }
@@ -186,6 +187,7 @@
                     elseif($row['status'] == "Approved") {
                       $buttonType = "success";
                     }
+
                     echo <<< EOT
 
                     <tr id={$row['activityID']}>
