@@ -3,6 +3,10 @@ $(document).ready(function() {
   $('.fa.fa-users.pull-left').each(function() {
     $(this).css('color', randomColor({luminosity: 'dark'}));
   });
+  $orgList.isotope('updateSortData').isotope({
+  sortBy: 'name',
+  sortAscending: true
+  });
   // Sort Order Button is Clicked
   // Change the direction of the arrow
   $('#sortOrderBtn').click(function(event) {
@@ -36,7 +40,7 @@ var $orgList = $('.org-list').isotope({
   itemSelector: '.col-xs-3',
   layout: 'fitRows',
   getSortData: {
-    name: '.org_name'
+    name: '.org-name'
   },
   filter: function() {
     return qsRegex ? $(this).text().match( qsRegex ) : true;
