@@ -217,7 +217,7 @@ class CSOController extends CI_Controller{
     $approveData['status'] = $this->input->post('status', true);
     $orgAcronym = $this->input->post('acronym', true);
     $this->CSOmodel->updateActivityStatus($approveData, $orgAcronym);
-    // redirect(site_url('admin/org-activity-list'));
+    redirect(site_url('admin/org-activity-list'));
   }
 
   public function decline_activity() {

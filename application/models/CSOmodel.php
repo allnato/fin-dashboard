@@ -146,6 +146,14 @@ class CSOmodel extends CI_Model{
      else if($ProcessTyperesult[0]->processType == 'NE') {
        $budget = '0';
      }
+     else if($ProcessTyperesult[0]->processType == 'FRA') {
+       $this->db->select('actualRevenue');
+       $this->db->where('activityID', $activityData['activityID']);
+       $query2 = $this->db->get('activity');
+       $Budgetresult = $query2->result();
+       $budget = $Budgetresult[0]->actualRevenue;
+
+     }
      // Perform arithmetic on currBalance and budget
      $newBalance['netChange'] = $budget + $NetChangeresult[0]->netChange;
      $newBalance['netChange'] = floatval($newBalance['netChange']);
