@@ -182,9 +182,12 @@ class CSOController extends CI_Controller{
     $this->load->model('CSOmodel');
     $orgData = $this->input->post(null, true);
 
-    $this->CSOmodel->addOrganization($orgData);
+    $updateResult = $this->CSOmodel->addOrganization($orgData);
 
-
+    $this->session->set_flashdata('addOrganization', 'false');
+    if($updateResult){
+      $this->session->set_flashdata('addOrganization', 'true');
+    }
     redirect(site_url('admin/org-list'));
   }
 

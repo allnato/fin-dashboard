@@ -56,6 +56,7 @@ class CSOmodel extends CI_Model{
 
    public function getAllOrgInitials(){
      $this->db->select('acronym');
+     $this->db->order_by('acronym', 'ASC');
      $query = $this->db->get('organization');
      $row = $query->result_array();
 
@@ -67,8 +68,17 @@ class CSOmodel extends CI_Model{
 
    public function addOrganization($orgData) {
 
+    $origDebug = $this->db->db_debug;
 
-    $this->db->insert('organization', $orgData);
+    $this->db->db_debug = FALSE;
+
+    if(!$this->db->insert('organization', $orgData)){
+     $this->db->db_debug = $origDebug;
+     return false;
+    }
+
+    $this->db->db_debug = $origDebug;
+
     $orgID = $this->db->insert_id();
 
     $initial = array(
