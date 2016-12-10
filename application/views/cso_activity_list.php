@@ -194,6 +194,9 @@
                   elseif($row['status'] == "Declined") {
                     $buttonType = "danger";
                   }
+                  elseif($row['status'] == "Approved") {
+                    $buttonType = "success";
+                  }
                 $dos = date("M d, Y g:i A", strtotime($row['dateSubmitted']));
                 echo <<< EOT
                 <tr id={$row['activityID']}>
