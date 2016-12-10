@@ -123,7 +123,6 @@ class CSOmodel extends CI_Model{
 
    public function updateRemarks($remarkData) {
 
-     var_dump($remarkData);
      $this->db->where('activityID', $remarkData['activityID']);
      $this->db->update('remark', $remarkData);
 

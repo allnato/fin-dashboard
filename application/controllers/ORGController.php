@@ -85,6 +85,11 @@ class OrgController extends CI_Controller{
       show_404();
     }
 
+    if(!$activity['activityRemarks'] = $this->ActivityModel->getActivityRemarks($pageID)){
+      // Show 404 :-(
+      show_404();
+    }
+
     $this->load->view('org_activity_page', $activity);
   }
 

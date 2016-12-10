@@ -265,7 +265,7 @@
                                     <i class="fa fa-2x fa-calendar-plus-o"></i>
                                   </span>
                                   <label class="control-label startDateLabel">Start Date: </label>
-                                  <input disabled value="<?= $activityData['beginDate'] ?>" class="beginDate form-control" onkeydown="return false" name="beginDate" id="beginDate"/>
+                                  <input disabled value="<?= $activityData['beginDate'] ?>" class="beginDate form-control"  name="beginDate" id="beginDate"/>
                                 </div>
                               </div>
                             </div>
@@ -277,7 +277,7 @@
                                     <i class="fa fa-2x fa-calendar-times-o"></i>
                                   </span>
                                   <label class="control-label endDateLabel ">End Date: </label>
-                                  <input disabled value="<?= $activityData['endDate'] ?>" class="endDate form-control" onkeydown="return false" name="endDate" id="endDate"/>
+                                  <input disabled value="<?= $activityData['endDate'] ?>" class="endDate form-control"  name="endDate" id="endDate"/>
                                 </div>
                               </div>
                             </div>
@@ -293,7 +293,7 @@
                                   </span>
 
                                   <label for="description" class="control-label">Activity Description (Optional)</label>
-                                  <textarea disabled value="<?= $activityData['description'] ?>" class="form-control" rows="2" id="description" name="description" placeholder="Enter Activity Description Here."></textarea>
+                                  <textarea disabled class="form-control" rows="2" id="description" name="description" placeholder="Enter Activity Description Here."><?= $activityData['description'] ?></textarea>
                                 </div>
                               </div>
                             </div>
@@ -564,238 +564,266 @@
                       </div>
                       <div class="tab-pane" id="remarks">
 
-                        <!-- CSO Panel -->
-                        <div class="panel panel-success">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">CSO</h3>
-                          </div>
-                          <div class="panel-body">
-                            <div class="row">
-
-                              <!-- Date Pended by CSO -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-calendar"></i>
-                                    </span>
-                                    <label for="datePendedCSO" class="control-label">Date Pended by CSO</label>
-                                    <input id="datePendedCSO" onkeydown="return false" name="datePendedCSO" type="text" class="form-control" placeholder="Date Pended by CSO Finance" />
-                                  </div>
-                                </div>
+                        <ul class="nav nav-pills remarksTab" data-tabs="tabs">
+                          <li class="active">
+                            <a href="#remarksCSO" data-toggle="tab">
+                              <i class="fa fa-file-text"></i>
+                              CSO
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#remarksSLIFE" data-toggle="tab">
+                              <i class="fa fa-book"></i>
+                              S.L.I.F.E
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#remarksACCT" data-toggle="tab">
+                              <i class="fa fa-calculator"></i>
+                              Accounting
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                        </ul>
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="remarksCSO">
+                            <!-- CSO Panel -->
+                            <div class="panel panel-success">
+                              <div class="panel-heading">
+                                <h3 class="panel-title">CSO</h3>
                               </div>
-                              <!-- Revisions -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="revisionsCSO" class="control-label">Number of Revisions</label>
-                                    <input id="revisionsCSO" name="revisionsCSO" type="number" class="form-control" placeholder="Revisions" step="any" min="0"/>
+                              <div class="panel-body">
+                                <div class="row">
+                                  <!-- Date Pended by CSO -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-2x fa-calendar"></i>
+                                        </span>
+                                        <label for="datePendedCSO" class="control-label">Date Pended by CSO</label>
+                                        <input id="datePendedCSO" disabled value="<?= $activityRemarks['datePendedCSO'] ?>" name="datePendedCSO" type="text" class="form-control" placeholder="Date Pended by CSO Finance" />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- Revisions -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="revisionsCSO" class="control-label">Number of Revisions</label>
+                                        <input id="revisionsCSO" disabled value="<?= $activityRemarks['revisions'] ?>" name="revisions" type="number" class="form-control" placeholder="Revisions" step="any" min="0"/>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+                                <!-- Audited(Date, by) -->
+                                <div class="row">
+                                  <!-- Date Audited -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="dateAudited" class="control-label">Date Audited</label>
+                                        <input id="dateAudited" disabled value="<?= $activityRemarks['dateAudited'] ?>"  name="dateAudited" type="text" class="form-control" placeholder=" Date Audited"/>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- Audited By -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="auditedBy" class="control-label">Audited By</label>
+                                        <input id="auditedBy" disabled value="<?= $activityRemarks['auditedBy'] ?>" name="auditedBy" type="text" class="form-control" placeholder="Audited By"/>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <!-- Encoded(Date,by) -->
+                                <div class="row">
+
+                                  <!-- Date Encoded -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="dateEncoded" class="control-label">Date Encoded</label>
+                                        <input id="dateEncoded" disabled value="<?= $activityRemarks['dateEncoded'] ?>"  name="dateEncoded" type="text" class="form-control" placeholder="Date Encoded"/>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <!-- Encoded By -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="encodedBy" class="control-label">Encoded By</label>
+                                        <input id="encodedBy" disabled value="<?= $activityRemarks['encodedBy'] ?>" name="encodedBy" type="text" class="form-control" placeholder="Encoded By"/>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <!-- CSO Remarks -->
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-bookmark fa-2x"></i>
+                                        </span>
+
+                                        <label for="CSOremarks" class="control-label">CSO Remarks</label>
+                                        <textarea class="form-control" disabled rows="4" id="CSOremarks" name="CSOremarks" placeholder="Enter Remarks here."><?= $activityRemarks['CSOremarks'] ?></textarea>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
 
-                            </div>
-                            <!-- Audited(Date, by) -->
-                            <div class="row">
-                              <!-- Date Audited -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="dateAudited" class="control-label">Date Audited</label>
-                                    <input id="dateAudited" onkeydown="return false" name="dateAudited" type="text" class="form-control" placeholder=" Date Audited"/>
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- Audited By -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="auditedBy" class="control-label">Audited By</label>
-                                    <input id="auditedBy" name="auditedBy" type="text" class="form-control" placeholder="Audited By"/>
-                                  </div>
-                                </div>
-                              </div>
-
-                            </div>
-
-                            <!-- Encoded(Date,by) -->
-                            <div class="row">
-
-                              <!-- Date Encoded -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="dateEncoded" class="control-label">Date Encoded</label>
-                                    <input id="dateEncoded" onkeydown="return false" name="dateEncoded" type="text" class="form-control" placeholder="Date Encoded"/>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <!-- Encoded By -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="encodedBy" class="control-label">Encoded By</label>
-                                    <input id="encodedBy" name="encodedBy" type="text" class="form-control" placeholder="Encoded By"/>
-                                  </div>
-                                </div>
-                              </div>
-
-                            </div>
-
-                            <!-- CSO Remarks -->
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-bookmark fa-2x"></i>
-                                    </span>
-
-                                    <label for="CSOremarks" class="control-label">CSO Remarks</label>
-                                    <textarea class="form-control" rows="4" id="CSOremarks" name="CSOremarks" placeholder="Enter Remarks here."></textarea>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-
-                        <!-- SLIFE Panel -->
-                        <div class="panel panel-warning">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">SLIFE</h3>
-                          </div>
-                          <div class="panel-body">
-                            <!-- SLIFE Date -->
-                            <div class="row">
-                              <!-- Date Recieved by SLIFE -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="dateReceivedSLIFE"  class="control-label">Date Received by SLIFE</label>
-                                    <input id="dateReceivedSLIFE" onkeydown="return false" name="dateReceivedSLIFE" type="text" class="form-control" placeholder="Date Received by SLIFE"/>
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- Date Pended by SLIFE -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="datePendedSLIFE"  class="control-label">Date Pended by SLIFE</label>
-                                    <input id="datePendedSLIFE" onkeydown="return false" name="datePendedSLIFE" type="text" class="form-control" placeholder="Date Pended by SLIFE"/>
-                                  </div>
-                                </div>
-                              </div>
-
-                            </div>
-
-                            <!-- SLIFE Remarks -->
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-bookmark fa-2x"></i>
-                                    </span>
-
-                                    <label for="SLIFEremarks" class="control-label">SLIFE Remarks</label>
-                                    <textarea class="form-control" rows="4" id="SLIFEremarks" name="SLIFEremarks" placeholder="Enter Remarks here."></textarea>
-                                  </div>
-                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                          <div class="tab-pane" id="remarksSLIFE">
+                            <!-- SLIFE Panel -->
+                            <div class="panel panel-warning">
+                              <div class="panel-heading">
+                                <h3 class="panel-title">SLIFE</h3>
+                              </div>
+                              <div class="panel-body">
+                                <!-- SLIFE Date -->
+                                <div class="row">
+                                  <!-- Date Recieved by SLIFE -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="dateReceivedSLIFE"  class="control-label">Date Received by SLIFE</label>
+                                        <input id="dateReceivedSLIFE" disabled value="<?= $activityRemarks['dateReceivedSLIFE'] ?>"  name="dateReceivedSLIFE" type="text" class="form-control" placeholder="Date Received by SLIFE"/>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- Date Pended by SLIFE -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="datePendedSLIFE"  class="control-label">Date Pended by SLIFE</label>
+                                        <input id="datePendedSLIFE" disabled value="<?= $activityRemarks['datePendedSLIFE'] ?>"  name="datePendedSLIFE" type="text" class="form-control" placeholder="Date Pended by SLIFE"/>
+                                      </div>
+                                    </div>
+                                  </div>
 
-                        <!-- Accounting Panel -->
-                        <div class="panel panel-info">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Accounting Office</h3>
+                                </div>
+
+                                <!-- SLIFE Remarks -->
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-bookmark fa-2x"></i>
+                                        </span>
+
+                                        <label for="SLIFEremarks" class="control-label">SLIFE Remarks</label>
+                                        <textarea class="form-control"disabled rows="4" id="SLIFEremarks" name="SLIFEremarks" placeholder="Enter Remarks here."><?= $activityRemarks['SLIFEremarks'] ?></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div class="panel-body">
-                            <!-- Accounting Office Dates -->
-                            <div class="row">
-                              <!-- Date Recieved by Accounting Office -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="dateReceivedAcc" class="control-label">Date Received by Accounting Office</label>
-                                    <input id="dateReceivedAcc" onkeydown="return false" name="dateReceivedAcc" type="text" class="form-control" placeholder="Date Received by Accounting Office"/>
-                                  </div>
-                                </div>
+                          <div class="tab-pane" id="remarksACCT">
+                            <!-- Accounting Panel -->
+                            <div class="panel panel-info">
+                              <div class="panel-heading">
+                                <h3 class="panel-title">Accounting Office</h3>
                               </div>
-                              <!-- Date Pended by Accounting Office -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="datePendedAcc" class="control-label">Date Pended by Accounting Office</label>
-                                    <input id="datePendedAcc" onkeydown="return false" name="datePendedAcc" type="text" class="form-control" placeholder="Date Pended by Accounting Office"/>
+                              <div class="panel-body">
+                                <!-- Accounting Office Dates -->
+                                <div class="row">
+                                  <!-- Date Recieved by Accounting Office -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="dateReceivedAcc" class="control-label">Date Received by Accounting Office</label>
+                                        <input id="dateReceivedAcc" value="<?= $activityRemarks['dateReceivedAcc'] ?>" name="dateReceivedAcc" disabled type="text" class="form-control" placeholder="Date Received by Accounting Office"/>
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
+                                  <!-- Date Pended by Accounting Office -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="datePendedAcc" class="control-label">Date Pended by Accounting Office</label>
+                                        <input id="datePendedAcc" value="<?= $activityRemarks['datePendedAcc'] ?>" disabled name="datePendedAcc" type="text" class="form-control" placeholder="Date Pended by Accounting Office"/>
+                                      </div>
+                                    </div>
+                                  </div>
 
+                                </div>
+
+                                <!-- Accounting Office Remarks -->
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-bookmark fa-2x"></i>
+                                        </span>
+                                        <label for="Accremarks" class="control-label">Accounting Office Remarks</label>
+                                        <textarea class="form-control" rows="4" id="Accremarks" name="Accremarks" disabled placeholder="Enter Remarks here."><?= $activityRemarks['AccRemarks'] ?></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!-- Other Remarks -->
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-bookmark fa-2x"></i>
+                                        </span>
+
+                                        <label for="notes" class="control-label">SLIFE Resubmission/Notes</label>
+                                        <textarea class="form-control" disabled rows="4" id="notes" name="notes" placeholder="Enter Remarks here."><?= $activityRemarks['notes'] ?></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
                             </div>
-
-                            <!-- Accounting Office Remarks -->
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-bookmark fa-2x"></i>
-                                    </span>
-                                    <label for="Accremarks" class="control-label">Accounting Office Remarks</label>
-                                    <textarea class="form-control" rows="4" id="Accremarks" name="Accremarks" placeholder="Enter Remarks here."></textarea>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <!-- Other Remarks -->
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-bookmark fa-2x"></i>
-                                    </span>
-
-                                    <label for="notes" class="control-label">SLIFE Resubmission/Notes</label>
-                                    <textarea class="form-control" rows="4" id="notes" name="notes" placeholder="Enter Remarks here."></textarea>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
                           </div>
                         </div>
 
@@ -829,98 +857,12 @@
   <script src="<?php echo base_url();?>assets/js/moment.js"></script>
 
   <script src="<?php echo base_url();?>assets/js/cso_table.js"></script>
+  <script src="<?php echo base_url();?>assets/js/activitypage.js"></script>
 
   <script type="text/javascript">
   $(document).ready(function() {
-    $('#datePendedCSO').datepicker({
-      autoclose: true,
-      format: {
-        toDisplay: function(date, format, language){
-          return moment(new Date(date)).format('MMM DD, YYYY');
-        },
-        toValue: function(date, format, language){
-        }
-      }
-    });
-    $('#dateAudited').datepicker({
-      autoclose: true,
-      format: {
-        toDisplay: function(date, format, language){
-          return moment(new Date(date)).format('MMM DD, YYYY');
-        },
-        toValue: function(date, format, language){
-        }
-      }
-    });
-    $('#dateEncoded').datepicker({
-      autoclose: true,
-      format: {
-        toDisplay: function(date, format, language){
-          return moment(new Date(date)).format('MMM DD, YYYY');
-        },
-        toValue: function(date, format, language){
-        }
-      }
-    });
-    $('#dateReceivedSLIFE').datepicker({
-      autoclose: true,
-      format: {
-        toDisplay: function(date, format, language){
-          return moment(new Date(date)).format('MMM DD, YYYY');
-        },
-        toValue: function(date, format, language){
-        }
-      }
-    });
-    $('#datePendedSLIFE').datepicker({
-      autoclose: true,
-      format: {
-        toDisplay: function(date, format, language){
-          return moment(new Date(date)).format('MMM DD, YYYY');
-        },
-        toValue: function(date, format, language){
-        }
-      }
-    });
-    $('#dateReceivedAcc').datepicker({
-      autoclose: true,
-      format: {
-        toDisplay: function(date, format, language){
-          return moment(new Date(date)).format('MMM DD, YYYY');
-        },
-        toValue: function(date, format, language){
-        }
-      }
-    });
-    $('#datePendedAcc').datepicker({
-      autoclose: true,
-      format: {
-        toDisplay: function(date, format, language){
-          return moment(new Date(date)).format('MMM DD, YYYY');
-        },
-        toValue: function(date, format, language){
-        }
-      }
-    });
+    convertDatetoReadable();
+    clearInvalid();
   });
-
-    var $table = $('#activityTable');
-    $table.bootstrapTable({
-      pagination: true,
-      onlyInfoPagination: false,
-      pageSize: 12,
-      formatShowingRows: function(pageFrom, pageTo, totalRows) {
-
-      },
-      formatRecordsPerPage: function(pageNumber) {
-
-      },
-      formatDetailPagination: function(totalRows) {
-        return ;
-      },
-      onClickRow: function(row, $element){
-      }
-    });
   </script>
-
 </html>

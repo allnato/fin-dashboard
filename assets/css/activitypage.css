@@ -16,3 +16,47 @@ i.fa.fa-2x {
 .card-footer button{
   margin: 15px 25px;
 }
+
+.remarksTab{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#revisionsTab{
+
+}
+
+#revisionsTab .dropdown-menu li.active a {
+    color: white !important;
+    background-color: #337ab7 !important;
+}
+
+#revisionsTab .dropdown-menu li.active a:hover {
+    color: white !important;
+    background-color: #337ab7 !important;
+}
+
+
+#revisionsTab li a {
+    color: #212121 !important;
+    font-family: raleway;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: none;
+}
+
+#revisionsTab .dropdown{
+  background-color: #c8c8c8;
+    border-radius: 9px;
+}
+
+#revisionsTab .dropdown-menu li a:hover {
+    background-color: #E0E0E0;
+}
+
+textarea{
+font-size: 1.2em !important;
+font-weight: bold !important;
+color: #FF5722 !important;
+}
