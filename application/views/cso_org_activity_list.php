@@ -222,7 +222,7 @@ EOT;
 
     <!-- Sort Inputs -->
     <input type="text" value="desc" id="sortOrder" style="display: none">
-    <input type="text" value="list-dos" id="sortField" style="display: none">
+    <input type="text" value="list-date" id="sortField" style="display: none">
   </body>
   <!--   Core JS Files   -->
   <script src="<?php echo base_url(); ?>assets/js/jquery.js" type="text/javascript"></script>
@@ -275,5 +275,43 @@ EOT;
 
 		});
   </script>
+
+  <script type="text/javascript">
+
+		<?php
+			$flash = $this->session->flashdata('remarkActivity');
+			if($flash == 'true'):
+		?>
+		$.notify({
+			icon: "check",
+			message: "Remark Activity - Successfully Remarked the activity",
+		},{
+				type: 'success',
+				timer: 1000,
+				placement: {
+						from: 'top',
+						align: 'center'
+				},
+				allow_dismiss: true,
+				newest_on_top: true,
+				mouse_over: 'pause'
+		});
+		<?php elseif($flash == 'false'): ?>
+		$.notify({
+			icon: "warning",
+			message: "Remark Activity - Error in issuing a remark.",
+		},{
+				type: 'danger',
+				timer: 1000,
+				placement: {
+						from: 'top',
+						align: 'center'
+				},
+				allow_dismiss: true,
+				newest_on_top: true,
+				mouse_over: 'pause'
+		});
+		<?php endif; ?>
+	</script>
 
 </html>

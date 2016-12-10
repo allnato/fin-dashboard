@@ -208,7 +208,11 @@ class CSOController extends CI_Controller{
     }
 
     $remarkData['revisions'] = intval($remarkData['revisions']) + 1;
-    $this->CSOmodel->updateRemarks($remarkData);
+
+    $this->session->set_flashdata('remarkActivity', 'false');
+    if($this->CSOmodel->updateRemarks($remarkData)){
+      $this->session->set_flashdata('remarkActivity', 'true');
+    }
 
     redirect(site_url('admin/org-activity-list'));
 
