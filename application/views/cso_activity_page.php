@@ -153,7 +153,7 @@
                 <!-- Status -->
                 <h3 style="display: inline-block" class="pull-right">
                   <?php
-
+                    $activityStatus = $remarksData['status'];
                     if($remarksData['status'] == "Pending" || $remarksData['status'] == "" || $remarksData['status'] == "null" ) {
                       $buttonType = "warning";
                       $remarksData['status'] = "Pending";
@@ -344,15 +344,18 @@ EOT;
                             </div>
                           </div>
 
-                          <div class="card-footer text-center">
-                            <div class="row">
-                              <div class="text-center">
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
-                                <button type="button" class="btn reviseBTN">Revise</button>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                          <?php if($activityStatus != 'Approved'): ?>
+                            <div class="card-footer text-center">
+                              <div class="row">
+                                <div class="text-center">
+                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
+                                  <button type="button" class="btn reviseBTN">Revise</button>
+                                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          <?php endif ?>
+
                         </div>
                       </div>
                       <div class="tab-pane" id="process">
@@ -613,15 +616,17 @@ EOT;
                             <h1 class="text-center">N/A</h1>
 
                           <?php endif ?>
-                          <div class="card-footer text-center">
-                            <div class="row">
-                              <div class="text-center">
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
-                                <button type="button" class="btn reviseBTN">Revise</button>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                          <?php if($activityStatus != 'Approved'): ?>
+                            <div class="card-footer text-center">
+                              <div class="row">
+                                <div class="text-center">
+                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
+                                  <button type="button" class="btn reviseBTN">Revise</button>
+                                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          <?php endif ?>
                         </div>
 
                       </div>
@@ -895,13 +900,16 @@ EOT;
                               </div>
                             </div>
                           </div>
-                          <div class="card-footer text-center">
-                            <div class="row">
-                              <div class="text-center">
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#remarkModal">Submit Remark</button>
+                          <?php if($activityStatus != 'Approved'): ?>
+
+                            <div class="card-footer text-center">
+                              <div class="row">
+                                <div class="text-center">
+                                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#remarkModal">Submit Remark</button>
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          <?php endif ?>
 
 
                         </div>
@@ -1093,6 +1101,6 @@ EOT;
 
   </script>
 
-  
+
 
 </html>
