@@ -202,6 +202,15 @@ class ActivityModel extends CI_Model{
       return $this->db->trans_status();
     }
 
+    public function updateActivityProcess($pageID, $data){
+      $this->db->trans_start();
+      $this->db->where('activityID', $pageID);
+      $this->db->update('activity', $data);
+      $this->db->trans_complete();
+
+      return $this->db->trans_status();
+    }
+
     function getOrgAcronym($orgID) {
       $this->db->select('acronym');
       $this->db->where('orgID', $orgID);

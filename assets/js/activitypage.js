@@ -17,6 +17,9 @@ $('.editDetailBTN').click(function(event) {
 
 $('.editProcessBTN').click(function(event) {
   $('.saveProcessBTN').css('display', 'inline-block');
+  $('#editProcessForm .form-control').each(function(index, el) {
+    $(this).removeAttr('disabled')
+  });
 });
 
 $('#saveDetailsModalBtn').click(function(event) {

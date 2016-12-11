@@ -366,7 +366,7 @@ EOT;
                         </form>
                       </div>
                       <div class="tab-pane" id="process">
-                        <form id="editProcessForm" action="<?= site_url('admin/edit-activity-process') ?>" method="post">
+                        <form id="editProcessForm" action="<?= site_url('admin/edit-activity-process/' . $orgInitials . "/". $pageID) ?>" method="post">
                           <div class="activityProcess">
                             <?php
                             $process = $activityData['processType'];

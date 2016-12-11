@@ -213,6 +213,19 @@ class CSOController extends CI_Controller{
 
   }
 
+  public function edit_activity_process($orgInitials, $pageID ){
+    $this->load->model('ActivityModel');
+    $detailsData = $this->input->post(NULL, TRUE);
+
+    $this->session->set_flashdata('editActivity', 'false');
+    if($this->ActivityModel->updateActivityProcess($pageID, $detailsData)){
+      $this->session->set_flashdata('editActivity', 'true');
+    }
+
+    redirect(site_url('admin/activity-page/'.$orgInitials."/".$pageID));
+
+  }
+
   public function remark_activity() {
     $this->load->model('CSOmodel');
     $remarkData = $this->input->post(NULL, true);
