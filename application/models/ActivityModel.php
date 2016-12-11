@@ -59,7 +59,7 @@ class ActivityModel extends CI_Model{
           $remarks = $this->getActivityRemarksForTable($row['activityID']);
           // In case datePendedCSO is still null, provide a message instead
           $row['datePendedCSO'] = "Not yet provided.";
-          if($remarks[0]['datePendedCSO'] != null) {
+          if($remarks[0]['datePendedCSO'] != null && $remarks[0]['datePendedCSO'] != "" && $remarks[0]['datePendedCSO'] != "0000-00-00") {
             $row['datePendedCSO'] = $remarks[0]['datePendedCSO'];
           }
 
