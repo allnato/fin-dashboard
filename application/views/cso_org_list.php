@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_table.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_page.css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
-
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/img/icon/favicon-96x96.png">
 
     <style media="screen">
       p{
@@ -110,12 +110,7 @@
                 <p>Approved</p>
               </a>
             </li>
-            <li>
-              <a href="">
-                <i class="fa fa-bar-chart"></i>
-                <p>Statistics</p>
-              </a>
-            </li>
+
             <li class="active">
               <a href="<?php echo site_url('admin/org-list'); ?>">
                 <i class="fa fa-users"></i>
@@ -142,8 +137,8 @@
 							<span class="icon-bar"></span>
             <!-- Navbar Title -->
 						</button>
-              <a class="navbar-brand nav-title" href="#">
-                <i class="fa fa-list"></i> Activity List
+              <a class="navbar-brand nav-title" href="">
+                <i class="fa fa-users"></i> Organization List
               </a>
             </div>
 
@@ -212,7 +207,7 @@
               <div class="col-xs-3">
                 <div class="card hvr-grow-shadow">
                   <div class="card-content">
-                    <p class="text-center org-name"><i class="fa fa-users pull-left"></i>{$trim}</p>
+                    <p class="text-center"><i class="fa fa-users pull-left"></i><span class="org-name">{$trim}</span></p>
                   </div>
                 </div>
               </div>
@@ -301,11 +296,48 @@ EOT;
 
   <script src="<?php echo base_url(); ?>assets/js/cso_org_list.js"></script>
 
+
+  <script type="text/javascript">
+
+		<?php
+			$flash = $this->session->flashdata('addOrganization');
+			if($flash == 'true'):
+		?>
+		$.notify({
+			icon: "check",
+			message: "Add Organization - Successfully added a new Organization",
+		},{
+				type: 'success',
+				timer: 4000,
+				placement: {
+						from: 'top',
+						align: 'center'
+				},
+				allow_dismiss: true,
+				newest_on_top: true,
+				mouse_over: 'pause'
+		});
+		<?php elseif($flash == 'false'): ?>
+		$.notify({
+			icon: "warning",
+			message: "Add Organization - Error in creating a new activity. Fields already exists",
+		},{
+				type: 'danger',
+				timer: 4000,
+				placement: {
+						from: 'top',
+						align: 'center'
+				},
+				allow_dismiss: true,
+				newest_on_top: true,
+				mouse_over: 'pause'
+		});
+		<?php endif; ?>
+	</script>
   <script type="text/javascript">
     $('.card').click(function(event) {
       console.log($(this).find('.org-name').text());
       window.location.href = "<?= site_url('admin/org/')  ?>" + $(this).find('.org-name').text().trim();
     });
-
   </script>
 </html>

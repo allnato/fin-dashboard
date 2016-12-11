@@ -13,6 +13,9 @@
     <!-- Bootstrap core CSS     -->
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" />
 
+    <!-- Datepicker CSS -->
+		<link href="<?php echo base_url(); ?>assets/css/bootstrap-datepicker.css" rel="stylesheet" />
+
     <!--  Material Dashboard CSS    -->
     <link href="<?php echo base_url();?>assets/css/material-dashboard.css" rel="stylesheet" />
 
@@ -23,8 +26,13 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_table.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_page.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/activitypage.css">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/img/icon/favicon-96x96.png">
 
-
+    <style media="screen">
+      #revisions{
+        cursor: not-allowed;
+      }
+    </style>
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
   </head>
 
@@ -68,12 +76,7 @@
                 <p>Approved</p>
               </a>
             </li>
-            <li>
-              <a href="">
-                <i class="fa fa-bar-chart"></i>
-                <p>Statistics</p>
-              </a>
-            </li>
+
             <li>
               <a href="<?php echo site_url('admin/org-list'); ?>">
                 <i class="fa fa-users"></i>
@@ -146,7 +149,7 @@
                 <!-- Status -->
                 <h3 style="display: inline-block" class="pull-right">
                   <?php
-
+                    $activityStatus = $remarksData['status'];
                     if($remarksData['status'] == "Pending" || $remarksData['status'] == "" || $remarksData['status'] == "null" ) {
                       $buttonType = "warning";
                       $remarksData['status'] = "Pending";
@@ -219,320 +222,335 @@ EOT;
                       </h3>
                     </div>
                     <div class="tab-content">
+
                       <div class="tab-pane active" id="details">
-                        <div class="activityDetails">
-                          <!-- 1st Row -->
-                          <div class="row">
-                            <!-- Title -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-file-text"></i>
-                                  </span>
-                                  <label for="title" class="control-label">Title</label>
-                                  <input disabled id="title" name="title" type="text" class="form-control" placeholder="Type the complete activity title according to your A-Form." value="<?= $activityData['title'] ?>"/>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- Submitted By -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-user-circle"></i>
-                                  </span>
-                                  <label for="submittedBy" class="control-label">Submitted By</label>
-                                  <input disabled value="<?= $activityData['submittedBy'] ?>" id="submittedBy" name="submittedBy" type="text" class="form-control" placeholder="Submitted By"/>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- 2nd Row -->
-                          <div class="row">
-                            <!-- Process -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-bank"></i>
-                                  </span>
-                                  <label for="processType" class="control-label">Process</label>
-                                  <select class="form-control" name="processType" id="processType" disabled>
-                                    <option disabled selected value="-1">Please select an option</option>
-                                    <option value="CA" <?php if($activityData['processType'] == 'CA') echo 'selected' ?>>Cash Advance</option>
-                                    <option value="DP" <?php if($activityData['processType'] == 'DP') echo 'selected' ?>>Direct Payment</option>
-                                    <option value="RM" <?php if($activityData['processType'] == 'RM') echo 'selected' ?>>Reimbursement</option>
-                                    <option value="BT" <?php if($activityData['processType'] == 'BT') echo 'selected' ?>>Book Transfer</option>
-                                    <option value="LQ" <?php if($activityData['processType'] == 'LQ') echo 'selected' ?>>Liquidation</option>
-                                    <option value="PCR" <?php if($activityData['processType'] == 'PCR') echo 'selected' ?>>Petty Cash Replenishment</option>
-                                    <option value="NE" <?php if($activityData['processType'] == 'NE') echo 'selected' ?>>No Expense</option>
-                                    <option value="FRA" <?php if($activityData['processType'] == 'FRA') echo 'selected' ?>>Fund Raising Activity Report</option>
-                                    <option value="CP" <?php if($activityData['processType'] == 'CP') echo 'selected' ?>>Change of Payee</option>
-                                    <option value="COC" <?php if($activityData['processType'] == 'COC') echo 'selected' ?>>Cancellation of Check</option>
-                                    <option value="LEA" <?php if($activityData['processType'] == 'LEA') echo 'selected' ?>>List of Expenses alone</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- Activity Date Description -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-calendar"></i>
-                                  </span>
-                                  <label for="dateDesc" class="control-label">Activity Date Description</label>
-                                  <select class="form-control" name="dateDesc" id="dateDesc" disabled>
-                                    <option disabled selected value>Please select a date description</option>
-                                    <option value="Specific" <?php if($activityData['dateDesc'] == 'Specific') echo 'selected' ?>>Specific Date/s</option>
-                                    <option value="Term Long" <?php if($activityData['dateDesc'] == 'Term Long') echo 'selected' ?>>Term Long</option>
-                                    <option value="Year Long" <?php if($activityData['dateDesc'] == 'Year Long') echo 'selected' ?>>Year Long</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- 3rd Row -->
-                          <div class="row">
-                            <!-- Start Date -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-calendar-plus-o"></i>
-                                  </span>
-                                  <label class="control-label startDateLabel">Start Date: </label>
-                                  <input disabled value="<?= $activityData['beginDate'] ?>" class="beginDate form-control" onkeydown="return false" name="beginDate" id="beginDate"/>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- End Date -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-calendar-times-o"></i>
-                                  </span>
-                                  <label class="control-label endDateLabel ">End Date: </label>
-                                  <input disabled value="<?= $activityData['endDate'] ?>" class="endDate form-control" onkeydown="return false" name="endDate" id="endDate"/>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- 4th Row -->
-                          <div class="row">
-                            <div class="col-sm-12">
-
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-bookmark"></i>
-                                  </span>
-
-                                  <label for="description" class="control-label">Activity Description (Optional)</label>
-                                  <input disabled value="<?= $activityData['description'] ?>" class="form-control" rows="2" id="description" name="description" placeholder="Enter Activity Description Here."></input>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="card-footer text-center">
+                        <?php $pageID = $activityData['activityID'];
+                              $orgInitials = $activityData['acronym'];?>
+                        <form id="editDetailsForm" action="<?php echo site_url("admin/edit-activity-details/". $orgInitials . "/". $pageID )?>" method="post">
+                          <div class="activityDetails">
+                            <!-- 1st Row -->
                             <div class="row">
-                              <div class="text-center">
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
-                                <button type="button" class="btn reviseBTN">Revise</button>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                              <!-- Title -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-file-text"></i>
+                                    </span>
+                                    <label for="title" class="control-label">Title</label>
+                                    <input disabled id="title" name="title" type="text" class="form-control" placeholder="Type the complete activity title according to your A-Form." value="<?= $activityData['title'] ?>"/>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- Submitted By -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-user-circle"></i>
+                                    </span>
+                                    <label for="submittedBy" class="control-label">Submitted By</label>
+                                    <input disabled value="<?= $activityData['submittedBy'] ?>" id="submittedBy" name="submittedBy" type="text" class="form-control" placeholder="Submitted By"/>
+                                  </div>
+                                </div>
                               </div>
                             </div>
+                            <!-- 2nd Row -->
+                            <div class="row">
+                              <!-- Process -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-bank"></i>
+                                    </span>
+                                    <label for="processType" class="control-label">Process</label>
+                                    <select class="form-control" name="processType" id="processType" disabled>
+                                      <option disabled selected value="-1">Please select an option</option>
+                                      <option value="CA" <?php if($activityData['processType'] == 'CA') echo 'selected' ?>>Cash Advance</option>
+                                      <option value="DP" <?php if($activityData['processType'] == 'DP') echo 'selected' ?>>Direct Payment</option>
+                                      <option value="RM" <?php if($activityData['processType'] == 'RM') echo 'selected' ?>>Reimbursement</option>
+                                      <option value="BT" <?php if($activityData['processType'] == 'BT') echo 'selected' ?>>Book Transfer</option>
+                                      <option value="LQ" <?php if($activityData['processType'] == 'LQ') echo 'selected' ?>>Liquidation</option>
+                                      <option value="PCR" <?php if($activityData['processType'] == 'PCR') echo 'selected' ?>>Petty Cash Replenishment</option>
+                                      <option value="NE" <?php if($activityData['processType'] == 'NE') echo 'selected' ?>>No Expense</option>
+                                      <option value="FRA" <?php if($activityData['processType'] == 'FRA') echo 'selected' ?>>Fund Raising Activity Report</option>
+                                      <option value="CP" <?php if($activityData['processType'] == 'CP') echo 'selected' ?>>Change of Payee</option>
+                                      <option value="COC" <?php if($activityData['processType'] == 'COC') echo 'selected' ?>>Cancellation of Check</option>
+                                      <option value="LEA" <?php if($activityData['processType'] == 'LEA') echo 'selected' ?>>List of Expenses alone</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- Activity Date Description -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-calendar"></i>
+                                    </span>
+                                    <label for="dateDesc" class="control-label">Activity Date Description</label>
+                                    <select class="form-control" name="dateDesc" id="dateDesc" disabled>
+                                      <option disabled selected value>Please select a date description</option>
+                                      <option value="Specific" <?php if($activityData['dateDesc'] == 'Specific') echo 'selected' ?>>Specific Date/s</option>
+                                      <option value="Term Long" <?php if($activityData['dateDesc'] == 'Term Long') echo 'selected' ?>>Term Long</option>
+                                      <option value="Year Long" <?php if($activityData['dateDesc'] == 'Year Long') echo 'selected' ?>>Year Long</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- 3rd Row -->
+                            <div class="row">
+                              <!-- Start Date -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-calendar-plus-o"></i>
+                                    </span>
+                                    <label class="control-label startDateLabel">Start Date: </label>
+                                    <input disabled value="<?= $activityData['beginDate'] ?>" onkeydown="return false" class="form-control dateInput beginDate" name="beginDate" id="beginDate"/>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- End Date -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-calendar-times-o"></i>
+                                    </span>
+                                    <label class="control-label endDateLabel ">End Date: </label>
+                                    <input disabled value="<?= $activityData['endDate'] ?>"  onkeydown="return false" class="form-control dateInput endDate" name="endDate" id="endDate"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- 4th Row -->
+                            <div class="row">
+                              <div class="col-sm-12">
+
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-bookmark"></i>
+                                    </span>
+
+                                    <label for="description" class="control-label">Activity Description (Optional)</label>
+                                    <input disabled value="<?= $activityData['description'] ?>" class="form-control" rows="2" id="description" name="description" placeholder="Enter Activity Description Here."></input>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <?php if($activityStatus != 'Approved'): ?>
+                              <div class="card-footer">
+
+                                <div class="clearfix" style="width: 100%">
+                                  <div class="pull-left">
+                                    <button type="button" class="btn btn-info editDetailBTN">Edit</button>
+                                    <button type="button" class="btn btn-success saveDetailBTN" style="display: none">Save Changes</button>
+                                  </div>
+                                  <div class="pull-right">
+                                    <button type="button" class="btn reviseBTN">Revise</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                                  </div>
+                                </div>
+
+                              </div>
+                            <?php endif ?>
+
                           </div>
-                        </div>
+                        </form>
                       </div>
                       <div class="tab-pane" id="process">
-                        <div class="activityProcess">
-                          <?php
-                          $process = $activityData['processType'];
-                          if($process == 'CA' || $process == 'DP' || $process == 'RM' || $process == 'BT' || $process == 'CP' || $process == 'COC'):
-                            ?>
-                            <div class="row">
-                              <div class="col-sm-12 PRSno">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-credit-card"></i>
-                                    </span>
-                                    <label for="PRSno" class="control-label">PRS Number</label>
-                                    <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
-                                    placeholder="Enter PRS number here." />
+                        <form id="editProcessForm" action="<?= site_url('admin/edit-activity-process/' . $orgInitials . "/". $pageID) ?>" method="post">
+                          <div class="activityProcess">
+                            <?php
+                            $process = $activityData['processType'];
+                            if($process == 'CA' || $process == 'DP' || $process == 'RM' || $process == 'BT' || $process == 'CP' || $process == 'COC'):
+                              ?>
+                              <div class="row">
+                                <div class="col-sm-12 PRSno">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-credit-card"></i>
+                                      </span>
+                                      <label for="PRSno" class="control-label">PRS Number</label>
+                                      <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
+                                      placeholder="Enter PRS number here." />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-user-circle"></i>
-                                    </span>
-                                    <label for="payTo" class="control-label">Payable To:</label>
-                                    <input disabled id="payTo" name="payTo" type="text" class="form-control" placeholder="Payable To:" value="<?= $activityData['payTo']?>" autofocus/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-user-circle"></i>
+                                      </span>
+                                      <label for="payTo" class="control-label">Payable To:</label>
+                                      <input disabled id="payTo" name="payTo" type="text" class="form-control" placeholder="Payable To:" value="<?= $activityData['payTo']?>" autofocus/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="budget" class="control-label">Budget</label>
-                                    <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
+                                      </span>
+                                      <label for="budget" class="control-label">Budget</label>
+                                      <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-cart-arrow-down"></i>
-                                    </span>
-                                    <label for="particular" class="control-label">Particulars</label>
-                                    <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
-                                    value="<?= $activityData['particular']?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-cart-arrow-down"></i>
+                                      </span>
+                                      <label for="particular" class="control-label">Particulars</label>
+                                      <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
+                                      value="<?= $activityData['particular']?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          <?php elseif($process == 'LQ'): ?>
+                            <?php elseif($process == 'LQ'): ?>
 
-                            <div class="row">
-                              <div class="col-sm-12 PRSno">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-credit-card"></i>
-                                    </span>
-                                    <label for="PRSno" class="control-label">PRS Number</label>
-                                    <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
-                                    placeholder="Enter PRS number here." />
+                              <div class="row">
+                                <div class="col-sm-12 PRSno">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-credit-card"></i>
+                                      </span>
+                                      <label for="PRSno" class="control-label">PRS Number</label>
+                                      <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
+                                      placeholder="Enter PRS number here." />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12 DORno" style="display: hidden">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-file-text"></i>
-                                    </span>
-                                    <label for="DORno" class="control-label">Deposit Official Receipt Number</label>
-                                    <input disabled value="<?= $activityData['DORno']?>" id="DORno" name="DORno" type="number" step="any" class="form-control" placeholder="Deposit Official Receipt Number(Required for LQ)"/>
+                              <div class="row">
+                                <div class="col-sm-12 DORno" style="display: hidden">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-file-text"></i>
+                                      </span>
+                                      <label for="DORno" class="control-label">Deposit Official Receipt Number</label>
+                                      <input disabled value="<?= $activityData['DORno']?>" id="DORno" name="DORno" type="number" step="any" class="form-control" placeholder="Deposit Official Receipt Number(Required for LQ)"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="budget" class="control-label">Budget</label>
-                                    <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
+                                      </span>
+                                      <label for="budget" class="control-label">Budget</label>
+                                      <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-cart-arrow-down"></i>
-                                    </span>
-                                    <label for="particular" class="control-label">Particulars</label>
-                                    <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
-                                    value="<?= $activityData['particular']?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-cart-arrow-down"></i>
+                                      </span>
+                                      <label for="particular" class="control-label">Particulars</label>
+                                      <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
+                                      value="<?= $activityData['particular']?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          <?php elseif($process == 'PCR'): ?>
-                            <div class="row">
-                              <div class="col-sm-12 PRSno">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-credit-card"></i>
-                                    </span>
-                                    <label for="PRSno" class="control-label">PRS Number</label>
-                                    <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
-                                    placeholder="Enter PRS number here." />
+                            <?php elseif($process == 'PCR'): ?>
+                              <div class="row">
+                                <div class="col-sm-12 PRSno">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-credit-card"></i>
+                                      </span>
+                                      <label for="PRSno" class="control-label">PRS Number</label>
+                                      <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
+                                      placeholder="Enter PRS number here." />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12 PCVno" style="display: hidden">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-file-text"></i>
-                                    </span>
-                                    <label for="PCVno" class="control-label">Petty Cash Voucher Number</label>
-                                    <input disabled value="<?= $activityData['PCVno']?>" id="PCVno" name="PCVno" type="number" step="any" class="form-control" placeholder="Petty Cash Voucher Number (Required for PCR)"/>
+                              <div class="row">
+                                <div class="col-sm-12 PCVno" style="display: hidden">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-file-text"></i>
+                                      </span>
+                                      <label for="PCVno" class="control-label">Petty Cash Voucher Number</label>
+                                      <input disabled value="<?= $activityData['PCVno']?>" id="PCVno" name="PCVno" type="number" step="any" class="form-control" placeholder="Petty Cash Voucher Number (Required for PCR)"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-user-circle"></i>
-                                    </span>
-                                    <label for="payTo" class="control-label">Payable To:</label>
-                                    <input disabled id="payTo" name="payTo" type="text" class="form-control" placeholder="Payable To:" value="<?= $activityData['payTo']?>" autofocus/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-user-circle"></i>
+                                      </span>
+                                      <label for="payTo" class="control-label">Payable To:</label>
+                                      <input disabled id="payTo" name="payTo" type="text" class="form-control" placeholder="Payable To:" value="<?= $activityData['payTo']?>" autofocus/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="budget" class="control-label">Budget</label>
-                                    <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
+                                      </span>
+                                      <label for="budget" class="control-label">Budget</label>
+                                      <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-cart-arrow-down"></i>
-                                    </span>
-                                    <label for="particular" class="control-label">Particulars</label>
-                                    <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
-                                    value="<?= $activityData['particular']?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-cart-arrow-down"></i>
+                                      </span>
+                                      <label for="particular" class="control-label">Particulars</label>
+                                      <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
+                                      value="<?= $activityData['particular']?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          <?php elseif($process == 'FRA'): ?>
+                            <?php elseif($process == 'FRA'): ?>
 
                               <div class="row">
                                 <div class="col-sm-12">
@@ -548,7 +566,7 @@ EOT;
                                 </div>
                               </div>
 
-                            <!-- Actual Revenue and Net Income/Loss -->
+                              <!-- Actual Revenue and Net Income/Loss -->
 
                               <div class="row">
                                 <div class="col-sm-6">
@@ -575,7 +593,7 @@ EOT;
                                 </div>
                               </div>
 
-                            <!-- Expenses from revenue and Disbursement -->
+                              <!-- Expenses from revenue and Disbursement -->
 
                               <div class="row">
                                 <div class="col-sm-6">
@@ -602,257 +620,302 @@ EOT;
                                 </div>
                               </div>
 
-                          <?php else: ?>
-                            <h1 class="text-center">N/A</h1>
+                            <?php else: ?>
+                              <h1 class="text-center">N/A</h1>
 
-                          <?php endif ?>
-                          <div class="card-footer text-center">
-                            <div class="row">
-                              <div class="text-center">
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
-                                <button type="button" class="btn reviseBTN">Revise</button>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                            <?php endif ?>
+                            <?php if($activityStatus != 'Approved'): ?>
+                              <div class="card-footer">
+
+                                <div class="clearfix" style="width: 100%">
+                                  <div class="pull-left">
+                                    <button type="button" class="btn btn-info editProcessBTN">Edit</button>
+                                    <button type="button" class="btn btn-success saveProcessBTN" style="display: none">Save Changes</button>
+                                  </div>
+                                  <div class="pull-right">
+                                    <button type="button" class="btn reviseBTN">Revise</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                                  </div>
+                                </div>
+
                               </div>
-                            </div>
+                            <?php endif ?>
                           </div>
-                        </div>
+                        </form>
 
                       </div>
                       <div class="tab-pane" id="remarks">
-                      <form id="remarksSubmit" method="post" action="<?= site_url('admin/remark-activity') ?>">
-                        <!-- CSO Panel -->
-                        <div class="panel panel-success">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">CSO</h3>
-                          </div>
-                          <div class="panel-body">
-                            <div class="row">
+                        <form id="remarksSubmit" method="post" action="<?= site_url('admin/remark-activity') ?>">
+                        <ul class="nav nav-pills remarksTab" data-tabs="tabs">
+                          <li class="active">
+                            <a href="#remarksCSO" data-toggle="tab">
+                              <i class="fa fa-file-text"></i>
+                              CSO
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#remarksSLIFE" data-toggle="tab">
+                              <i class="fa fa-book"></i>
+                              S.L.I.F.E
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#remarksACCT" data-toggle="tab">
+                              <i class="fa fa-calculator"></i>
+                              Accounting
+                              <div class="ripple-container"></div>
+                            </a>
+                          </li>
+                        </ul>
 
-                              <!-- Date Pended by CSO -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-calendar"></i>
-                                    </span>
-                                    <label for="datePendedCSO" class="control-label">Date Pended by CSO</label>
-                                    <input id="datePendedCSO" onkeydown="return false" name="datePendedCSO" value="<?= $remarksData['datePendedCSO'] ?>" type="text" class="form-control" placeholder="Date Pended by CSO Finance" />
-                                  </div>
-                                </div>
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="remarksCSO">
+                            <!-- CSO Panel -->
+                            <div class="panel panel-success" id="CSOpanel">
+                              <div class="panel-heading">
+                                <h3 class="panel-title">CSO</h3>
                               </div>
-                              <!-- Revisions -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="revisionsCSO" class="control-label">Number of Revisions</label>
-                                    <input id="revisionsCSO" name="revisions" type="number" value="<?= $remarksData['revisions'] ?>" class="form-control" placeholder="Revisions" step="any" min="0"/>
+                              <div class="panel-body">
+                                <div class="row">
+
+                                  <!-- Date Pended by CSO -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-2x fa-calendar"></i>
+                                        </span>
+                                        <label for="datePendedCSO" class="control-label">Date Pended by CSO</label>
+                                        <input id="datePendedCSO" onkeydown="return false" class="form-control dateInput" name="datePendedCSO" value="<?= $remarksData['datePendedCSO'] ?>" type="text" placeholder="Date Pended by CSO Finance" />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- Revisions -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="revisions" class="control-label">Number of Revisions</label>
+                                        <input id="revisions" readonly name="revisions" type="number" value="<?= $remarksData['revisions'] ?>" class="form-control" placeholder="Revisions"/>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+                                <!-- Audited(Date, by) -->
+                                <div class="row">
+                                  <!-- Date Audited -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="dateAudited" class="control-label">Date Audited</label>
+                                        <input id="dateAudited" onkeydown="return false" class="form-control dateInput" name="dateAudited" value="<?= $remarksData['dateAudited'] ?>" type="text" placeholder=" Date Audited"/>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- Audited By -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="auditedBy" class="control-label">Audited By</label>
+                                        <input id="auditedBy" name="auditedBy" type="text" value="<?= $remarksData['auditedBy'] ?>" class="form-control" placeholder="Audited By"/>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <!-- Encoded(Date,by) -->
+                                <div class="row">
+
+                                  <!-- Date Encoded -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="dateEncoded" class="control-label">Date Encoded</label>
+                                        <input id="dateEncoded" onkeydown="return false" class="form-control dateInput" name="dateEncoded" value="<?= $remarksData['dateEncoded'] ?>" type="text" placeholder="Date Encoded" />
+
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <!-- Encoded By -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="encodedBy" class="control-label">Encoded By</label>
+                                        <input id="encodedBy" name="encodedBy" type="text" value="<?= $remarksData['encodedBy'] ?>" class="form-control" placeholder="Encoded By"/>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <!-- CSO Remarks -->
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-bookmark fa-2x"></i>
+                                        </span>
+
+                                        <label for="CSOremarks" class="control-label">CSO Remarks</label>
+                                        <textarea class="form-control" rows="4" id="CSOremarks" name="CSOremarks" placeholder="Enter Remarks here."><?= $remarksData['CSOremarks'] ?></textarea>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
 
-                            </div>
-                            <!-- Audited(Date, by) -->
-                            <div class="row">
-                              <!-- Date Audited -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="dateAudited" class="control-label">Date Audited</label>
-                                    <input id="dateAudited" onkeydown="return false" name="dateAudited" value="<?= $remarksData['dateAudited'] ?>" type="text" class="form-control" placeholder=" Date Audited"/>
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- Audited By -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="auditedBy" class="control-label">Audited By</label>
-                                    <input id="auditedBy" name="auditedBy" type="text" value="<?= $remarksData['auditedBy'] ?>" class="form-control" placeholder="Audited By"/>
-                                  </div>
-                                </div>
-                              </div>
-
-                            </div>
-
-                            <!-- Encoded(Date,by) -->
-                            <div class="row">
-
-                              <!-- Date Encoded -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="dateEncoded" class="control-label">Date Encoded</label>
-                                    <input id="dateEncoded" onkeydown="return false" name="dateEncoded" value="<?= $remarksData['dateEncoded'] ?>" type="text" class="form-control" placeholder="Date Encoded" />
-
-                                  </div>
-                                </div>
-                              </div>
-
-                              <!-- Encoded By -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="encodedBy" class="control-label">Encoded By</label>
-                                    <input id="encodedBy" name="encodedBy" type="text" value="<?= $remarksData['encodedBy'] ?>" class="form-control" placeholder="Encoded By"/>
-                                  </div>
-                                </div>
-                              </div>
-
-                            </div>
-
-                            <!-- CSO Remarks -->
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-bookmark fa-2x"></i>
-                                    </span>
-
-                                    <label for="CSOremarks" class="control-label">CSO Remarks</label>
-                                    <textarea class="form-control" rows="4" id="CSOremarks" name="CSOremarks" placeholder="Enter Remarks here."><?= $remarksData['CSOremarks'] ?></textarea>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-
-                        <!-- SLIFE Panel -->
-                        <div class="panel panel-warning">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">SLIFE</h3>
-                          </div>
-                          <div class="panel-body">
-                            <!-- SLIFE Date -->
-                            <div class="row">
-                              <!-- Date Recieved by SLIFE -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="dateReceivedSLIFE"  class="control-label">Date Received by SLIFE</label>
-                                    <input id="dateReceivedSLIFE" onkeydown="return false" name="dateReceivedSLIFE" type="text" value="<?= $remarksData['dateReceivedSLIFE'] ?>" class="form-control" placeholder="Date Received by SLIFE" />
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- Date Pended by SLIFE -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="datePendedSLIFE"  class="control-label">Date Pended by SLIFE</label>
-                                    <input id="datePendedSLIFE" onkeydown="return false" name="datePendedSLIFE" value="<?= $remarksData['datePendedSLIFE'] ?>" type="text" class="form-control" placeholder="Date Pended by SLIFE" />
-                                  </div>
-                                </div>
-                              </div>
-
-                            </div>
-
-                            <!-- SLIFE Remarks -->
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-bookmark fa-2x"></i>
-                                    </span>
-
-                                    <label for="SLIFEremarks" class="control-label">SLIFE Remarks</label>
-                                    <textarea class="form-control" rows="4" id="SLIFEremarks" name="SLIFEremarks" placeholder="Enter Remarks here."><?= $remarksData['SLIFEremarks'] ?></textarea>
-                                  </div>
-                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
 
-                        <!-- Accounting Panel -->
-                        <div class="panel panel-info">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Accounting Office</h3>
+                          <div class="tab-pane" id="remarksSLIFE">
+                            <!-- SLIFE Panel -->
+                            <div class="panel panel-warning" id="SLIFEpanel">
+                              <div class="panel-heading">
+                                <h3 class="panel-title">SLIFE</h3>
+                              </div>
+                              <div class="panel-body">
+                                <!-- SLIFE Date -->
+                                <div class="row">
+                                  <!-- Date Recieved by SLIFE -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="dateReceivedSLIFE"  class="control-label">Date Received by SLIFE</label>
+                                        <input id="dateReceivedSLIFE" onkeydown="return false" class="form-control dateInput" name="dateReceivedSLIFE" type="text" value="<?= $remarksData['dateReceivedSLIFE'] ?>" placeholder="Date Received by SLIFE" />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- Date Pended by SLIFE -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="datePendedSLIFE"  class="control-label">Date Pended by SLIFE</label>
+                                        <input id="datePendedSLIFE" onkeydown="return false" class="form-control dateInput" name="datePendedSLIFE" value="<?= $remarksData['datePendedSLIFE'] ?>" type="text" placeholder="Date Pended by SLIFE" />
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <!-- SLIFE Remarks -->
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-bookmark fa-2x"></i>
+                                        </span>
+
+                                        <label for="SLIFEremarks" class="control-label">SLIFE Remarks</label>
+                                        <textarea class="form-control" rows="4" id="SLIFEremarks" name="SLIFEremarks" placeholder="Enter Remarks here."><?= $remarksData['SLIFEremarks'] ?></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div class="panel-body">
-                            <!-- Accounting Office Dates -->
-                            <div class="row">
-                              <!-- Date Recieved by Accounting Office -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="dateReceivedAcc" class="control-label">Date Received by Accounting Office</label>
-                                    <input id="dateReceivedAcc" onkeydown="return false" name="dateReceivedAcc" value="<?= $remarksData['dateReceivedAcc'] ?>" type="text" class="form-control" placeholder="Date Received by Accounting Office" />
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- Date Pended by Accounting Office -->
-                              <div class="col-sm-6">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="datePendedAcc" class="control-label">Date Pended by Accounting Office</label>
-                                    <input id="datePendedAcc" onkeydown="return false" name="datePendedAcc" type="text" value="<?= $remarksData['datePendedAcc'] ?>" class="form-control" placeholder="Date Pended by Accounting Office" />
-                                  </div>
-                                </div>
-                              </div>
 
+                          <div class="tab-pane" id="remarksACCT">
+                            <!-- Accounting Panel -->
+                            <div class="panel panel-info" id="ACCTpanel">
+                              <div class="panel-heading">
+                                <h3 class="panel-title">Accounting Office</h3>
+                              </div>
+                              <div class="panel-body">
+                                <!-- Accounting Office Dates -->
+                                <div class="row">
+                                  <!-- Date Recieved by Accounting Office -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="dateReceivedAcc" class="control-label">Date Received by Accounting Office</label>
+                                        <input id="dateReceivedAcc" onkeydown="return false" class="form-control dateInput" name="dateReceivedAcc" value="<?= $remarksData['dateReceivedAcc'] ?>" type="text" placeholder="Date Received by Accounting Office" />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- Date Pended by Accounting Office -->
+                                  <div class="col-sm-6">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
+                                        </span>
+                                        <label for="datePendedAcc" class="control-label">Date Pended by Accounting Office</label>
+                                        <input id="datePendedAcc" onkeydown="return false" class="form-control dateInput" name="datePendedAcc" type="text" value="<?= $remarksData['datePendedAcc'] ?>"  placeholder="Date Pended by Accounting Office" />
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+
+                                <!-- Accounting Office Remarks -->
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-bookmark fa-2x"></i>
+                                        </span>
+                                        <label for="Accremarks" class="control-label">Accounting Office Remarks</label>
+                                        <textarea class="form-control" rows="4" id="Accremarks" name="AccRemarks" placeholder="Enter Remarks here."><?= $remarksData['AccRemarks'] ?></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!-- Other Remarks -->
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="form-group has-feedback">
+                                      <div class="input-group has-feedback">
+                                        <span class="input-group-addon">
+                                          <i class="fa fa-bookmark fa-2x"></i>
+                                        </span>
+
+                                        <label for="notes" class="control-label">SLIFE Resubmission/Notes</label>
+                                        <textarea class="form-control" rows="4" id="notes" name="notes" placeholder="Enter Remarks here."><?= $remarksData['notes'] ?></textarea>
+                                        <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+                              </div>
                             </div>
-
-                            <!-- Accounting Office Remarks -->
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-bookmark fa-2x"></i>
-                                    </span>
-                                    <label for="Accremarks" class="control-label">Accounting Office Remarks</label>
-                                    <textarea class="form-control" rows="4" id="Accremarks" name="AccRemarks" placeholder="Enter Remarks here."><?= $remarksData['AccRemarks'] ?></textarea>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <!-- Other Remarks -->
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-bookmark fa-2x"></i>
-                                    </span>
-
-                                    <label for="notes" class="control-label">SLIFE Resubmission/Notes</label>
-                                    <textarea class="form-control" rows="4" id="notes" name="notes" placeholder="Enter Remarks here."><?= $remarksData['notes'] ?></textarea>
-                                    <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                          </div>
+                          <?php if($activityStatus != 'Approved'): ?>
 
                             <div class="card-footer text-center">
                               <div class="row">
@@ -861,9 +924,11 @@ EOT;
                                 </div>
                               </div>
                             </div>
+                          <?php endif ?>
 
-                          </div>
+
                         </div>
+
 
                       </form>
                       </div>
@@ -876,6 +941,7 @@ EOT;
         </div>
       </div>
     </div>
+
     <!-- Approve modal -->
 		<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="ConfirmModal" aria-hidden="true">
 		  <div class="modal-dialog">
@@ -893,9 +959,10 @@ EOT;
 						</h4>
 						<div class="modalButtons text-center">
               <form method="post" action="<?= site_url('admin/approve') ?>">
-							<button class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
+							<button type="button" class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
                 <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
                 <input type="hidden" name="status" value="Approved" />
+                <input type="hidden" name="acronym" value="<?= $orgInitials ?>" />
 							  <button type="submit" class="btn btn-success btn-lg">Approve Activity</button>
               </form>
 						</div>
@@ -956,9 +1023,65 @@ EOT;
 		    </div>
 		  </div>
 		</div>
+
+
+    <!-- Save Details Modal -->
+    <div class="modal fade" id="saveDetailsModal" tabindex="-1" role="dialog" aria-labelledby="Save Modal" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title text-center" id="myModalLabel">Save Changes</h3>
+		      </div>
+		      <div class="modal-body">
+		        <h4 class="text-center">
+              <span style="font-weight: bold">
+                <?= $activityData['acronym'] ?> - <?= $activityData['title'] ?>
+              </span>
+              <br>
+							All fields in the activity details will be saved.<br>
+              Do you want to Continue?<br>
+						</h4>
+						<div class="modalButtons text-center">
+							<button class="btn btn-info btn-lg" data-dismiss="modal" id="contEdit">Continue Editing</button>
+							<button type="button" class="btn btn-success btn-lg" id="saveDetailsModalBtn">Save Changes</button>
+						</div>
+
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+    <!-- Save Process modal -->
+    <div class="modal fade" id="saveProcessModal" tabindex="-1" role="dialog" aria-labelledby="Save Modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 class="modal-title text-center" id="myModalLabel">Save Changes</h3>
+          </div>
+          <div class="modal-body">
+		        <h4 class="text-center">
+              <span style="font-weight: bold">
+                <?= $activityData['acronym'] ?> - <?= $activityData['title'] ?>
+              </span>
+              <br>
+							All fields in the activity process will be saved.<br>
+              Do you want to Continue?<br>
+						</h4>
+						<div class="modalButtons text-center">
+							<button class="btn btn-info btn-lg" data-dismiss="modal" id="contEdit">Continue Editing</button>
+							<button type="button" class="btn btn-success btn-lg" id="saveProcessModalBtn">Save Changes</button>
+						</div>
+
+		      </div>
+        </div>
+      </div>
+    </div>
   </body>
   <!--   Core JS Files   -->
   <script src="<?php echo base_url();?>assets/js/jquery.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js" type="text/javascript"></script>
   <script src="<?php echo base_url();?>assets/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.js"></script>
   <script src="<?php echo base_url();?>assets/js/bootstrap-table.min.js" type="text/javascript"></script>
@@ -976,161 +1099,64 @@ EOT;
   <!-- Moment JS -->
   <script src="<?php echo base_url();?>assets/js/moment.js"></script>
 
+
   <script src="<?php echo base_url();?>assets/js/cso_table.js"></script>
+  <script src="<?php echo base_url();?>assets/js/activitypage.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
-      $('#datePendedCSO').datepicker({
-        autoclose: true,
-        format: {
-          toDisplay: function(date, format, language){
-            return moment(new Date(date)).format('MMM DD, YYYY');
-          },
-          toValue: function(date, format, language){
-            return moment(new Date(date)).format('YYYY-MM-DD');
-          }
-        }
-      });
-      $('#dateAudited').datepicker({
-        autoclose: true,
-        format: {
-          toDisplay: function(date, format, language){
-            return moment(new Date(date)).format('MMM DD, YYYY');
-          },
-          toValue: function(date, format, language){
-          }
-        }
-      });
-      $('#dateEncoded').datepicker({
-        autoclose: true,
-        format: {
-          toDisplay: function(date, format, language){
-            return moment(new Date(date)).format('MMM DD, YYYY');
-          },
-          toValue: function(date, format, language){
-          }
-        }
-      });
-      $('#dateReceivedSLIFE').datepicker({
-        autoclose: true,
-        format: {
-          toDisplay: function(date, format, language){
-            return moment(new Date(date)).format('MMM DD, YYYY');
-          },
-          toValue: function(date, format, language){
-          }
-        }
-      });
-      $('#datePendedSLIFE').datepicker({
-        autoclose: true,
-        format: {
-          toDisplay: function(date, format, language){
-            return moment(new Date(date)).format('MMM DD, YYYY');
-          },
-          toValue: function(date, format, language){
-          }
-        }
-      });
-      $('#dateReceivedAcc').datepicker({
-        autoclose: true,
-        format: {
-          toDisplay: function(date, format, language){
-            return moment(new Date(date)).format('MMM DD, YYYY');
-          },
-          toValue: function(date, format, language){
-          }
-        }
-      });
-      $('#datePendedAcc').datepicker({
-        autoclose: true,
-        format: {
-          toDisplay: function(date, format, language){
-            return moment(new Date(date)).format('MMM DD, YYYY');
-          },
-          toValue: function(date, format, language){
-          }
-        }
-      });
+      initDatePicker();
+      convertDatetoReadable();
+      clearInvalid();
     });
-    var $table = $('#activityTable');
-    $table.bootstrapTable({
-      pagination: true,
-      onlyInfoPagination: false,
-      pageSize: 12,
-      formatShowingRows: function(pageFrom, pageTo, totalRows) {
-
-      },
-      formatRecordsPerPage: function(pageNumber) {
-
-      },
-      formatDetailPagination: function(totalRows) {
-        return ;
-      },
-      onClickRow: function(row, $element){
-      }
-    });
-
-    $('#submitBTN').click(function() {
-      var a = $('#dateAudited').val();
-      var b = $('#datePendedCSO').val();
-      var c = $('#dateEncoded').val();
-      var d = $('#dateReceivedSLIFE').val();
-      var e = $('#datePendedSLIFE').val();
-      var f = $('#dateReceivedAcc').val();
-      var g = $('#datePendedAcc').val();
-      console.log(a,b,c,d,e,f,g);
-      var newdateAudited = moment(new Date(a)).format('YYYY-MM-DD');
-      var newdatePendedCSO = moment(new Date(b)).format('YYYY-MM-DD');
-      var newdateEncoded = moment(new Date(c)).format('YYYY-MM-DD');
-      var newdateReceivedSLIFE = moment(new Date(d)).format('YYYY-MM-DD');
-      var newdatePendedSLIFE = moment(new Date(e)).format('YYYY-MM-DD');
-      var newdateReceivedAcc = moment(new Date(f)).format('YYYY-MM-DD');
-      var newdatePendedAcc = moment(new Date(g)).format('YYYY-MM-DD');
-      console.log(newdateAudited,newdatePendedCSO, newdateEncoded, newdateReceivedSLIFE, newdatePendedSLIFE, newdateReceivedAcc, newdatePendedAcc );
-      if($('#dateAudited').val().length > 1) {
-        $('#dateAudited').val(newdateAudited);
-        console.log('a okay ', $('#dateAudited').text(newdateAudited));
-      }
-      if($('#datePendedCSO').val().length > 1) {
-        $('#datePendedCSO').val(newdatePendedCSO);
-        console.log('b okay ', $('#datePendedCSO').text(newdatePendedCSO));
-      }
-      if($('#dateEncoded').val().length > 1) {
-        $('#dateEncoded').val(newdateEncoded);
-        console.log('c okay ', $('#dateEncoded').text(dateEncoded));
-      }
-      if($('#dateReceivedSLIFE').val().length > 1) {
-        $('#dateReceivedSLIFE').val(newdateReceivedSLIFE);
-        console.log('d okay ', $('#dateReceivedSLIFE').text(newdateReceivedSLIFE));
-      }
-      if($('#datePendedSLIFE').val().length > 1) {
-        $('#datePendedSLIFE').val(newdatePendedSLIFE);
-        console.log('e okay ', $('#datePendedSLIFE').text(newdatePendedSLIFE));
-      }
-      if($('#dateReceivedAcc').val().length > 1) {
-        $('#dateReceivedAcc').val(newdateReceivedAcc);
-        console.log('f okay ',   $('#dateReceivedAcc').text(newdateReceivedAcc));
-      }
-      if($('#datePendedAcc').val().length > 1) {
-        $('#datePendedAcc').val(newdatePendedAcc);
-        console.log('g okay ', $('#datePendedAcc').text(newdatePendedAcc));
-      }
-
-      $('#remarksSubmit').submit();
-    });
-    
   </script>
 
 
   <script type="text/javascript">
-    $('#contEdit').click(function(event) {
-      $('#confirmModal').modal('hide');
-    });
 
-    $('.reviseBTN').click(function(event) {
-      $('.tabremark').trigger('click');
-    });
+    <?php if($activityStatus == 'Approved'): ?>
+      disableAllFields();
+    <?php endif ?>
 
   </script>
+
+  <script type="text/javascript">
+  <?php
+    $flash = $this->session->flashdata('editActivity');
+    if($flash == 'true'):
+  ?>
+  $.notify({
+    icon: "check",
+    message: "Edit Activity - Successfully Edited an Activity",
+  },{
+      type: 'success',
+      timer: 1000,
+      placement: {
+          from: 'top',
+          align: 'center'
+      },
+      allow_dismiss: true,
+      newest_on_top: true,
+      mouse_over: 'pause'
+  });
+  <?php elseif($flash == 'false'): ?>
+  $.notify({
+    icon: "warning",
+    message: "Create Activity - Error in Editing an activity",
+  },{
+      type: 'danger',
+      timer: 1000,
+      placement: {
+          from: 'top',
+          align: 'center'
+      },
+      allow_dismiss: true,
+      newest_on_top: true,
+      mouse_over: 'pause'
+  });
+  <?php endif; ?>
+  </script>
+
+
 
 </html>
