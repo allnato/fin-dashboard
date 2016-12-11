@@ -350,7 +350,7 @@ EOT;
                                 <div class="clearfix" style="width: 100%">
                                   <div class="pull-left">
                                     <button type="button" class="btn btn-info editDetailBTN">Edit</button>
-                                    <button type="button" class="btn btn-success saveDetailBTN" style="display: none" data-toggle="modal" data-target="#saveDetailsModal">Save Changes</button>
+                                    <button type="button" class="btn btn-success saveDetailBTN" style="display: none">Save Changes</button>
                                   </div>
                                   <div class="pull-right">
                                     <button type="button" class="btn reviseBTN">Revise</button>
@@ -630,7 +630,7 @@ EOT;
                                 <div class="clearfix" style="width: 100%">
                                   <div class="pull-left">
                                     <button type="button" class="btn btn-info editProcessBTN">Edit</button>
-                                    <button type="button" class="btn btn-success saveProcessBTN" style="display: none" data-toggle="modal" data-target="#saveProcessModal">Save Changes</button>
+                                    <button type="button" class="btn btn-success saveProcessBTN" style="display: none">Save Changes</button>
                                   </div>
                                   <div class="pull-right">
                                     <button type="button" class="btn reviseBTN">Revise</button>
@@ -1080,6 +1080,7 @@ EOT;
   </body>
   <!--   Core JS Files   -->
   <script src="<?php echo base_url();?>assets/js/jquery.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js" type="text/javascript"></script>
   <script src="<?php echo base_url();?>assets/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.js"></script>
   <script src="<?php echo base_url();?>assets/js/bootstrap-table.min.js" type="text/javascript"></script>
@@ -1096,6 +1097,7 @@ EOT;
 
   <!-- Moment JS -->
   <script src="<?php echo base_url();?>assets/js/moment.js"></script>
+
 
   <script src="<?php echo base_url();?>assets/js/cso_table.js"></script>
   <script src="<?php echo base_url();?>assets/js/activitypage.js"></script>

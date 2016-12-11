@@ -22,6 +22,29 @@ $('.editProcessBTN').click(function(event) {
   });
 });
 
+$('.saveDetailBTN').click(function(event) {
+  var check = false;
+  check = checkDetails();
+  if(!check){
+    $detailValidator.focusInvalid();
+  }
+  else {
+    $('#saveDetailsModal').modal('show');
+  }
+});
+
+$('.saveProcessBTN').click(function(event) {
+  var check = false;
+  check = $('#editProcessForm').valid();
+  if(!check){
+    $processValidator.focusInvalid();
+  }
+  else {
+    $('#saveProcessModal').modal('show');
+  }
+});
+
+
 $('#saveDetailsModalBtn').click(function(event) {
   $('.saveDetailsBTN').css('display', 'none');
   var newBeginDate = moment(new Date($('#beginDate').val())).format('YYYY-MM-DD');
@@ -239,4 +262,179 @@ function disableAllFields(){
   $('#remarks textarea').each(function(index){
     $(this).attr('disabled', 'disabled');
   });
+}
+
+
+$.validator.addMethod("valueNotEquals", function(value, element, arg){
+  return arg != value;
+}, "Value must not equal arg.");
+
+
+var $processValidator = $('#editProcessForm').validate({
+  rules: {
+    PRSno: {
+      required: true,
+      digits: true
+    },
+    budget: {
+      required: true,
+      number: true,
+      min: 0.0
+    },
+    particular: {
+      required: true,
+      maxlength: 500
+    },
+    payTo: {
+      required: true,
+      maxlength: 100
+    },
+    PCVno: {
+      required: true,
+      digits: true
+    },
+    DORno: {
+      required: true,
+      digits: true
+    },
+    actualRevenue: {
+      required: true,
+      number: true
+    },
+    expRevenue: {
+      required: true,
+      number: true
+    },
+    expDisburse: {
+      required: true,
+      number: true
+    },
+    netIncome: {
+      required: true,
+      number: true
+    },
+    FRAno: {
+      required: true,
+      digits: true
+    }
+  },
+  errorElement: 'div',
+  errorPlacement: function(error, element) {
+    error.addClass('help-block');
+
+
+    if (element.prop('type') === 'checkbox') {
+      error.insertAfter('element.parent("label")');
+    } else {
+      error.insertAfter(element);
+    }
+
+    if (!element.next('span')[0]) {
+      $("<span class='glyphicon glyphicon-remove form-control-feedback'></span>").insertAfter(element);
+    }
+
+  },
+  success: function(label, element) {
+    // Add the span element, if doesn't exists, and apply the icon classes to it.
+    if (!$(element).next("span")[0]) {
+      $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
+    }
+  },
+  highlight: function(element, errorClass, validClass) {
+    $(element).parents(".form-group.has-feedback").addClass("has-error").removeClass("has-success");
+    $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
+  },
+  unhighlight: function(element, errorClass, validClass) {
+    $(element).parents(".form-group.has-feedback").addClass("has-success").removeClass("has-error");
+    $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
+    if($(element).val() == ""){
+      $(element).parents(".form-group.has-feedback").removeClass("has-success");
+      $(element).next("span").removeClass("glyphicon-ok");
+    }
+  }
+
+});
+
+var $detailValidator = $('#editDetailsForm').validate({
+  rules: {
+    title: {
+      required: true,
+      maxlength: 99
+    },
+    beginDate: {
+      required: true,
+      date: true
+    },
+    dateDesc: {
+      required: true
+    },
+    endDate: {
+      required: true,
+      date: true
+    },
+    description: {
+      maxlength: 499
+    },
+    submittedBy: {
+      required: true
+    },
+    processType: {
+      valueNotEquals: "-1",
+      required: true,
+    }
+  },
+  messages: {
+    description: {
+      maxlength: "Max character is 99"
+    },
+    title: {
+      required: "Please enter a Title"
+    },
+    processType: {
+      valueNotEquals: "Please select an item!"
+    }
+
+  },
+  errorElement: 'div',
+  errorPlacement: function(error, element) {
+    error.addClass('help-block');
+
+
+    if (element.prop('type') === 'checkbox') {
+      error.insertAfter('element.parent("label")');
+    } else {
+      error.insertAfter(element);
+    }
+
+    if (!element.next('span')[0]) {
+      $("<span class='glyphicon glyphicon-remove form-control-feedback'></span>").insertAfter(element);
+    }
+
+  },
+  success: function(label, element) {
+    // Add the span element, if doesn't exists, and apply the icon classes to it.
+    if (!$(element).next("span")[0]) {
+      $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>").insertAfter($(element));
+    }
+  },
+  highlight: function(element, errorClass, validClass) {
+    $(element).parents(".form-group.has-feedback").addClass("has-error").removeClass("has-success");
+    $(element).next("span").addClass("glyphicon-remove").removeClass("glyphicon-ok");
+  },
+  unhighlight: function(element, errorClass, validClass) {
+    $(element).parents(".form-group.has-feedback").addClass("has-success").removeClass("has-error");
+    $(element).next("span").addClass("glyphicon-ok").removeClass("glyphicon-remove");
+    if($(element).val() == ""){
+      $(element).parents(".form-group.has-feedback").removeClass("has-success");
+      $(element).next("span").removeClass("glyphicon-ok");
+    }
+  }
+
+});
+
+function checkDetails(){
+  var $valid = $("#title").valid() && $("#submittedBy").valid() && $("#processType").valid() && $("#dateDesc").valid()
+  && $("#beginDate").valid()
+  && $("#endDate").valid() && $("#description").valid();
+  return $valid;
 }
