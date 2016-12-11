@@ -390,7 +390,7 @@
                                           <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
                                         </span>
                                         <label for="budget" class="control-label">Budget</label>
-                                        <input id="budget" name="budget" class="form-control" placeholder="Amount"/>
+                                        <input id="budget" name="budget" class="form-control" placeholder="Amount"  min="0"/>
                                       </div>
                                     </div>
                                   </div>
