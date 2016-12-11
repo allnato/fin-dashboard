@@ -69,12 +69,7 @@
                 <p>Approved</p>
               </a>
             </li>
-            <li>
-              <a href="">
-                <i class="fa fa-bar-chart"></i>
-                <p>Statistics</p>
-              </a>
-            </li>
+
             <li>
               <a href="<?php echo site_url('admin/org-list'); ?>">
                 <i class="fa fa-users"></i>

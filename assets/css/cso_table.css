@@ -37,6 +37,12 @@ span[data-notify = 'message']{
   text-align: center;
 }
 
+.divider{
+    border-top: 1px solid rgba(158, 158, 158, 0.47);
+    width: 80%;
+    margin: 0 auto;
+}
+
 
 
 /*.table{
