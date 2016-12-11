@@ -203,9 +203,8 @@ class CSOController extends CI_Controller{
   public function remark_activity() {
     $this->load->model('CSOmodel');
     $remarkData = $this->input->post(NULL, true);
-    if($remarkData['datePendedCSO'] != '' || $remarkData['datePendedSLIFE'] != '' || $remarkData['datePendedAcc'] != '' ) {
-      $remarkData['status'] = 'Pending';
-    }
+    $remarkData['status'] = 'Pending';
+
 
     $remarkData['revisions'] = intval($remarkData['revisions']) + 1;
 
