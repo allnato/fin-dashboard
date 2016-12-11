@@ -222,323 +222,335 @@ EOT;
                       </h3>
                     </div>
                     <div class="tab-content">
+
                       <div class="tab-pane active" id="details">
-                        <div class="activityDetails">
-                          <!-- 1st Row -->
-                          <div class="row">
-                            <!-- Title -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-file-text"></i>
-                                  </span>
-                                  <label for="title" class="control-label">Title</label>
-                                  <input disabled id="title" name="title" type="text" class="form-control" placeholder="Type the complete activity title according to your A-Form." value="<?= $activityData['title'] ?>"/>
+                        <?php $pageID = $activityData['activityID'];
+                              $orgInitials = $activityData['acronym'];?>
+                        <form id="editDetailsForm" action="<?php echo site_url("admin/edit-activity-details/". $orgInitials . "/". $pageID )?>" method="post">
+                          <div class="activityDetails">
+                            <!-- 1st Row -->
+                            <div class="row">
+                              <!-- Title -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-file-text"></i>
+                                    </span>
+                                    <label for="title" class="control-label">Title</label>
+                                    <input disabled id="title" name="title" type="text" class="form-control" placeholder="Type the complete activity title according to your A-Form." value="<?= $activityData['title'] ?>"/>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- Submitted By -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-user-circle"></i>
+                                    </span>
+                                    <label for="submittedBy" class="control-label">Submitted By</label>
+                                    <input disabled value="<?= $activityData['submittedBy'] ?>" id="submittedBy" name="submittedBy" type="text" class="form-control" placeholder="Submitted By"/>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <!-- Submitted By -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-user-circle"></i>
-                                  </span>
-                                  <label for="submittedBy" class="control-label">Submitted By</label>
-                                  <input disabled value="<?= $activityData['submittedBy'] ?>" id="submittedBy" name="submittedBy" type="text" class="form-control" placeholder="Submitted By"/>
+                            <!-- 2nd Row -->
+                            <div class="row">
+                              <!-- Process -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-bank"></i>
+                                    </span>
+                                    <label for="processType" class="control-label">Process</label>
+                                    <select class="form-control" name="processType" id="processType" disabled>
+                                      <option disabled selected value="-1">Please select an option</option>
+                                      <option value="CA" <?php if($activityData['processType'] == 'CA') echo 'selected' ?>>Cash Advance</option>
+                                      <option value="DP" <?php if($activityData['processType'] == 'DP') echo 'selected' ?>>Direct Payment</option>
+                                      <option value="RM" <?php if($activityData['processType'] == 'RM') echo 'selected' ?>>Reimbursement</option>
+                                      <option value="BT" <?php if($activityData['processType'] == 'BT') echo 'selected' ?>>Book Transfer</option>
+                                      <option value="LQ" <?php if($activityData['processType'] == 'LQ') echo 'selected' ?>>Liquidation</option>
+                                      <option value="PCR" <?php if($activityData['processType'] == 'PCR') echo 'selected' ?>>Petty Cash Replenishment</option>
+                                      <option value="NE" <?php if($activityData['processType'] == 'NE') echo 'selected' ?>>No Expense</option>
+                                      <option value="FRA" <?php if($activityData['processType'] == 'FRA') echo 'selected' ?>>Fund Raising Activity Report</option>
+                                      <option value="CP" <?php if($activityData['processType'] == 'CP') echo 'selected' ?>>Change of Payee</option>
+                                      <option value="COC" <?php if($activityData['processType'] == 'COC') echo 'selected' ?>>Cancellation of Check</option>
+                                      <option value="LEA" <?php if($activityData['processType'] == 'LEA') echo 'selected' ?>>List of Expenses alone</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- Activity Date Description -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-calendar"></i>
+                                    </span>
+                                    <label for="dateDesc" class="control-label">Activity Date Description</label>
+                                    <select class="form-control" name="dateDesc" id="dateDesc" disabled>
+                                      <option disabled selected value>Please select a date description</option>
+                                      <option value="Specific" <?php if($activityData['dateDesc'] == 'Specific') echo 'selected' ?>>Specific Date/s</option>
+                                      <option value="Term Long" <?php if($activityData['dateDesc'] == 'Term Long') echo 'selected' ?>>Term Long</option>
+                                      <option value="Year Long" <?php if($activityData['dateDesc'] == 'Year Long') echo 'selected' ?>>Year Long</option>
+                                    </select>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <!-- 2nd Row -->
-                          <div class="row">
-                            <!-- Process -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-bank"></i>
-                                  </span>
-                                  <label for="processType" class="control-label">Process</label>
-                                  <select class="form-control" name="processType" id="processType" disabled>
-                                    <option disabled selected value="-1">Please select an option</option>
-                                    <option value="CA" <?php if($activityData['processType'] == 'CA') echo 'selected' ?>>Cash Advance</option>
-                                    <option value="DP" <?php if($activityData['processType'] == 'DP') echo 'selected' ?>>Direct Payment</option>
-                                    <option value="RM" <?php if($activityData['processType'] == 'RM') echo 'selected' ?>>Reimbursement</option>
-                                    <option value="BT" <?php if($activityData['processType'] == 'BT') echo 'selected' ?>>Book Transfer</option>
-                                    <option value="LQ" <?php if($activityData['processType'] == 'LQ') echo 'selected' ?>>Liquidation</option>
-                                    <option value="PCR" <?php if($activityData['processType'] == 'PCR') echo 'selected' ?>>Petty Cash Replenishment</option>
-                                    <option value="NE" <?php if($activityData['processType'] == 'NE') echo 'selected' ?>>No Expense</option>
-                                    <option value="FRA" <?php if($activityData['processType'] == 'FRA') echo 'selected' ?>>Fund Raising Activity Report</option>
-                                    <option value="CP" <?php if($activityData['processType'] == 'CP') echo 'selected' ?>>Change of Payee</option>
-                                    <option value="COC" <?php if($activityData['processType'] == 'COC') echo 'selected' ?>>Cancellation of Check</option>
-                                    <option value="LEA" <?php if($activityData['processType'] == 'LEA') echo 'selected' ?>>List of Expenses alone</option>
-                                  </select>
+                            <!-- 3rd Row -->
+                            <div class="row">
+                              <!-- Start Date -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-calendar-plus-o"></i>
+                                    </span>
+                                    <label class="control-label startDateLabel">Start Date: </label>
+                                    <input disabled value="<?= $activityData['beginDate'] ?>" onkeydown="return false" class="form-control dateInput beginDate" name="beginDate" id="beginDate"/>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- End Date -->
+                              <div class="col-sm-6">
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-calendar-times-o"></i>
+                                    </span>
+                                    <label class="control-label endDateLabel ">End Date: </label>
+                                    <input disabled value="<?= $activityData['endDate'] ?>"  onkeydown="return false" class="form-control dateInput endDate" name="endDate" id="endDate"/>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <!-- Activity Date Description -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-calendar"></i>
-                                  </span>
-                                  <label for="dateDesc" class="control-label">Activity Date Description</label>
-                                  <select class="form-control" name="dateDesc" id="dateDesc" disabled>
-                                    <option disabled selected value>Please select a date description</option>
-                                    <option value="Specific" <?php if($activityData['dateDesc'] == 'Specific') echo 'selected' ?>>Specific Date/s</option>
-                                    <option value="Term Long" <?php if($activityData['dateDesc'] == 'Term Long') echo 'selected' ?>>Term Long</option>
-                                    <option value="Year Long" <?php if($activityData['dateDesc'] == 'Year Long') echo 'selected' ?>>Year Long</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- 3rd Row -->
-                          <div class="row">
-                            <!-- Start Date -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-calendar-plus-o"></i>
-                                  </span>
-                                  <label class="control-label startDateLabel">Start Date: </label>
-                                  <input disabled value="<?= $activityData['beginDate'] ?>" onkeydown="return false" class="form-control dateInput beginDate" name="beginDate" id="beginDate"/>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- End Date -->
-                            <div class="col-sm-6">
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-calendar-times-o"></i>
-                                  </span>
-                                  <label class="control-label endDateLabel ">End Date: </label>
-                                  <input disabled value="<?= $activityData['endDate'] ?>"  onkeydown="return false" class="form-control dateInput endDate" name="endDate" id="endDate"/>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- 4th Row -->
-                          <div class="row">
-                            <div class="col-sm-12">
+                            <!-- 4th Row -->
+                            <div class="row">
+                              <div class="col-sm-12">
 
-                              <div class="form-group has-feedback">
-                                <div class="input-group has-feedback">
-                                  <span class="input-group-addon">
-                                    <i class="fa fa-2x fa-bookmark"></i>
-                                  </span>
+                                <div class="form-group has-feedback">
+                                  <div class="input-group has-feedback">
+                                    <span class="input-group-addon">
+                                      <i class="fa fa-2x fa-bookmark"></i>
+                                    </span>
 
-                                  <label for="description" class="control-label">Activity Description (Optional)</label>
-                                  <input disabled value="<?= $activityData['description'] ?>" class="form-control" rows="2" id="description" name="description" placeholder="Enter Activity Description Here."></input>
+                                    <label for="description" class="control-label">Activity Description (Optional)</label>
+                                    <input disabled value="<?= $activityData['description'] ?>" class="form-control" rows="2" id="description" name="description" placeholder="Enter Activity Description Here."></input>
+                                  </div>
                                 </div>
                               </div>
                             </div>
+
+                            <?php if($activityStatus != 'Approved'): ?>
+                              <div class="card-footer">
+
+                                <div class="clearfix" style="width: 100%">
+                                  <div class="pull-left">
+                                    <button type="button" class="btn btn-info editDetailBTN">Edit</button>
+                                    <button type="button" class="btn btn-success saveDetailBTN" style="display: none" data-toggle="modal" data-target="#saveDetailsModal">Save Changes</button>
+                                  </div>
+                                  <div class="pull-right">
+                                    <button type="button" class="btn reviseBTN">Revise</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                                  </div>
+                                </div>
+
+                              </div>
+                            <?php endif ?>
+
                           </div>
-
-                          <?php if($activityStatus != 'Approved'): ?>
-                            <div class="card-footer text-center">
-                              <div class="row">
-                                <div class="text-center">
-                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
-                                  <button type="button" class="btn reviseBTN">Revise</button>
-                                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
-                                </div>
-                              </div>
-                            </div>
-                          <?php endif ?>
-
-                        </div>
+                        </form>
                       </div>
                       <div class="tab-pane" id="process">
-                        <div class="activityProcess">
-                          <?php
-                          $process = $activityData['processType'];
-                          if($process == 'CA' || $process == 'DP' || $process == 'RM' || $process == 'BT' || $process == 'CP' || $process == 'COC'):
-                            ?>
-                            <div class="row">
-                              <div class="col-sm-12 PRSno">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-credit-card"></i>
-                                    </span>
-                                    <label for="PRSno" class="control-label">PRS Number</label>
-                                    <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
-                                    placeholder="Enter PRS number here." />
+                        <form id="editProcessForm" action="<?= site_url('admin/edit-activity-process') ?>" method="post">
+                          <div class="activityProcess">
+                            <?php
+                            $process = $activityData['processType'];
+                            if($process == 'CA' || $process == 'DP' || $process == 'RM' || $process == 'BT' || $process == 'CP' || $process == 'COC'):
+                              ?>
+                              <div class="row">
+                                <div class="col-sm-12 PRSno">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-credit-card"></i>
+                                      </span>
+                                      <label for="PRSno" class="control-label">PRS Number</label>
+                                      <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
+                                      placeholder="Enter PRS number here." />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-user-circle"></i>
-                                    </span>
-                                    <label for="payTo" class="control-label">Payable To:</label>
-                                    <input disabled id="payTo" name="payTo" type="text" class="form-control" placeholder="Payable To:" value="<?= $activityData['payTo']?>" autofocus/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-user-circle"></i>
+                                      </span>
+                                      <label for="payTo" class="control-label">Payable To:</label>
+                                      <input disabled id="payTo" name="payTo" type="text" class="form-control" placeholder="Payable To:" value="<?= $activityData['payTo']?>" autofocus/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="budget" class="control-label">Budget</label>
-                                    <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
+                                      </span>
+                                      <label for="budget" class="control-label">Budget</label>
+                                      <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-cart-arrow-down"></i>
-                                    </span>
-                                    <label for="particular" class="control-label">Particulars</label>
-                                    <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
-                                    value="<?= $activityData['particular']?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-cart-arrow-down"></i>
+                                      </span>
+                                      <label for="particular" class="control-label">Particulars</label>
+                                      <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
+                                      value="<?= $activityData['particular']?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          <?php elseif($process == 'LQ'): ?>
+                            <?php elseif($process == 'LQ'): ?>
 
-                            <div class="row">
-                              <div class="col-sm-12 PRSno">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-credit-card"></i>
-                                    </span>
-                                    <label for="PRSno" class="control-label">PRS Number</label>
-                                    <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
-                                    placeholder="Enter PRS number here." />
+                              <div class="row">
+                                <div class="col-sm-12 PRSno">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-credit-card"></i>
+                                      </span>
+                                      <label for="PRSno" class="control-label">PRS Number</label>
+                                      <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
+                                      placeholder="Enter PRS number here." />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12 DORno" style="display: hidden">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-file-text"></i>
-                                    </span>
-                                    <label for="DORno" class="control-label">Deposit Official Receipt Number</label>
-                                    <input disabled value="<?= $activityData['DORno']?>" id="DORno" name="DORno" type="number" step="any" class="form-control" placeholder="Deposit Official Receipt Number(Required for LQ)"/>
+                              <div class="row">
+                                <div class="col-sm-12 DORno" style="display: hidden">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-file-text"></i>
+                                      </span>
+                                      <label for="DORno" class="control-label">Deposit Official Receipt Number</label>
+                                      <input disabled value="<?= $activityData['DORno']?>" id="DORno" name="DORno" type="number" step="any" class="form-control" placeholder="Deposit Official Receipt Number(Required for LQ)"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="budget" class="control-label">Budget</label>
-                                    <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
+                                      </span>
+                                      <label for="budget" class="control-label">Budget</label>
+                                      <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-cart-arrow-down"></i>
-                                    </span>
-                                    <label for="particular" class="control-label">Particulars</label>
-                                    <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
-                                    value="<?= $activityData['particular']?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-cart-arrow-down"></i>
+                                      </span>
+                                      <label for="particular" class="control-label">Particulars</label>
+                                      <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
+                                      value="<?= $activityData['particular']?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          <?php elseif($process == 'PCR'): ?>
-                            <div class="row">
-                              <div class="col-sm-12 PRSno">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-credit-card"></i>
-                                    </span>
-                                    <label for="PRSno" class="control-label">PRS Number</label>
-                                    <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
-                                    placeholder="Enter PRS number here." />
+                            <?php elseif($process == 'PCR'): ?>
+                              <div class="row">
+                                <div class="col-sm-12 PRSno">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-credit-card"></i>
+                                      </span>
+                                      <label for="PRSno" class="control-label">PRS Number</label>
+                                      <input disabled readonly  id="PRSno" name="PRSno" type="number" class="form-control" value="<?= $activityData['PRSno'] ?>"
+                                      placeholder="Enter PRS number here." />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12 PCVno" style="display: hidden">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-file-text"></i>
-                                    </span>
-                                    <label for="PCVno" class="control-label">Petty Cash Voucher Number</label>
-                                    <input disabled value="<?= $activityData['PCVno']?>" id="PCVno" name="PCVno" type="number" step="any" class="form-control" placeholder="Petty Cash Voucher Number (Required for PCR)"/>
+                              <div class="row">
+                                <div class="col-sm-12 PCVno" style="display: hidden">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-file-text"></i>
+                                      </span>
+                                      <label for="PCVno" class="control-label">Petty Cash Voucher Number</label>
+                                      <input disabled value="<?= $activityData['PCVno']?>" id="PCVno" name="PCVno" type="number" step="any" class="form-control" placeholder="Petty Cash Voucher Number (Required for PCR)"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-user-circle"></i>
-                                    </span>
-                                    <label for="payTo" class="control-label">Payable To:</label>
-                                    <input disabled id="payTo" name="payTo" type="text" class="form-control" placeholder="Payable To:" value="<?= $activityData['payTo']?>" autofocus/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-user-circle"></i>
+                                      </span>
+                                      <label for="payTo" class="control-label">Payable To:</label>
+                                      <input disabled id="payTo" name="payTo" type="text" class="form-control" placeholder="Payable To:" value="<?= $activityData['payTo']?>" autofocus/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
-                                    </span>
-                                    <label for="budget" class="control-label">Budget</label>
-                                    <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
+                                      </span>
+                                      <label for="budget" class="control-label">Budget</label>
+                                      <input disabled id="budget" name="budget" class="form-control" placeholder="Amount" value="<?=$activityData['budget'] ?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <div class="form-group has-feedback">
-                                  <div class="input-group has-feedback">
-                                    <span class="input-group-addon">
-                                      <i class="fa fa-2x fa-cart-arrow-down"></i>
-                                    </span>
-                                    <label for="particular" class="control-label">Particulars</label>
-                                    <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
-                                    value="<?= $activityData['particular']?>"/>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="form-group has-feedback">
+                                    <div class="input-group has-feedback">
+                                      <span class="input-group-addon">
+                                        <i class="fa fa-2x fa-cart-arrow-down"></i>
+                                      </span>
+                                      <label for="particular" class="control-label">Particulars</label>
+                                      <input disabled id="particular" name="particular" type="text" class="form-control" placeholder="Enter the Particulars here."
+                                      value="<?= $activityData['particular']?>"/>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          <?php elseif($process == 'FRA'): ?>
+                            <?php elseif($process == 'FRA'): ?>
 
                               <div class="row">
                                 <div class="col-sm-12">
@@ -554,7 +566,7 @@ EOT;
                                 </div>
                               </div>
 
-                            <!-- Actual Revenue and Net Income/Loss -->
+                              <!-- Actual Revenue and Net Income/Loss -->
 
                               <div class="row">
                                 <div class="col-sm-6">
@@ -581,7 +593,7 @@ EOT;
                                 </div>
                               </div>
 
-                            <!-- Expenses from revenue and Disbursement -->
+                              <!-- Expenses from revenue and Disbursement -->
 
                               <div class="row">
                                 <div class="col-sm-6">
@@ -608,22 +620,29 @@ EOT;
                                 </div>
                               </div>
 
-                          <?php else: ?>
-                            <h1 class="text-center">N/A</h1>
+                            <?php else: ?>
+                              <h1 class="text-center">N/A</h1>
 
-                          <?php endif ?>
-                          <?php if($activityStatus != 'Approved'): ?>
-                            <div class="card-footer text-center">
-                              <div class="row">
-                                <div class="text-center">
-                                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
-                                  <button type="button" class="btn reviseBTN">Revise</button>
-                                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                            <?php endif ?>
+                            <?php if($activityStatus != 'Approved'): ?>
+                              <div class="card-footer">
+
+                                <div class="clearfix" style="width: 100%">
+                                  <div class="pull-left">
+                                    <button type="button" class="btn btn-info editProcessBTN">Edit</button>
+                                    <button type="button" class="btn btn-success saveProcessBTN" style="display: none" data-toggle="modal" data-target="#saveProcessModal">Save Changes</button>
+                                  </div>
+                                  <div class="pull-right">
+                                    <button type="button" class="btn reviseBTN">Revise</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declineModal">Decline</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Approve</button>
+                                  </div>
                                 </div>
+
                               </div>
-                            </div>
-                          <?php endif ?>
-                        </div>
+                            <?php endif ?>
+                          </div>
+                        </form>
 
                       </div>
                       <div class="tab-pane" id="remarks">
@@ -922,6 +941,7 @@ EOT;
         </div>
       </div>
     </div>
+
     <!-- Approve modal -->
 		<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="ConfirmModal" aria-hidden="true">
 		  <div class="modal-dialog">
@@ -1002,6 +1022,61 @@ EOT;
 		    </div>
 		  </div>
 		</div>
+
+
+    <!-- Save Details Modal -->
+    <div class="modal fade" id="saveDetailsModal" tabindex="-1" role="dialog" aria-labelledby="Save Modal" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h3 class="modal-title text-center" id="myModalLabel">Save Changes</h3>
+		      </div>
+		      <div class="modal-body">
+		        <h4 class="text-center">
+              <span style="font-weight: bold">
+                <?= $activityData['acronym'] ?> - <?= $activityData['title'] ?>
+              </span>
+              <br>
+							All fields in the activity details will be saved.<br>
+              Do you want to Continue?<br>
+						</h4>
+						<div class="modalButtons text-center">
+							<button class="btn btn-info btn-lg" data-dismiss="modal" id="contEdit">Continue Editing</button>
+							<button type="button" class="btn btn-success btn-lg" id="saveDetailsModalBtn">Save Changes</button>
+						</div>
+
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+    <!-- Save Process modal -->
+    <div class="modal fade" id="saveProcessModal" tabindex="-1" role="dialog" aria-labelledby="Save Modal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 class="modal-title text-center" id="myModalLabel">Save Changes</h3>
+          </div>
+          <div class="modal-body">
+		        <h4 class="text-center">
+              <span style="font-weight: bold">
+                <?= $activityData['acronym'] ?> - <?= $activityData['title'] ?>
+              </span>
+              <br>
+							All fields in the activity process will be saved.<br>
+              Do you want to Continue?<br>
+						</h4>
+						<div class="modalButtons text-center">
+							<button class="btn btn-info btn-lg" data-dismiss="modal" id="contEdit">Continue Editing</button>
+							<button type="button" class="btn btn-success btn-lg" id="saveProcessModalBtn">Save Changes</button>
+						</div>
+
+		      </div>
+        </div>
+      </div>
+    </div>
   </body>
   <!--   Core JS Files   -->
   <script src="<?php echo base_url();?>assets/js/jquery.js" type="text/javascript"></script>
@@ -1027,78 +1102,56 @@ EOT;
 
   <script type="text/javascript">
     $(document).ready(function() {
-
       initDatePicker();
       convertDatetoReadable();
       clearInvalid();
     });
-
-    $('#submitBTN').click(function() {
-      var a = $('#dateAudited').val();
-      var b = $('#datePendedCSO').val();
-      var c = $('#dateEncoded').val();
-      var d = $('#dateReceivedSLIFE').val();
-      var e = $('#datePendedSLIFE').val();
-      var f = $('#dateReceivedAcc').val();
-      var g = $('#datePendedAcc').val();
-      console.log(a,b,c,d,e,f,g);
-      var newdateAudited = moment(new Date(a)).format('YYYY-MM-DD');
-      var newdatePendedCSO = moment(new Date(b)).format('YYYY-MM-DD');
-      var newdateEncoded = moment(new Date(c)).format('YYYY-MM-DD');
-      var newdateReceivedSLIFE = moment(new Date(d)).format('YYYY-MM-DD');
-      var newdatePendedSLIFE = moment(new Date(e)).format('YYYY-MM-DD');
-      var newdateReceivedAcc = moment(new Date(f)).format('YYYY-MM-DD');
-      var newdatePendedAcc = moment(new Date(g)).format('YYYY-MM-DD');
-      console.log(newdateAudited,newdatePendedCSO, newdateEncoded, newdateReceivedSLIFE, newdatePendedSLIFE, newdateReceivedAcc, newdatePendedAcc );
-      if($('#dateAudited').val().length > 1) {
-        $('#dateAudited').val(newdateAudited);
-        console.log('a okay ', $('#dateAudited').text(newdateAudited));
-      }
-      if($('#datePendedCSO').val().length > 1) {
-        $('#datePendedCSO').val(newdatePendedCSO);
-        console.log('b okay ', $('#datePendedCSO').text(newdatePendedCSO));
-      }
-      if($('#dateEncoded').val().length > 1) {
-        $('#dateEncoded').val(newdateEncoded);
-        console.log('c okay ', $('#dateEncoded').text(dateEncoded));
-      }
-      if($('#dateReceivedSLIFE').val().length > 1) {
-        $('#dateReceivedSLIFE').val(newdateReceivedSLIFE);
-        console.log('d okay ', $('#dateReceivedSLIFE').text(newdateReceivedSLIFE));
-      }
-      if($('#datePendedSLIFE').val().length > 1) {
-        $('#datePendedSLIFE').val(newdatePendedSLIFE);
-        console.log('e okay ', $('#datePendedSLIFE').text(newdatePendedSLIFE));
-      }
-      if($('#dateReceivedAcc').val().length > 1) {
-        $('#dateReceivedAcc').val(newdateReceivedAcc);
-        console.log('f okay ',   $('#dateReceivedAcc').text(newdateReceivedAcc));
-      }
-      if($('#datePendedAcc').val().length > 1) {
-        $('#datePendedAcc').val(newdatePendedAcc);
-        console.log('g okay ', $('#datePendedAcc').text(newdatePendedAcc));
-      }
-
-
-      $('#remarksSubmit').submit();
-    });
-
   </script>
 
 
   <script type="text/javascript">
-    $('#contEdit').click(function(event) {
-      $('#confirmModal').modal('hide');
-    });
-
-    $('.reviseBTN').click(function(event) {
-      $('.tabremark').trigger('click');
-    });
 
     <?php if($activityStatus == 'Approved'): ?>
       disableAllFields();
     <?php endif ?>
 
+  </script>
+
+  <script type="text/javascript">
+  <?php
+    $flash = $this->session->flashdata('editActivity');
+    if($flash == 'true'):
+  ?>
+  $.notify({
+    icon: "check",
+    message: "Edit Activity - Successfully Edited an Activity",
+  },{
+      type: 'success',
+      timer: 1000,
+      placement: {
+          from: 'top',
+          align: 'center'
+      },
+      allow_dismiss: true,
+      newest_on_top: true,
+      mouse_over: 'pause'
+  });
+  <?php elseif($flash == 'false'): ?>
+  $.notify({
+    icon: "warning",
+    message: "Create Activity - Error in Editing an activity",
+  },{
+      type: 'danger',
+      timer: 1000,
+      placement: {
+          from: 'top',
+          align: 'center'
+      },
+      allow_dismiss: true,
+      newest_on_top: true,
+      mouse_over: 'pause'
+  });
+  <?php endif; ?>
   </script>
 
 

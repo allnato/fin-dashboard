@@ -38,9 +38,9 @@ span[data-notify = 'message']{
 }
 
 .divider{
-    border-top: 1px solid rgba(158, 158, 158, 0.47);
-    width: 80%;
-    margin: 0 auto;
+  border-top: 1px solid rgba(158, 158, 158, 0.47);
+  width: 80%;
+  margin: 0 auto;
 }
 
 
