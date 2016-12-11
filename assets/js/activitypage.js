@@ -114,3 +114,13 @@ function initDatePicker(){
   });
 
 }
+
+function disableAllFields(){
+  $('#remarks input').each(function(index){
+    $(this).attr('disabled', 'disabled');
+  });
+
+  $('#remarks textarea').each(function(index){
+    $(this).attr('disabled', 'disabled');
+  });
+}

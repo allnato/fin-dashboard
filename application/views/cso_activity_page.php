@@ -1095,6 +1095,10 @@ EOT;
       $('.tabremark').trigger('click');
     });
 
+    <?php if($activityStatus == 'Approved'): ?>
+      disableAllFields();
+    <?php endif ?>
+
   </script>
 
 
