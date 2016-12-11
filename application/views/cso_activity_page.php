@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_table.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_page.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/activitypage.css">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/img/icon/favicon-96x96.png">
 
     <style media="screen">
       #revisions{

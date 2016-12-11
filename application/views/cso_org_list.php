@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_table.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_page.css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
-
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/img/icon/favicon-96x96.png">
 
     <style media="screen">
       p{
@@ -142,8 +142,8 @@
 							<span class="icon-bar"></span>
             <!-- Navbar Title -->
 						</button>
-              <a class="navbar-brand nav-title" href="#">
-                <i class="fa fa-list"></i> Activity List
+              <a class="navbar-brand nav-title" href="">
+                <i class="fa fa-users"></i> Organization List
               </a>
             </div>
 

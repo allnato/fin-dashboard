@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_table.css">
 
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/img/icon/favicon-96x96.png">
   </head>
 
   <body>
