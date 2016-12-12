@@ -283,7 +283,7 @@ EOT;
 		$.notify({
 			icon: "check",
 			message: "Remark Activity - Successfully Remarked the activity",
-		},{
+		  },{
 				type: 'success',
 				timer: 1000,
 				placement: {
@@ -298,7 +298,7 @@ EOT;
 		$.notify({
 			icon: "warning",
 			message: "Remark Activity - Error in issuing a remark.",
-		},{
+		  },{
 				type: 'danger',
 				timer: 1000,
 				placement: {
@@ -311,5 +311,43 @@ EOT;
 		});
 		<?php endif; ?>
 	</script>
+
+
+  <script type="text/javascript">
+    <?php
+      $flash = $this->session->flashdata('updateActivity');
+      if($flash == 'true'):
+    ?>
+      $.notify({
+        icon: "check",
+        message: "Update Activity - Successfully updated an Activity",
+        },{
+          type: 'success',
+          timer: 4000,
+          placement: {
+              from: 'top',
+              align: 'center'
+          },
+          allow_dismiss: true,
+          newest_on_top: true,
+          mouse_over: 'pause'
+      });
+    <?php elseif($flash == 'false'): ?>
+      $.notify({
+        icon: "warning",
+        message: "Update Activity - Error in updating an activity",
+        },{
+          type: 'danger',
+          timer: 4000,
+          placement: {
+              from: 'top',
+              align: 'center'
+          },
+          allow_dismiss: true,
+          newest_on_top: true,
+          mouse_over: 'pause'
+      });
+    <?php endif; ?>
+  </script>
 
 </html>

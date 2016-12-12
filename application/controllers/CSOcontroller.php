@@ -232,9 +232,6 @@ class CSOController extends CI_Controller{
     $remarkData = $this->input->post(NULL, true);
     $remarkData['status'] = 'Pending';
 
-
-    $remarkData['revisions'] = intval($remarkData['revisions']) + 1;
-
     $this->session->set_flashdata('remarkActivity', 'false');
     if($this->CSOmodel->updateRemarks($remarkData)){
       $this->session->set_flashdata('remarkActivity', 'true');
@@ -249,7 +246,13 @@ class CSOController extends CI_Controller{
     $approveData['activityID'] = $this->input->post('activityID', true);
     $approveData['status'] = $this->input->post('status', true);
     $orgAcronym = $this->input->post('acronym', true);
-    $this->CSOmodel->updateActivityStatus($approveData, $orgAcronym);
+
+    $this->session->set_flashdata('updateActivity', 'false');
+    if($this->CSOmodel->updateActivityStatus($approveData, $orgAcronym)){
+      $this->session->set_flashdata('updateActivity', 'true');
+
+    }
+
     redirect(site_url('admin/org-activity-list'));
   }
 
@@ -257,7 +260,11 @@ class CSOController extends CI_Controller{
     $this->load->model('CSOmodel');
     $orgAcronym = '';
     $declineData = $this->input->post(null, true);
-    $this->CSOmodel->updateActivityStatus($declineData, $orgAcronym);
+    $this->session->set_flashdata('updateActivity', 'false');
+    if($this->CSOmodel->updateActivityStatus($declineData, $orgAcronym)){
+      $this->session->set_flashdata('updateActivity', 'true');
+
+    }
     redirect(site_url('admin/org-activity-list'));
   }
 
