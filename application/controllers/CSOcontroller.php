@@ -232,9 +232,6 @@ class CSOController extends CI_Controller{
     $remarkData = $this->input->post(NULL, true);
     $remarkData['status'] = 'Pending';
 
-
-    $remarkData['revisions'] = intval($remarkData['revisions']) + 1;
-
     $this->session->set_flashdata('remarkActivity', 'false');
     if($this->CSOmodel->updateRemarks($remarkData)){
       $this->session->set_flashdata('remarkActivity', 'true');

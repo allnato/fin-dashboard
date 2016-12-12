@@ -27,12 +27,6 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_page.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/activitypage.css">
     <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/img/icon/favicon-96x96.png">
-
-    <style media="screen">
-      #revisions{
-        cursor: not-allowed;
-      }
-    </style>
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
   </head>
 
@@ -701,7 +695,7 @@ EOT;
                                           <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
                                         </span>
                                         <label for="revisions" class="control-label">Number of Revisions</label>
-                                        <input id="revisions" readonly name="revisions" type="number" value="<?= $remarksData['revisions'] ?>" class="form-control" placeholder="Revisions"/>
+                                        <input id="revisions" name="revisions" type="number" min="0" value="<?= $remarksData['revisions'] ?>" class="form-control" placeholder="Revisions"/>
                                       </div>
                                     </div>
                                   </div>
