@@ -246,7 +246,13 @@ class CSOController extends CI_Controller{
     $approveData['activityID'] = $this->input->post('activityID', true);
     $approveData['status'] = $this->input->post('status', true);
     $orgAcronym = $this->input->post('acronym', true);
-    $this->CSOmodel->updateActivityStatus($approveData, $orgAcronym);
+
+    $this->session->set_flashdata('updateActivity', 'false');
+    if($this->CSOmodel->updateActivityStatus($approveData, $orgAcronym)){
+      $this->session->set_flashdata('updateActivity', 'true');
+
+    }
+
     redirect(site_url('admin/org-activity-list'));
   }
 
@@ -254,7 +260,11 @@ class CSOController extends CI_Controller{
     $this->load->model('CSOmodel');
     $orgAcronym = '';
     $declineData = $this->input->post(null, true);
-    $this->CSOmodel->updateActivityStatus($declineData, $orgAcronym);
+    $this->session->set_flashdata('updateActivity', 'false');
+    if($this->CSOmodel->updateActivityStatus($declineData, $orgAcronym)){
+      $this->session->set_flashdata('updateActivity', 'true');
+
+    }
     redirect(site_url('admin/org-activity-list'));
   }
 
