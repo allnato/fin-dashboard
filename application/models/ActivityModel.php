@@ -38,6 +38,7 @@ class ActivityModel extends CI_Model{
       $this->db->insert('activity', $activityData);
       // Get ID of row you just inserted
       $orgId['activityID'] = $this->db->insert_id();
+      $orgId['revisions'] = 0;
       $this->db->insert('remark', $orgId);
 
      return ($this->db->affected_rows() != 1) ? false : true;
@@ -58,7 +59,7 @@ class ActivityModel extends CI_Model{
           $remarks = $this->getActivityRemarksForTable($row['activityID']);
           // In case datePendedCSO is still null, provide a message instead
           $row['datePendedCSO'] = "Not yet provided.";
-          if($remarks[0]['datePendedCSO'] != null) {
+          if($remarks[0]['datePendedCSO'] != null && $remarks[0]['datePendedCSO'] != "" && $remarks[0]['datePendedCSO'] != "0000-00-00") {
             $row['datePendedCSO'] = $remarks[0]['datePendedCSO'];
           }
 
@@ -94,6 +95,20 @@ class ActivityModel extends CI_Model{
       ->where("o.acronym = '$orgInitials' AND a.activityID = $pageID AND o.orgID = a.orgID");
 
       $query = $this->db->get();
+      $row = $query->row_array();
+      // Return false if page does not exist within an org
+      return ($query->num_rows() != 1) ? false : $row;
+    }
+
+    public function getActivityRemarks($pageID){
+      $remarks = array();
+      // Store the org initials
+      $orgInitials = $this->session->userdata('acronym');
+      // Check if the page is created by the ORG.
+      $this->db->where('activityID', $pageID);
+
+      // Query the DB
+      $query = $this->db->get('remark');
       $row = $query->row_array();
       // Return false if page does not exist within an org
       return ($query->num_rows() != 1) ? false : $row;
@@ -176,6 +191,24 @@ class ActivityModel extends CI_Model{
 
 
       return $activity;
+    }
+
+    public function updateActivityDetails($pageID, $data){
+      $this->db->trans_start();
+      $this->db->where('activityID', $pageID);
+      $this->db->update('activity', $data);
+      $this->db->trans_complete();
+
+      return $this->db->trans_status();
+    }
+
+    public function updateActivityProcess($pageID, $data){
+      $this->db->trans_start();
+      $this->db->where('activityID', $pageID);
+      $this->db->update('activity', $data);
+      $this->db->trans_complete();
+
+      return $this->db->trans_status();
     }
 
     function getOrgAcronym($orgID) {

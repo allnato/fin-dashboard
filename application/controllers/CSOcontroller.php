@@ -53,6 +53,7 @@ class CSOController extends CI_Controller{
       // Show 404 :-(
       show_404();
     }
+    $activity['orgInitials'] = $orgInitials;
     $this->load->view('cso_activity_page', $activity);
   }
 
@@ -182,9 +183,12 @@ class CSOController extends CI_Controller{
     $this->load->model('CSOmodel');
     $orgData = $this->input->post(null, true);
 
-    $this->CSOmodel->addOrganization($orgData);
+    $updateResult = $this->CSOmodel->addOrganization($orgData);
 
-
+    $this->session->set_flashdata('addOrganization', 'false');
+    if($updateResult){
+      $this->session->set_flashdata('addOrganization', 'true');
+    }
     redirect(site_url('admin/org-list'));
   }
 
@@ -197,14 +201,41 @@ class CSOController extends CI_Controller{
     redirect(site_url('admin/org-list'));
   }
 
-  public function remark_activity() {
-    $this->load->model('CSOmodel');
-    $remarkData = $this->input->post(null, true);
-    if($remarkData['datePendedCSO'] != '' || $remarkData['datePendedSLIFE'] != '' || $remarkData['datePendedAcc'] != '' ) {
-      $remarkData['status'] = 'Pending';
+  public function edit_activity_details($orgInitials, $pageID ){
+    $this->load->model('ActivityModel');
+    $detailsData = $this->input->post(NULL, TRUE);
+
+    $this->session->set_flashdata('editActivity', 'false');
+    if($this->ActivityModel->updateActivityDetails($pageID, $detailsData)){
+      $this->session->set_flashdata('editActivity', 'true');
     }
 
-    $this->CSOmodel->updateRemarks($remarkData);
+    redirect(site_url('admin/activity-page/'.$orgInitials."/".$pageID));
+
+  }
+
+  public function edit_activity_process($orgInitials, $pageID ){
+    $this->load->model('ActivityModel');
+    $detailsData = $this->input->post(NULL, TRUE);
+
+    $this->session->set_flashdata('editActivity', 'false');
+    if($this->ActivityModel->updateActivityProcess($pageID, $detailsData)){
+      $this->session->set_flashdata('editActivity', 'true');
+    }
+
+    redirect(site_url('admin/activity-page/'.$orgInitials."/".$pageID));
+
+  }
+
+  public function remark_activity() {
+    $this->load->model('CSOmodel');
+    $remarkData = $this->input->post(NULL, true);
+    $remarkData['status'] = 'Pending';
+
+    $this->session->set_flashdata('remarkActivity', 'false');
+    if($this->CSOmodel->updateRemarks($remarkData)){
+      $this->session->set_flashdata('remarkActivity', 'true');
+    }
 
     redirect(site_url('admin/org-activity-list'));
 
@@ -212,15 +243,28 @@ class CSOController extends CI_Controller{
 
   public function approve_activity() {
     $this->load->model('CSOmodel');
-    $approveData = $this->input->post(null, true);
-    $this->CSOmodel->updateActivityStatus($approveData);
+    $approveData['activityID'] = $this->input->post('activityID', true);
+    $approveData['status'] = $this->input->post('status', true);
+    $orgAcronym = $this->input->post('acronym', true);
+
+    $this->session->set_flashdata('updateActivity', 'false');
+    if($this->CSOmodel->updateActivityStatus($approveData, $orgAcronym)){
+      $this->session->set_flashdata('updateActivity', 'true');
+
+    }
+
     redirect(site_url('admin/org-activity-list'));
   }
 
   public function decline_activity() {
     $this->load->model('CSOmodel');
+    $orgAcronym = '';
     $declineData = $this->input->post(null, true);
-    $this->CSOmodel->updateActivityStatus($declineData);
+    $this->session->set_flashdata('updateActivity', 'false');
+    if($this->CSOmodel->updateActivityStatus($declineData, $orgAcronym)){
+      $this->session->set_flashdata('updateActivity', 'true');
+
+    }
     redirect(site_url('admin/org-activity-list'));
   }
 

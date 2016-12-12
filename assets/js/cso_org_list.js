@@ -3,6 +3,10 @@ $(document).ready(function() {
   $('.fa.fa-users.pull-left').each(function() {
     $(this).css('color', randomColor({luminosity: 'dark'}));
   });
+  $orgList.isotope('updateSortData').isotope({
+  sortBy: 'name',
+  sortAscending: true
+  });
   // Sort Order Button is Clicked
   // Change the direction of the arrow
   $('#sortOrderBtn').click(function(event) {
@@ -12,7 +16,6 @@ $(document).ready(function() {
       $('#sortOrderIcon').addClass('fa-long-arrow-down')
       $('#sortOrder').val('desc').trigger('change');
       $orgList.isotope('updateSortData').isotope({
-      sortBy: 'name',
       sortAscending: true
       });
     }else {
@@ -20,7 +23,6 @@ $(document).ready(function() {
       $('#sortOrderIcon').addClass('fa-long-arrow-up')
       $('#sortOrder').val('asc').trigger('change');
       $orgList.isotope('updateSortData').isotope({
-      sortBy: 'name',
       sortAscending: false
       });
     }
@@ -35,9 +37,6 @@ var qsRegex;
 var $orgList = $('.org-list').isotope({
   itemSelector: '.col-xs-3',
   layout: 'fitRows',
-  getSortData: {
-    name: '.org_name'
-  },
   filter: function() {
     return qsRegex ? $(this).text().match( qsRegex ) : true;
   }

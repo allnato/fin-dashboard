@@ -25,6 +25,7 @@
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/newactivity.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_table.css">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/img/icon/favicon-96x96.png">
     <style>
       .nav.nav-pills{
         border-right: 4px dashed #2196F3;
@@ -96,12 +97,6 @@
               <a href="<?php echo site_url('admin/archive-list'); ?>">
                 <i class="fa fa-archive"></i>
                 <p>Approved</p>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <i class="fa fa-bar-chart"></i>
-                <p>Statistics</p>
               </a>
             </li>
             <li>
@@ -395,7 +390,7 @@
                                           <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
                                         </span>
                                         <label for="budget" class="control-label">Budget</label>
-                                        <input id="budget" name="budget" class="form-control" placeholder="Amount"/>
+                                        <input id="budget" name="budget" class="form-control" placeholder="Amount"  min="0"/>
                                       </div>
                                     </div>
                                   </div>

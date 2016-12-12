@@ -21,6 +21,7 @@
 
     <!-- Font Awesome :-) -->
     <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/img/icon/favicon-96x96.png">
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_table.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_page.css">
@@ -77,12 +78,6 @@
               <a href="<?php echo site_url('admin/archive-list'); ?>">
                 <i class="fa fa-archive"></i>
                 <p>Approved</p>
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <i class="fa fa-bar-chart"></i>
-                <p>Statistics</p>
               </a>
             </li>
             <li>
@@ -188,11 +183,15 @@
 
                 <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
                 foreach($activityList as $row) {
-                  if($row['status'] == "Pending") {
+                  $buttonType = "warning";
+                  if($row['status'] == "Pending" ) {
                     $buttonType = "warning";
                   }
                   elseif($row['status'] == "Declined") {
                     $buttonType = "danger";
+                  }
+                  elseif($row['status'] == "Approved") {
+                    $buttonType = "success";
                   }
                 $dos = date("M d, Y g:i A", strtotime($row['dateSubmitted']));
                 echo <<< EOT
@@ -248,6 +247,43 @@ EOT;
 	<!-- Moment JS -->
 	<script src="<?php echo base_url(); ?>assets/js/moment.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/org_table.js"></script>
+
+  <script type="text/javascript">
+    <?php
+      $flash = $this->session->flashdata('submitActivity');
+      if($flash == 'true'):
+    ?>
+    $.notify({
+      icon: "check",
+      message: "Create Activity - Successfully added a new Activity",
+    },{
+        type: 'success',
+        timer: 4000,
+        placement: {
+            from: 'top',
+            align: 'center'
+        },
+        allow_dismiss: true,
+        newest_on_top: true,
+        mouse_over: 'pause'
+    });
+    <?php elseif($flash == 'false'): ?>
+    $.notify({
+      icon: "warning",
+      message: "Create Activity - Error in creating a new activity",
+    },{
+        type: 'danger',
+        timer: 4000,
+        placement: {
+            from: 'top',
+            align: 'center'
+        },
+        allow_dismiss: true,
+        newest_on_top: true,
+        mouse_over: 'pause'
+    });
+    <?php endif; ?>
+  </script>
 
 
   <script type="text/javascript">

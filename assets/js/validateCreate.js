@@ -4,6 +4,7 @@ $(document).ready(function() {
     return arg != value;
   }, "Value must not equal arg.");
 
+
   var $formValidator = $('#createForm').validate({
     rules: {
       title: {
@@ -37,7 +38,8 @@ $(document).ready(function() {
       },
       budget: {
         required: true,
-        number: true
+        number: true,
+        min: 0.0
       },
       particular: {
         required: true,

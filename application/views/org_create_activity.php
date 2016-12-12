@@ -24,6 +24,7 @@
 
 		<!-- Font Awesome :-) -->
     <link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/img/icon/favicon-96x96.png">
 
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/newactivity.css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/cso_table.css">
@@ -377,7 +378,7 @@
                                           <i class="fa fa-rub fa-2x" aria-hidden="true"></i>
                                         </span>
                                         <label for="budget" class="control-label">Budget</label>
-                                        <input id="budget" name="budget" class="form-control" placeholder="Amount"/>
+                                        <input id="budget" name="budget" class="form-control" placeholder="Amount" min="0"/>
                                       </div>
                                     </div>
                                   </div>

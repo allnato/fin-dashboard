@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/cso_table.css">
 
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/img/icon/favicon-96x96.png">
   </head>
 
   <body>
@@ -68,12 +69,7 @@
                 <p>Approved</p>
               </a>
             </li>
-            <li>
-              <a href="">
-                <i class="fa fa-bar-chart"></i>
-                <p>Statistics</p>
-              </a>
-            </li>
+
             <li>
               <a href="<?php echo site_url('admin/org-list'); ?>">
                 <i class="fa fa-users"></i>
@@ -177,6 +173,7 @@
 
                   foreach($activityList as $row) {
                     $letter = substr($row['acronym'], 0, 1);
+                    $buttonType = "warning";
                     if($row['status'] == "Pending" ) {
                       $buttonType = "warning";
                     }
@@ -186,6 +183,7 @@
                     elseif($row['status'] == "Approved") {
                       $buttonType = "success";
                     }
+
                     echo <<< EOT
 
                     <tr id={$row['activityID']}>
@@ -222,7 +220,7 @@ EOT;
 
     <!-- Sort Inputs -->
     <input type="text" value="desc" id="sortOrder" style="display: none">
-    <input type="text" value="list-dos" id="sortField" style="display: none">
+    <input type="text" value="list-date" id="sortField" style="display: none">
   </body>
   <!--   Core JS Files   -->
   <script src="<?php echo base_url(); ?>assets/js/jquery.js" type="text/javascript"></script>
@@ -274,6 +272,82 @@ EOT;
       window.location.href = "<?= site_url('admin/activity-page/')  ?>" + initials + "/" + pageID;
 
 		});
+  </script>
+
+  <script type="text/javascript">
+
+		<?php
+			$flash = $this->session->flashdata('remarkActivity');
+			if($flash == 'true'):
+		?>
+		$.notify({
+			icon: "check",
+			message: "Remark Activity - Successfully Remarked the activity",
+		  },{
+				type: 'success',
+				timer: 1000,
+				placement: {
+						from: 'top',
+						align: 'center'
+				},
+				allow_dismiss: true,
+				newest_on_top: true,
+				mouse_over: 'pause'
+		});
+		<?php elseif($flash == 'false'): ?>
+		$.notify({
+			icon: "warning",
+			message: "Remark Activity - Error in issuing a remark.",
+		  },{
+				type: 'danger',
+				timer: 1000,
+				placement: {
+						from: 'top',
+						align: 'center'
+				},
+				allow_dismiss: true,
+				newest_on_top: true,
+				mouse_over: 'pause'
+		});
+		<?php endif; ?>
+	</script>
+
+
+  <script type="text/javascript">
+    <?php
+      $flash = $this->session->flashdata('updateActivity');
+      if($flash == 'true'):
+    ?>
+      $.notify({
+        icon: "check",
+        message: "Update Activity - Successfully updated an Activity",
+        },{
+          type: 'success',
+          timer: 4000,
+          placement: {
+              from: 'top',
+              align: 'center'
+          },
+          allow_dismiss: true,
+          newest_on_top: true,
+          mouse_over: 'pause'
+      });
+    <?php elseif($flash == 'false'): ?>
+      $.notify({
+        icon: "warning",
+        message: "Update Activity - Error in updating an activity",
+        },{
+          type: 'danger',
+          timer: 4000,
+          placement: {
+              from: 'top',
+              align: 'center'
+          },
+          allow_dismiss: true,
+          newest_on_top: true,
+          mouse_over: 'pause'
+      });
+    <?php endif; ?>
   </script>
 
 </html>
