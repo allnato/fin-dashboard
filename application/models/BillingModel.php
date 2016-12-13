@@ -50,9 +50,19 @@ class BillingModel extends CI_Model{
    public function createNewBilling($billingData){
      $this->db->trans_start();
      $billingData['dateSubmitted'] = date("Y-m-d");
+     $billingData['orgID'] = $this->getOrgIDbyInitial($billingData['orgAcronym']);
      $this->db->insert('billing', $billingData);
      $this->db->trans_complete();
 
      return $this->db->trans_status();
+   }
+
+   function getOrgIDbyInitial($orgAcronym){
+     $this->db->select('orgID');
+     $this->db->where('acronym' , $orgAcronym);
+     $query = $this->db->get('organization');
+
+     $result = $query->row();
+     return $result->orgID;
    }
 }

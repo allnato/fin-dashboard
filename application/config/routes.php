@@ -62,6 +62,7 @@ $route['org/new-activity'] = 'ORGController/new_activity';
 $route['org/activity-list'] = 'ORGController/activity_list';
 $route['org/activity-page/(:num)'] = 'ORGController/activity_page/$1';
 $route['org/profile'] = 'ORGController/profile';
+$route['org/billing-list'] = 'ORGController/billing_list';
 
 $route['org/submit'] = 'ORGController/submit_activity';
 
