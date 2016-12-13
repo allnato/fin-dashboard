@@ -46,4 +46,13 @@ class BillingModel extends CI_Model{
 
      return $this->db->trans_status();
    }
+
+   public function createNewBilling($billingData){
+     $this->db->trans_start();
+     $billingData['dateSubmitted'] = date("Y-m-d");
+     $this->db->insert('billing', $billingData);
+     $this->db->trans_complete();
+
+     return $this->db->trans_status();
+   }
 }

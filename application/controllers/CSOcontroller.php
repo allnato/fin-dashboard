@@ -276,7 +276,25 @@ class CSOController extends CI_Controller{
   }
 
   public function new_billing(){
-    echo "New Billing";
+    $this->checkSession();
+
+    $this->load->model('OrgModel');
+    $orgData['initials'] = $this->OrgModel->getAllOrgInitials();
+
+    $this->load->view('cso_create_bill', $orgData);
+  }
+
+  public function add_billing(){
+    $this->checkSession();
+    $billingData = $this->input->post(NULL, TRUE);
+    $this->load->model('BillingModel');
+
+    $this->session->set_flashdata('createBilling', 'false');
+    if($this->BillingModel->createNewBilling($billingData)){
+      $this->session->set_flashdata('createBilling', 'true');
+    }
+
+    redirect(site_url('admin/new-billing'));
   }
 
   public function billing_page($orgInitials, $billingID){

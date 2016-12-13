@@ -55,4 +55,17 @@ class OrgModel extends CI_Model{
      return $orgData;
    }
 
+   public function getAllOrgInitials(){
+     $this->db->select('acronym');
+     $query = $this->db->get('organization');
+
+
+     $initials = array();
+     foreach ($query->result_array() as $row) {
+      array_push($initials, $row);
+     }
+     return $initials;
+
+   }
+
 }
