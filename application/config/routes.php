@@ -83,3 +83,8 @@ $route['admin/edit-activity-process/(:any)/(:num)'] = 'CSOController/edit_activi
 $route['admin/approve'] = 'CSOController/approve_activity';
 $route['admin/decline'] = 'CSOController/decline_activity';
 $route['admin/delete'] = 'CSOController/deleteOrganization';
+
+$route['admin/billing-list'] = 'CSOController/billing_list';
+$route['admin/new-billing'] = 'CSOController/new_billing';
+$route['admin/billing-page/(:any)/(:num)'] = 'CSOController/billing_page/$1/$2';
+$route['admin/edit-billing/(:any)/(:num)'] = 'CSOController/edit_billing/$1/$2';
