@@ -50,7 +50,7 @@ class CSOController extends CI_Controller{
       // Show 404 :-(
       show_404();
     }
-    if(!$activity['remarksData'] = $this->CSOmodel->getRemarksData($pageID)){
+    if(!$activity['remarksData'] = $this->CSOmodel->getRemarksData($activity['activityData']['activityID'])){
       // Show 404 :-(
       show_404();
     }
