@@ -196,6 +196,15 @@ class ActivityModel extends CI_Model{
       return $activity;
     }
 
+    public function getOrgIdByActivityId($activityID){
+      $this->db->select('orgID');
+      $this->db->where('activityID', $activityID);
+
+      $query = $this->db->get('activity');
+      $result = $query->row();
+      return $result->orgID;
+    }
+
     public function updateActivityDetails($pageID, $data){
       $this->db->trans_start();
       $this->db->where('activityID', $pageID);

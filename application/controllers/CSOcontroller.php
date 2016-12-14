@@ -236,6 +236,11 @@ class CSOController extends CI_Controller{
     $this->session->set_flashdata('remarkActivity', 'false');
     if($this->CSOmodel->updateRemarks($remarkData)){
       $this->session->set_flashdata('remarkActivity', 'true');
+
+      $this->load->model('ActivityModel');
+      $orgID = $this->ActivityModel->getOrgIdByActivityId($remarkData['activityID']);
+      $this->load->model('NotifModel');
+      $this->NotifModel->createNewNotif('A-R',$remarkData['activityID'], $orgID);
     }
 
     redirect(site_url('admin/org-activity-list'));
@@ -252,6 +257,11 @@ class CSOController extends CI_Controller{
     if($this->CSOmodel->updateActivityStatus($approveData, $orgAcronym)){
       $this->session->set_flashdata('updateActivity', 'true');
 
+      $this->load->model('OrgModel');
+      $orgID = $this->OrgModel->getOrgIDbyInitial($orgAcronym);
+      $this->load->model('NotifModel');
+      $this->NotifModel->createNewNotif('A-A',$approveData['activityID'], $orgID);
+
     }
 
     redirect(site_url('admin/org-activity-list'));
@@ -259,12 +269,17 @@ class CSOController extends CI_Controller{
 
   public function decline_activity() {
     $this->load->model('CSOmodel');
-    $orgAcronym = '';
-    $declineData = $this->input->post(null, true);
+    $orgAcronym = $this->input->post('acronym', true);
+    $declineData['status'] = $this->input->post('status', true);
+    $declineData['activityID'] = $this->input->post('activityID', true);
     $this->session->set_flashdata('updateActivity', 'false');
     if($this->CSOmodel->updateActivityStatus($declineData, $orgAcronym)){
       $this->session->set_flashdata('updateActivity', 'true');
 
+      $this->load->model('OrgModel');
+      $orgID = $this->OrgModel->getOrgIDbyInitial($orgAcronym);
+      $this->load->model('NotifModel');
+      $this->NotifModel->createNewNotif('A-D',$declineData['activityID'], $orgID);
     }
     redirect(site_url('admin/org-activity-list'));
   }
@@ -291,8 +306,15 @@ class CSOController extends CI_Controller{
     $this->load->model('BillingModel');
 
     $this->session->set_flashdata('createBilling', 'false');
-    if($this->BillingModel->createNewBilling($billingData)){
+    $billingID = $this->BillingModel->createNewBilling($billingData);
+
+    if($billingID){
       $this->session->set_flashdata('createBilling', 'true');
+      // Create a notification
+      $this->load->model('OrgModel');
+      $orgID = $this->OrgModel->getOrgIDbyInitial($billingData['orgAcronym']);
+      $this->load->model('NotifModel');
+      $this->NotifModel->createNewNotif('BS-C',$billingID, $orgID);
     }
 
     redirect(site_url('admin/new-billing'));

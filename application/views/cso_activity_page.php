@@ -999,6 +999,7 @@ EOT;
               <form method="post" action="<?= site_url('admin/decline') ?>">
 							<button class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
                 <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
+                <input type="hidden" name="acronym" value="<?= $activityData['acronym'] ?>" />
                 <input type="hidden" name="status" value="Declined" />
 							  <button type="submit" class="btn btn-danger btn-lg">Decline Activity</button>
               </form>

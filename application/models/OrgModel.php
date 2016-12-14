@@ -68,6 +68,15 @@ class OrgModel extends CI_Model{
 
    }
 
-   
+   public function getOrgIDbyInitial($orgAcronym){
+     $this->db->select('orgID');
+     $this->db->where('acronym' , $orgAcronym);
+     $query = $this->db->get('organization');
+
+     $result = $query->row();
+     return $result->orgID;
+   }
+
+
 
 }
