@@ -353,7 +353,7 @@ EOT;
                               </div>
                             </div>
 
-                            <?php if($activityStatus != 'Approved'): ?>
+                            <?php if($activityStatus == 'Pending'): ?>
                               <div class="card-footer">
 
                                 <div class="clearfix" style="width: 100%">
@@ -633,7 +633,7 @@ EOT;
                               <h1 class="text-center">N/A</h1>
 
                             <?php endif ?>
-                            <?php if($activityStatus != 'Approved'): ?>
+                            <?php if($activityStatus == 'Pending'): ?>
                               <div class="card-footer">
 
                                 <div class="clearfix" style="width: 100%">
@@ -924,7 +924,7 @@ EOT;
                               </div>
                             </div>
                           </div>
-                          <?php if($activityStatus != 'Approved'): ?>
+                          <?php if($activityStatus == 'Pending'): ?>
 
                             <div class="card-footer text-center">
                               <div class="row">
