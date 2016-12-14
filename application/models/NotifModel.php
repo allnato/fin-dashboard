@@ -15,12 +15,19 @@ class NotifModel extends CI_Model{
      parent::__construct();
      $this->load->database();
    }
+    
+   public function getUnseenNotificationCount($orgID){
+    $this->db->where('orgID', $orgID);
+    $this->db->where('status', 'unseen');
+       
+    return $this->db->count_all_results();
+   }
 
    public function getLatestNotification($orgID){
     $this->db->where('orgID', $orgID);
     $this->db->where('status', 'unseen');
     $this->db->order_by('timedate', 'DESC');
-    $this->db->limit(8);
+    //$this->db->limit(8);
 
     $query = $this->db->get('notification');
 
