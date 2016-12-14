@@ -64,6 +64,13 @@ class OrgController extends CI_Controller{
     $this->load->model('ActivityModel');
     // Retrieves an array of activities that belongs to the org with the provided orgID
     $activities['activityList'] = $this->ActivityModel->getOrgActivities($this->session->userdata('orgID'));
+    
+    $this->load->model('NotifModel');
+    // list of unseen notifications
+    $activities['notifList'] = $this->NotifModel->getLatestNotification($this->session->userdata('orgID'));
+    // number of unseen notifications
+    $activities['notifCount'] = $this->NotifModel->getUnseenNotificationCount($this->session->userdata('orgID'));
+      
     $this->load->view('org_activity_list', $activities);
   }
 
