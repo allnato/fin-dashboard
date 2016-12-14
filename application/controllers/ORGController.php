@@ -41,12 +41,18 @@ class OrgController extends CI_Controller{
      $this->load->model('ActivityModel');
     // Get formfields from $POST
      $formfields = $this->input->post(NULL, true);
-    // Set flashdata to true
-     $this->session->set_flashdata('submitActivity', 'true');
+    // Set flashdata to false
+     $this->session->set_flashdata('submitActivity', 'false');
+     $activityID = $this->ActivityModel->addNewActivity($formfields);
+     if($activityID){
+       $this->session->set_flashdata('submitActivity', 'true');
 
-     // Submit to model which is then inserted to the database. This function returns true row is affected.
-     if(!$this->ActivityModel->addNewActivity($formfields)){
-       $this->session->set_flashdata('submitActivity', 'false');
+       // Create a notification to CSO if process is CA or DP
+       if($formfields['processType'] == 'CA' || $formfields['processType'] == 'DP'){
+         $orgID = $this->session->userdata('orgID');
+         $this->load->model('NotifModel');
+         $this->NotifModel->createNewNotif('cso-activity create',$activityID, $orgID);
+       }
      }
 
      redirect(site_url('org/activity-list'));

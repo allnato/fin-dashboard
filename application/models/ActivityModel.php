@@ -41,7 +41,7 @@ class ActivityModel extends CI_Model{
       $orgId['revisions'] = 0;
       $this->db->insert('remark', $orgId);
 
-     return ($this->db->affected_rows() != 1) ? false : true;
+     return ($this->db->affected_rows() != 1) ? false : $orgId['activityID'];
    }
 
    /**

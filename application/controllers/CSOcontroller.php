@@ -89,17 +89,23 @@ class CSOController extends CI_Controller{
    * @SuppressWarnings(camelCase)
    */
   public function submit_activity(){
-   // Load ActivityModel
-    $this->load->model('ActivityModel');
-   // Get formfields from $POST
-    $formfields = $this->input->post(NULL, true);
-   // Set flashdata to true
-    $this->session->set_flashdata('submitActivity', 'true');
+    // Load ActivityModel
+     $this->load->model('ActivityModel');
+    // Get formfields from $POST
+     $formfields = $this->input->post(NULL, true);
+    // Set flashdata to false
+     $this->session->set_flashdata('submitActivity', 'false');
+     $activityID = $this->ActivityModel->addNewActivity($formfields);
+     if($activityID){
+       $this->session->set_flashdata('submitActivity', 'true');
 
-    // Submit to model which is then inserted to the database. This function returns true row is affected.
-    if(!$this->ActivityModel->addNewActivity($formfields)){
-      $this->session->set_flashdata('submitActivity', 'false');
-    }
+       // Create a notification to CSO if process is CA or DP
+       if($formfields['processType'] == 'CA' || $formfields['processType'] == 'DP'){
+         $orgID = $this->session->userdata('orgID');
+         $this->load->model('NotifModel');
+         $this->NotifModel->createNewNotif('cso-activity create',$activityID, $orgID);
+       }
+     }
 
     redirect(site_url('admin/activity-list'));
   }
@@ -240,7 +246,7 @@ class CSOController extends CI_Controller{
       $this->load->model('ActivityModel');
       $orgID = $this->ActivityModel->getOrgIdByActivityId($remarkData['activityID']);
       $this->load->model('NotifModel');
-      $this->NotifModel->createNewNotif('A-R',$remarkData['activityID'], $orgID);
+      $this->NotifModel->createNewNotif('org-activity remark',$remarkData['activityID'], $orgID);
     }
 
     redirect(site_url('admin/org-activity-list'));
@@ -260,7 +266,7 @@ class CSOController extends CI_Controller{
       $this->load->model('OrgModel');
       $orgID = $this->OrgModel->getOrgIDbyInitial($orgAcronym);
       $this->load->model('NotifModel');
-      $this->NotifModel->createNewNotif('A-A',$approveData['activityID'], $orgID);
+      $this->NotifModel->createNewNotif('org-activity approve',$approveData['activityID'], $orgID);
 
     }
 
@@ -279,7 +285,7 @@ class CSOController extends CI_Controller{
       $this->load->model('OrgModel');
       $orgID = $this->OrgModel->getOrgIDbyInitial($orgAcronym);
       $this->load->model('NotifModel');
-      $this->NotifModel->createNewNotif('A-D',$declineData['activityID'], $orgID);
+      $this->NotifModel->createNewNotif('org-activity decline',$declineData['activityID'], $orgID);
     }
     redirect(site_url('admin/org-activity-list'));
   }
@@ -314,7 +320,7 @@ class CSOController extends CI_Controller{
       $this->load->model('OrgModel');
       $orgID = $this->OrgModel->getOrgIDbyInitial($billingData['orgAcronym']);
       $this->load->model('NotifModel');
-      $this->NotifModel->createNewNotif('BS-C',$billingID, $orgID);
+      $this->NotifModel->createNewNotif('org-billing create',$billingID, $orgID);
     }
 
     redirect(site_url('admin/new-billing'));
