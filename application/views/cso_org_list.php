@@ -126,7 +126,7 @@
               </a>
             </li>
             <li class="divider"></li>
-            <li>
+            <li class="active">
               <a href="<?php echo site_url('admin/org-list'); ?>">
                 <i class="fa fa-users"></i>
                 <p>Organizations</p>

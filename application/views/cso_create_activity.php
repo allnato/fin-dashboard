@@ -74,7 +74,7 @@
         <!-- Sidebar Navigation! -->
         <div class="sidebar-wrapper">
           <ul class="nav">
-            <li>
+            <li class="active">
               <a href="<?php echo site_url('admin/create-activity'); ?>">
                 <i class="fa fa-file-text"></i>
                 <p>New Activity</p>

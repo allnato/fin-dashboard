@@ -72,7 +72,7 @@
               </li>
             <?php endif ?>
             <li class="divider"></li>
-            <li>
+            <li class="active">
               <a href="<?php echo site_url('admin/org-activity-list'); ?>">
                 <i class="fa fa-list"></i>
                 <p>ORG Activities</p>

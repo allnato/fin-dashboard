@@ -61,7 +61,7 @@
                 <p>New Activity</p>
               </a>
             </li>
-            <li>
+            <li class="active">
               <a href="<?php echo site_url('admin/activity-list'); ?>">
                 <i class="fa fa-list"></i>
                 <p>CSO Activities</p>

@@ -79,7 +79,7 @@
                 <p>ORG Activities</p>
               </a>
             </li>
-            <li>
+            <li class="active">
               <a href="<?php echo site_url('admin/archive-list'); ?>">
                 <i class="fa fa-archive"></i>
                 <p>Approved</p>
