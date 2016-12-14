@@ -69,7 +69,7 @@ class OrgController extends CI_Controller{
 
 
   /**
-   * Loads the activity_page so users can VIEW the specified acitvity.
+   * Loads the activity_page so users can VIEW the specified activity.
    * @param  String $initials  Organization initials
    * @param  Integer $id       activity_page ID
    * @SuppressWarnings(camelCase)
@@ -93,6 +93,33 @@ class OrgController extends CI_Controller{
     $this->load->view('org_activity_page', $activity);
   }
 
+  /**
+   * Loads the org_billing_list so users can VIEW their billing statements.
+   * @SuppressWarnings(camelCase)
+   */
+  public function billing_list(){
+    $this->checkSession();
+    $this->load->model('BillingModel');
+      
+    $billingData['billingList'] = $this->BillingModel->getOrgBillings($this->session->userdata('orgID'));
+      
+    $this->load->view('org_billing_list', $billingData);
+  }
+
+  /**
+   * Loads the billing_page so users can VIEW the specified billing activity.
+   * @param  String $orgInitials  organization initials
+   * @param  Integer $billingID   billing statement ID
+   * @SuppressWarnings(camelCase)
+   */
+  public function billing_page($orgInitials, $billingID){
+    $this->checkSession();
+    $this->load->model('BillingModel');
+    
+    if(!$billings['billingData'] = $this->BillingModel->getBillingData($billingID, $orgInitials)){
+      show_404();
+    }
+  }
 
   /**
    * Loads the org_profile so users can VIEW the info of their org

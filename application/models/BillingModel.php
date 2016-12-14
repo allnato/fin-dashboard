@@ -25,6 +25,18 @@ class BillingModel extends CI_Model{
      }
      return $billings;
    }
+    
+   public function getOrgBillings($orgID){
+     $this->db->where('orgID', $orgID);
+     $query = $this->db->get('billing');
+
+     $billings = array();
+     foreach ($query->result_array() as $row) {
+      array_push($billings, $row);
+     }
+       
+     return $billings;
+   }
 
    public function getBillingData($billingID, $orgInitials){
      // Check if the page is created by the ORG.
