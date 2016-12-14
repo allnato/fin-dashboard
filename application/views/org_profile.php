@@ -81,6 +81,12 @@
 								<p>Org Profile</p>
 							</a>
 						</li>
+            <li >
+							<a href="<?= site_url('org/billing-list')?>">
+								<i class="fa fa-list"></i>
+								<p>Billing Statements</p>
+							</a>
+						</li>
 					</ul>
 				</div>
 
