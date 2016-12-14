@@ -122,12 +122,13 @@
                     <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
                 foreach($notifList as $row) {
                 
+                $notifText = $row['notifType'];
                 $timestamp = date("M d, Y g:i A", strtotime($row['timedate']));
                 
-                if($row['notifType'] == 'Remark'){
+                if($notifText == 'Remark'){
                     $notifText = 'New activity remark';
                 }
-                elseif($row['notifType'] == 'Billing Statement'){
+                elseif($notifText == 'Billing Statement'){
                     $notifText = 'New billing statement';
                 }
                     
