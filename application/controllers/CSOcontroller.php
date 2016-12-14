@@ -267,6 +267,7 @@ class CSOController extends CI_Controller{
       $orgID = $this->OrgModel->getOrgIDbyInitial($orgAcronym);
       $this->load->model('NotifModel');
       $this->NotifModel->createNewNotif('org-activity approve',$approveData['activityID'], $orgID);
+      $this->NotifModel->createNewNotif('exec-activity approve',$approveData['activityID'], $orgID);
 
     }
 
