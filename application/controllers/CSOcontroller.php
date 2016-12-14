@@ -31,6 +31,7 @@ class CSOController extends CI_Controller{
     $this->load->model('ActivityModel');
     // Retrieves an array of activities that belongs to the org with the provided orgID
     $activities['activityList'] = $this->ActivityModel->getOrgActivities($this->session->userdata('orgID'));
+
     $this->load->view('cso_activity_list.php', $activities);
   }
 
@@ -49,7 +50,7 @@ class CSOController extends CI_Controller{
       // Show 404 :-(
       show_404();
     }
-    if(!$activity['remarksData'] = $this->CSOmodel->getRemarksData($activity['activityData']['activityID'])){
+    if(!$activity['remarksData'] = $this->CSOmodel->getRemarksData($pageID)){
       // Show 404 :-(
       show_404();
     }
