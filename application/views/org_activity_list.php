@@ -124,10 +124,7 @@
                 
                 $timestamp = date("M d, Y g:i A", strtotime($row['timedate']));
                 
-                if($row['notifType'] == 'Activity'){
-                    $notifText = 'New activity log';
-                }
-                elseif($row['notifType'] == 'Remark'){
+                if($row['notifType'] == 'Remark'){
                     $notifText = 'New activity remark';
                 }
                 elseif($row['notifType'] == 'Billing Statement'){
@@ -136,7 +133,7 @@
                     
                 echo <<< EOT
                 <li id={$row['notifID']}>
-                    <a href="#">{$timestamp} - {$notifText}</a>
+                    <a href="#"><b>{$notifText}</b> - <i>{$timestamp}</i></a>
                 </li>
 EOT;
 };
