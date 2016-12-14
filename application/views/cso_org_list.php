@@ -145,16 +145,10 @@
           <div class="container-fluid">
             <!-- Navbar UX -->
             <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
             <!-- Navbar Title -->
-						</button>
-              <a class="navbar-brand nav-title" href="">
+              <p class="navbar-brand nav-title">
                 <i class="fa fa-users"></i> Organization List
-              </a>
+              </p>
             </div>
 
             <div class="collapse navbar-collapse">

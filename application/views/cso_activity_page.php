@@ -104,16 +104,9 @@
           <div class="container-fluid">
             <!-- Navbar UX -->
             <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-            <!-- Navbar Title -->
-						</button>
-              <a class="navbar-brand nav-title" href="#">
-                <i class="fa fa-list"></i> Activity List
-              </a>
+              <p class="navbar-brand nav-title">
+                <i class="fa fa-list"></i> Activity
+              </p>
             </div>
 
             <div class="collapse navbar-collapse">
