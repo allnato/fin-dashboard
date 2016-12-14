@@ -119,12 +119,42 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle btn btn-white" data-toggle="dropdown">
                     <i class="fa fa-bell"></i>
-                    <span class="notification">2</span>
+                    <?php if($notifCount != 0): ?>
+                        <span class='notification'><?= $notifCount ?></span>;
+                    <?php endif; ?>
                     <p class="hidden-lg hidden-md">Notifications</p>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Revision Issue at Activity.</a></li>
-                    <li><a href="#">Your Activity has been approved!</a></li>
+                    <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
+                    if(!empty($notifList)){
+                      foreach($notifList as $row) {
+
+                        $timestamp = date("M d, Y g:i A", strtotime($row['timedate']));
+
+                        if($row['notifType'] == 'org-billing create'){
+                          $notifText = 'New Billing Statement';
+                        }
+                        elseif($row['notifType'] == 'org-activity remark'){
+                          $notifText = 'An Activity has been remarked';
+                        }
+                        elseif($row['notifType'] == 'org-activity approve'){
+                          $notifText = 'An Activity has been approved';
+                        }
+                        elseif ($row['notifType'] == 'org-activity decline') {
+                          $notifText = 'An Activity has been declined';
+                        }
+
+                        echo <<< EOT
+                        <li id={$row['notifID']}>
+                        <a href="#"><strong>{$notifText}</strong> - {$timestamp}</a>
+                        </li>
+EOT;
+                      }
+                    } else {
+                      echo "<li><a>Empty</a></li>";
+                    }
+                ?>
+
                   </ul>
                 </li>
 

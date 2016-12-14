@@ -191,7 +191,7 @@
                                     </span>
                                     <label for="orgAcronym" class="control-label">Organization</label>
                                     <select class="form-control" name="orgAcronym" id="orgAcronym" >
-                                      <option  selected value="-1">Please select an Org</option>
+                                      <option  selected disabled value="-1">Please select an Org</option>
                                       <?php
                                         foreach ($initials as $row) {
                                           $orgData = $row['acronym'];
