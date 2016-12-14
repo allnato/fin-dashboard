@@ -115,12 +115,33 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle btn btn-white" data-toggle="dropdown">
                     <i class="fa fa-bell"></i>
-                    <span class="notification">2</span>
+                        <span class="notification"><?= $notifCount ?></span>
                     <p class="hidden-lg hidden-md">Notifications</p>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Revision Issue at Activity.</a></li>
-                    <li><a href="#">Your Activity has been approved!</a></li>
+                    <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
+                foreach($notifList as $row) {
+                
+                $timestamp = date("M d, Y g:i A", strtotime($row['timedate']));
+                
+                if($row['notifType'] == 'Activity'){
+                    $notifText = 'New activity log';
+                }
+                elseif($row['notifType'] == 'Remark'){
+                    $notifText = 'New activity remark';
+                }
+                elseif($row['notifType'] == 'Billing Statement'){
+                    $notifText = 'New billing statement';
+                }
+                    
+                echo <<< EOT
+                <li id={$row['notifID']}>
+                    <a href="#">{$timestamp} - {$notifText}</a>
+                </li>
+EOT;
+};
+                ?>
+                    
                   </ul>
                 </li>
 
@@ -224,7 +245,7 @@ EOT;
 							<ul>
 								<li>
 									<a href="#">
-                      View Acitivities
+                      View Activities
                     </a>
 								</li>
 							</ul>
