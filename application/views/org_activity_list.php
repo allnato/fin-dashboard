@@ -72,13 +72,7 @@
 								<p>View Activities</p>
 							</a>
 						</li>
-                        <li>
-				            <a href="<?= site_url('org/billing-list')?>">
-				            <i class="fa fa-list"></i>
-				            <p>View Billing Statements</p>
-				            </a>
-				        </li>
-						<li>
+						<li >
 							<a href="<?= site_url('org/profile')?>">
 								<i class="fa fa-users"></i>
 								<p>Org Profile</p>
@@ -230,7 +224,7 @@ EOT;
 							<ul>
 								<li>
 									<a href="#">
-                      View Activities
+                      View Acitivities
                     </a>
 								</li>
 							</ul>
