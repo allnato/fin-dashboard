@@ -57,6 +57,21 @@
                 <p>CSO Activities</p>
               </a>
             </li>
+            <?php if($this->session->userdata('acronym') == 'CSO-E'): ?>
+              <li class="divider"></li>
+              <li>
+                <a href="<?php echo site_url('admin/new-billing'); ?>">
+                  <i class="fa fa-file-text"></i>
+                  <p>New Billing Statement</p>
+                </a>
+              </li>
+              <li>
+                <a href="<?php echo site_url('admin/billing-list'); ?>">
+                  <i class="fa fa-list"></i>
+                  <p>All Billing Statements</p>
+                </a>
+              </li>
+            <?php endif ?>
             <li class="divider"></li>
             <li>
               <a href="<?php echo site_url('admin/org-activity-list'); ?>">
@@ -70,7 +85,7 @@
                 <p>Approved</p>
               </a>
             </li>
-
+            <li class="divider"></li>
             <li>
               <a href="<?php echo site_url('admin/org-list'); ?>">
                 <i class="fa fa-users"></i>

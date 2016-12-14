@@ -27,7 +27,7 @@ class FinController extends CI_Controller{
   public function login(){
     // Check if sesssion exists.
     if($this->checkSession()){
-      if($this->session->userdata('acronym') == 'CSO'){
+      if($this->session->userdata('acronym') == 'CSO' || $this->session->userdata('acronym') == 'CSO-E'){
           redirect(site_url('admin'));
       }
       else {
@@ -50,13 +50,7 @@ class FinController extends CI_Controller{
     }
     $this->load->view('login');
   }
-  /**
-   * Loads the CSO Admin Panel
-   * @return [type] [description]
-   */
-  public function admin(){
-    echo "Admin";
-  }
+
 
   /**
    * Checks if a Session Exists.
@@ -93,6 +87,15 @@ class FinController extends CI_Controller{
           redirect(site_url('admin'));
       }
       redirect(site_url('org'));
+    } else {
+      if($loginData['email'] == 'cso-exec@dlsu.edu.ph' && $loginData['password'] == 'exec'){
+        $loginData['email'] = 'cso@dlsu.edu.ph';
+        $loginData['password'] = 'cso';
+        $resultData = $this->OrgModel->checkCredentials($loginData);
+        $resultData['acronym'] = 'CSO-E';
+        $this->session->set_userdata($resultData);
+        redirect(site_url('admin'));
+      }
     }
 
     // If credentials is false, redirect to login page.

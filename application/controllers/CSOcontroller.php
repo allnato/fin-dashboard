@@ -268,6 +268,63 @@ class CSOController extends CI_Controller{
     redirect(site_url('admin/org-activity-list'));
   }
 
+  public function billing_list(){
+    $this->load->model('BillingModel');
+
+    $billingData['billingList'] = $this->BillingModel->getAllBillings();
+    $this->load->view('cso_billing_list', $billingData);
+  }
+
+  public function new_billing(){
+    $this->checkSession();
+
+    $this->load->model('OrgModel');
+    $orgData['initials'] = $this->OrgModel->getAllOrgInitials();
+
+    $this->load->view('cso_create_bill', $orgData);
+  }
+
+  public function add_billing(){
+    $this->checkSession();
+    $billingData = $this->input->post(NULL, TRUE);
+    $this->load->model('BillingModel');
+
+    $this->session->set_flashdata('createBilling', 'false');
+    if($this->BillingModel->createNewBilling($billingData)){
+      $this->session->set_flashdata('createBilling', 'true');
+    }
+
+    redirect(site_url('admin/new-billing'));
+  }
+
+  public function billing_page($orgInitials, $billingID){
+    // Redirect to login if session does not exists.
+    $this->checkSession();
+    // Load ActitivityModel.php
+    $this->load->model('BillingModel');
+    // Check if page is created by the organization.
+    if(!$billings['billingData'] = $this->BillingModel->getBillingData($billingID, $orgInitials)){
+      // Show 404 :-(
+      show_404();
+    }
+
+    $billings['orgInitials'] = $orgInitials;
+    $this->load->view('cso_billing_page', $billings);
+  }
+
+  public function edit_billing($orgInitials, $billingID ){
+    $this->load->model('BillingModel');
+    $billingData = $this->input->post(NULL, TRUE);
+
+    $this->session->set_flashdata('editBilling', 'false');
+    if($this->BillingModel->updateBilling($billingID, $billingData)){
+      $this->session->set_flashdata('editBilling', 'true');
+    }
+
+    redirect(site_url('admin/billing-page/'.$orgInitials."/".$billingID));
+
+  }
+
 
 
 }

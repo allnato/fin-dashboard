@@ -124,4 +124,29 @@ class OrgController extends CI_Controller{
     redirect(site_url('login'));
   }
 
+  public function billing_list(){
+    // Redirect to login if session does not exists.
+    $this->checkSession();
+    $orgID = $this->session->userdata('orgID');
+    $this->load->model('BillingModel');
+
+    $billingData['billingList'] = $this->BillingModel->getOrgBillings($orgID);
+    $this->load->view('org_billing_list', $billingData);
+  }
+
+  public function billing_page($billingID){
+    // Redirect to login if session does not exists.
+    $this->checkSession();
+    $orgInitials = $this->session->userdata('acronym');
+
+    $this->load->model('BillingModel');
+    if(!$billings['billingData'] = $this->BillingModel->getBillingData($billingID, $orgInitials)){
+      // Show 404 :-(
+      show_404();
+    }
+
+    $billings['orgInitials'] = $orgInitials;
+    $this->load->view('org_billing_page', $billings);
+  }
+
 }

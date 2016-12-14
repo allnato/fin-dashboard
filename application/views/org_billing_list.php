@@ -31,70 +31,46 @@
 
   <body>
     <div class="wrapper">
-      <!-- The Sidebar  -->
       <div class="sidebar" data-color="green" data-image="">
 
-        <!-- LOGO Image and Name -->
-        <div class="logo text-center">
-          <img src="<?php echo base_url(); ?>assets/img/cso_logo.png" alt="" width="150px" class=" text-center">
-          <a href="#" class="simple-text logo-name">
-  					CSO
-  				</a>
-        </div>
-        <!-- Sidebar Navigation! -->
-        <div class="sidebar-wrapper">
-          <ul class="nav">
-            <li>
-              <a href="<?php echo site_url('admin/create-activity'); ?>">
-                <i class="fa fa-file-text"></i>
-                <p>New Activity</p>
-              </a>
-            </li>
-            <li>
-              <a href="<?php echo site_url('admin/activity-list'); ?>">
-                <i class="fa fa-list"></i>
-                <p>CSO Activities</p>
-              </a>
-            </li>
-            <?php if($this->session->userdata('acronym') == 'CSO-E'): ?>
-              <li class="divider"></li>
-              <li>
-                <a href="<?php echo site_url('admin/new-billing'); ?>">
-                  <i class="fa fa-file-text"></i>
-                  <p>New Billing Statement</p>
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo site_url('admin/billing-list'); ?>">
-                  <i class="fa fa-list"></i>
-                  <p>All Billing Statements</p>
-                </a>
-              </li>
-            <?php endif ?>
-            <li class="divider"></li>
-            <li class="active">
-              <a href="<?php echo site_url('admin/org-activity-list'); ?>">
-                <i class="fa fa-list"></i>
-                <p>ORG Activities</p>
-              </a>
-            </li>
-            <li>
-              <a href="<?php echo site_url('admin/archive-list'); ?>">
-                <i class="fa fa-archive"></i>
-                <p>Approved</p>
-              </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <a href="<?php echo site_url('admin/org-list'); ?>">
-                <i class="fa fa-users"></i>
-                <p>Organizations</p>
-              </a>
-            </li>
-          </ul>
-        </div>
+				<div class="logo text-center">
+					<!-- Logo image test -->
+					<img src="<?php echo base_url();?>assets/img/logos/<?= $this->session->userdata('acronym') ?>.png" alt="" width="150px" class=" text-center">
+					<a href="#" class="simple-text">
+					<?= $this->session->userdata('acronym') ?>
+					</a>
+				</div>
 
-      </div>
+				<div class="sidebar-wrapper">
+					<ul class="nav">
+						<li>
+							<a href="<?= site_url('org/new-activity')?>">
+								<i class="fa fa-file-text"></i>
+								<p>New Activity</p>
+							</a>
+						</li>
+						<li>
+							<a href="<?= site_url('org/activity-list')?>">
+								<i class="fa fa-list"></i>
+								<p>View Activities</p>
+							</a>
+						</li>
+						<li >
+							<a href="<?= site_url('org/profile')?>">
+								<i class="fa fa-users"></i>
+								<p>Org Profile</p>
+							</a>
+						</li>
+						<li class="active" >
+							<a href="<?= site_url('org/billing-list')?>">
+								<i class="fa fa-list"></i>
+								<p>Billing Statements</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+			</div>
 
       <!-- The Main Panel -->
       <div class="main-panel">
@@ -153,13 +129,13 @@
               <!-- Sort Dropdown -->
               <div class="dropdown" data-toggle="tooltip" data-placement="top" title="Sort by Field">
                 <a href="#" class="btn btn-white dropdown-toggle sort-toggle" data-toggle="dropdown" id="sortFieldTxt" >
-                  Date
+                  Stat
                 </a>
                 <ul class="dropdown-menu">
                   <li><a href="#" class="sortFieldBtn" data-field="list-head">ORG</a></li>
-                  <li><a href="#" class="sortFieldBtn" data-field="list-prs">PRS</a></li>
                   <li><a href="#" class="sortFieldBtn" data-field="list-body">Title</a></li>
                   <li><a href="#" class="sortFieldBtn" data-field="list-date">Date</a></li>
+                  <li><a href="#" class="sortFieldBtn" data-field="list-status">Stat</a></li>
                 </ul>
               </div>
               <!-- Sort Asc/Des -->
@@ -176,46 +152,31 @@
             data-show-header="false">
               <thead>
                 <tr>
-                  <th data-field="list-head" data-align="left" data-sortable="true"></th>
-                  <th data-field="list-prs" data-sortable="true"></th>
                   <th data-field="list-body" data-sortable="true"></th>
                   <th data-field="list-date" data-align="right" data-sortable="true"></th>
-                  <th data-field="list-status" data-align="center"></th>
+                  <th data-field="list-status" data-align="center" data-sortable="true"></th>
                 </tr>
               </thead>
               <tbody>
                 <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
 
-                  foreach($activityList as $row) {
-                    $letter = substr($row['acronym'], 0, 1);
-                    $buttonType = "warning";
-                    if($row['status'] == "Pending" ) {
+                  foreach($billingList as $row) {
+                    $letter = substr($row['orgAcronym'], 0, 1);
+                    //$dos = date("M d, Y g:i A", strtotime($row['dateSubmitted']));
+                    $buttonType = "success";
+                    if($row['status'] == "Unsettled" ){
                       $buttonType = "warning";
-                    }
-                    elseif($row['status'] == "Declined") {
-                      $buttonType = "danger";
-                    }
-                    elseif($row['status'] == "Approved") {
-                      $buttonType = "success";
                     }
 
                     echo <<< EOT
 
-                    <tr id={$row['activityID']}>
-                      <td class="list-head">
-                          <div class="logo-circle hidden-sm hidden-xs">{$letter}</div>
-                          <div class="org-acro">{$row['acronym']}</div>
-                      </td>
-                      <td class="list-prs">
-                        <span style="font-style: italic">PRS: </span>
-                        <span style="font-weight: bold">{$row['PRSno']}</span>
-                      </td>
+                    <tr id={$row['billingID']}>
                       <td class="list-body">
-                        <span class="list-title">{$row['title']}</span>
-                        <span class="list-desc">{$row['description']}</span>
+                        <span class="list-title">{$row['activityTitle']}</span>
                       </td>
                       <td class="list-date">
-                        {$row['dateSubmitted']}
+                        Date Submitted:
+                        <span class="dos">{$row['dateSubmitted']}</span>
                       </td>
                       <td class="list-status">
                         <span class="label label-$buttonType">{$row['status']}</span>
@@ -235,7 +196,7 @@ EOT;
 
     <!-- Sort Inputs -->
     <input type="text" value="desc" id="sortOrder" style="display: none">
-    <input type="text" value="list-date" id="sortField" style="display: none">
+    <input type="text" value="list-status" id="sortField" style="display: none">
   </body>
   <!--   Core JS Files   -->
   <script src="<?php echo base_url(); ?>assets/js/jquery.js" type="text/javascript"></script>
@@ -284,85 +245,9 @@ EOT;
       initials = $(field).find('.org-acro').text().trim();
       console.log(pageID);
       console.log(initials);
-      window.location.href = "<?= site_url('admin/activity-page/')  ?>" + initials + "/" + pageID;
+      window.location.href = "<?= site_url('org/billing-page/')  ?>"  + pageID;
 
 		});
-  </script>
-
-  <script type="text/javascript">
-
-		<?php
-			$flash = $this->session->flashdata('remarkActivity');
-			if($flash == 'true'):
-		?>
-		$.notify({
-			icon: "check",
-			message: "Remark Activity - Successfully Remarked the activity",
-		  },{
-				type: 'success',
-				timer: 1000,
-				placement: {
-						from: 'top',
-						align: 'center'
-				},
-				allow_dismiss: true,
-				newest_on_top: true,
-				mouse_over: 'pause'
-		});
-		<?php elseif($flash == 'false'): ?>
-		$.notify({
-			icon: "warning",
-			message: "Remark Activity - Error in issuing a remark.",
-		  },{
-				type: 'danger',
-				timer: 1000,
-				placement: {
-						from: 'top',
-						align: 'center'
-				},
-				allow_dismiss: true,
-				newest_on_top: true,
-				mouse_over: 'pause'
-		});
-		<?php endif; ?>
-	</script>
-
-
-  <script type="text/javascript">
-    <?php
-      $flash = $this->session->flashdata('updateActivity');
-      if($flash == 'true'):
-    ?>
-      $.notify({
-        icon: "check",
-        message: "Update Activity - Successfully updated an Activity",
-        },{
-          type: 'success',
-          timer: 4000,
-          placement: {
-              from: 'top',
-              align: 'center'
-          },
-          allow_dismiss: true,
-          newest_on_top: true,
-          mouse_over: 'pause'
-      });
-    <?php elseif($flash == 'false'): ?>
-      $.notify({
-        icon: "warning",
-        message: "Update Activity - Error in updating an activity",
-        },{
-          type: 'danger',
-          timer: 4000,
-          placement: {
-              from: 'top',
-              align: 'center'
-          },
-          allow_dismiss: true,
-          newest_on_top: true,
-          mouse_over: 'pause'
-      });
-    <?php endif; ?>
   </script>
 
 </html>

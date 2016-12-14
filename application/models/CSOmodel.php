@@ -18,7 +18,7 @@ class CSOmodel extends CI_Model{
 
    /**
     * Gets all the data of an organization
-    * @param string The initlas of the organization.
+    * @param string The initials of the organization.
     * @return mixed - returns false if org does not exists, otherwise return the list of org data.
     */
    public function getOrgData($initials){
@@ -102,10 +102,14 @@ class CSOmodel extends CI_Model{
    }
 
    public function deleteOrganization($orgData) {
+     $this->load->model('OrgModel');
+     $fundID = $this->OrgModel->getFundID($orgData['orgID']);
 
      $this->db->where('orgID', $orgData['orgID']);
      $this->db->delete('organization');
-
+     
+     $this->db->where('fundID', $fundID[0]['fundID']);
+     $this->db->delete('fund');
    }
 
    public function updateActivityStatus($activityData, $acronym) {

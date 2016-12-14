@@ -35,7 +35,7 @@ tr{
   text-overflow: ellipsis;
 }*/
 
-.list-body, .list-date, .list-prs{
+.list-body, .list-date, .list-prs, .list-amount, .list-payto{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

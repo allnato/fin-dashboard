@@ -62,6 +62,8 @@ $route['org/new-activity'] = 'ORGController/new_activity';
 $route['org/activity-list'] = 'ORGController/activity_list';
 $route['org/activity-page/(:num)'] = 'ORGController/activity_page/$1';
 $route['org/profile'] = 'ORGController/profile';
+$route['org/billing-list'] = 'ORGController/billing_list';
+$route['org/billing-page/(:num)'] = 'ORGController/billing_page/$1';
 
 $route['org/submit'] = 'ORGController/submit_activity';
 
@@ -83,3 +85,9 @@ $route['admin/edit-activity-process/(:any)/(:num)'] = 'CSOController/edit_activi
 $route['admin/approve'] = 'CSOController/approve_activity';
 $route['admin/decline'] = 'CSOController/decline_activity';
 $route['admin/delete'] = 'CSOController/deleteOrganization';
+
+$route['admin/billing-list'] = 'CSOController/billing_list';
+$route['admin/new-billing'] = 'CSOController/new_billing';
+$route['admin/add-billing'] = 'CSOController/add_billing';
+$route['admin/billing-page/(:any)/(:num)'] = 'CSOController/billing_page/$1/$2';
+$route['admin/edit-billing/(:any)/(:num)'] = 'CSOController/edit_billing/$1/$2';
