@@ -110,7 +110,22 @@ class NotifModel extends CI_Model{
      return $this->db->count_all_results();
    }
 
-
+   public function getNotificationData($notifID){
+      $this->db->where('notifID', $notifID);
+      $query = $this->db->get('notification');
+       
+      return $query->result_array();
+   }
+    
+   public function setNotificationStatus($notifID){
+       $notifData = $this->getNotificationData($notifID);
+       
+       $notifData['status'] = 'seen';
+       
+       $this->db->trans_start();
+       $this->db->update('notification', $notifData);
+       $this->db->trans_complete();
+   }
 
 
 }

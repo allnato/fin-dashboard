@@ -58,6 +58,7 @@ $route['verifyLogin'] = 'FinController/verifyLogin';
 $route['logout'] = 'FinController/logout';
 
 $route['org'] = 'ORGController';
+$route['org/update-notification'] = 'ORGController/update_notification';
 $route['org/new-activity'] = 'ORGController/new_activity';
 $route['org/activity-list'] = 'ORGController/activity_list';
 $route['org/activity-page/(:num)'] = 'ORGController/activity_page/$1';
@@ -69,6 +70,7 @@ $route['org/submit'] = 'ORGController/submit_activity';
 
 
 $route['admin'] = 'CSOController';
+$route['admin/update-notification'] = 'CSOController/update_notification';
 $route['admin/activity-list'] = 'CSOController/activity_list';
 $route['admin/activity-page/(:any)/(:num)'] = 'CSOController/activity_page/$1/$2';
 $route['admin/archive-list'] = 'CSOController/archive_list';

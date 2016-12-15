@@ -191,5 +191,14 @@ class OrgController extends CI_Controller{
     $billings['notifCount'] = $this->NotifModel->getUnseenNotificationCount($this->session->userdata('orgID'));
     $this->load->view('org_billing_page', $billings);
   }
+    
+  public function update_notification($notifID){
+      $this->checkSession();
+      $this->load->model('NotifModel');
+      $this->NotifModel->setNotificationStatus($notifID);
+
+      return;
+  }
+
 
 }
