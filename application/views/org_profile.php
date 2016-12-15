@@ -145,7 +145,7 @@
                         }
 
                         echo <<< EOT
-                        <li id={$row['notifID']}>
+                        <li id={$row['typeID']} class={$row['notifType']} name={$row['notifID']}>
                         <a href="#"><strong>{$notifText}</strong> - {$timestamp}</a>
                         </li>
 EOT;
@@ -375,5 +375,20 @@ EOT;
 			window.location.href = "<?= site_url('org/activity-page/')  ?>" + pageID;
 		});
 	</script>
+    
+    <script type="text/javascript">
+        var typeID = '';
+        var notifType = '';
+        
+        $('.org-billing').on('click', function() {
+            typeID = $('.org-billing').attr('id');
+            window.location.href = "<?= site_url('org/billing-page/')  ?>" + typeID;
+		});
+        
+        $('.org-activity').on('click', function() {
+            typeID = $('.org-activity').attr('id');
+            window.location.href = "<?= site_url('org/activity-page/')  ?>" + typeID;
+		});
+    </script>
 
 </html>
