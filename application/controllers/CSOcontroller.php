@@ -32,6 +32,21 @@ class CSOController extends CI_Controller{
     // Retrieves an array of activities that belongs to the org with the provided orgID
     $activities['activityList'] = $this->ActivityModel->getOrgActivities($this->session->userdata('orgID'));
 
+
+    if($this->session->userdata('acronym') == 'CSO'){
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $activities['notifList'] = $this->NotifModel->getCSONotification();
+      // number of unseen notifications
+      $activities['notifCount'] = $this->NotifModel->getCSOcountNotification();
+    } elseif ($this->session->userdata('acronym') == 'CSO-E') {
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $activities['notifList'] = $this->NotifModel->getExecNotification();
+      // number of unseen notifications
+      $activities['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
+
     $this->load->view('cso_activity_list.php', $activities);
   }
 
@@ -55,6 +70,21 @@ class CSOController extends CI_Controller{
       show_404();
     }
     $activity['orgInitials'] = $orgInitials;
+
+    if($this->session->userdata('acronym') == 'CSO'){
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $activity['notifList'] = $this->NotifModel->getCSONotification();
+      // number of unseen notifications
+      $activity['notifCount'] = $this->NotifModel->getCSOcountNotification();
+    } elseif ($this->session->userdata('acronym') == 'CSO-E') {
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $activity['notifList'] = $this->NotifModel->getExecNotification();
+      // number of unseen notifications
+      $activity['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
+
     $this->load->view('cso_activity_page', $activity);
   }
 
@@ -71,6 +101,20 @@ class CSOController extends CI_Controller{
     // Retrieves all the activities of all orgs.
     $activities['activityList'] = $this->ActivityModel->getAllApproved();
 
+    if($this->session->userdata('acronym') == 'CSO'){
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $activities['notifList'] = $this->NotifModel->getCSONotification();
+      // number of unseen notifications
+      $activities['notifCount'] = $this->NotifModel->getCSOcountNotification();
+    } elseif ($this->session->userdata('acronym') == 'CSO-E') {
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $activities['notifList'] = $this->NotifModel->getExecNotification();
+      // number of unseen notifications
+      $activities['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
+
     $this->load->view('cso_archive_list.php', $activities);
   }
 
@@ -81,7 +125,24 @@ class CSOController extends CI_Controller{
    */
   public function create_activity() {
     $this->checkSession();
-    $this->load->view('cso_create_activity.php');
+
+
+    if($this->session->userdata('acronym') == 'CSO'){
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $activities['notifList'] = $this->NotifModel->getCSONotification();
+      // number of unseen notifications
+      $activities['notifCount'] = $this->NotifModel->getCSOcountNotification();
+    } elseif ($this->session->userdata('acronym') == 'CSO-E') {
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $activities['notifList'] = $this->NotifModel->getExecNotification();
+      // number of unseen notifications
+      $activities['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
+
+
+    $this->load->view('cso_create_activity.php', $activities);
   }
 
   /**
@@ -123,6 +184,21 @@ class CSOController extends CI_Controller{
     // Retrieves all the activities of all orgs.
     $activities['activityList'] = $this->ActivityModel->getAllActivities();
 
+    if($this->session->userdata('acronym') == 'CSO'){
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $activities['notifList'] = $this->NotifModel->getCSONotification();
+      // number of unseen notifications
+      $activities['notifCount'] = $this->NotifModel->getCSOcountNotification();
+    } elseif ($this->session->userdata('acronym') == 'CSO-E') {
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $activities['notifList'] = $this->NotifModel->getExecNotification();
+      // number of unseen notifications
+      $activities['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
+
+
     $this->load->view('cso_org_activity_list.php', $activities);
   }
 
@@ -135,6 +211,22 @@ class CSOController extends CI_Controller{
     $this->checkSession();
     $this->load->model('CSOmodel');
     $data = $this->CSOmodel->getAllOrgInitials();
+
+    if($this->session->userdata('acronym') == 'CSO'){
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $data['notifList'] = $this->NotifModel->getCSONotification();
+      // number of unseen notifications
+      $data['notifCount'] = $this->NotifModel->getCSOcountNotification();
+    } elseif ($this->session->userdata('acronym') == 'CSO-E') {
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $data['notifList'] = $this->NotifModel->getExecNotification();
+      // number of unseen notifications
+      $data['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
+
+
     $this->load->view('cso_org_list.php', $data);
   }
 
@@ -182,6 +274,20 @@ class CSOController extends CI_Controller{
       'orgActivities' => $orgActivities,
       'orgFundData' => $orgFundData,
     );
+
+    if($this->session->userdata('acronym') == 'CSO'){
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $data['notifList'] = $this->NotifModel->getCSONotification();
+      // number of unseen notifications
+      $data['notifCount'] = $this->NotifModel->getCSOcountNotification();
+    } elseif ($this->session->userdata('acronym') == 'CSO-E') {
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $data['notifList'] = $this->NotifModel->getExecNotification();
+      // number of unseen notifications
+      $data['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
 
     $this->load->view('cso_org_profile.php', $data);
   }
@@ -295,6 +401,22 @@ class CSOController extends CI_Controller{
     $this->load->model('BillingModel');
 
     $billingData['billingList'] = $this->BillingModel->getAllBillings();
+
+    if($this->session->userdata('acronym') == 'CSO'){
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $billingData['notifList'] = $this->NotifModel->getCSONotification();
+      // number of unseen notifications
+      $billingData['notifCount'] = $this->NotifModel->getCSOcountNotification();
+    } elseif ($this->session->userdata('acronym') == 'CSO-E') {
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $billingData['notifList'] = $this->NotifModel->getExecNotification();
+      // number of unseen notifications
+      $billingData['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
+
+
     $this->load->view('cso_billing_list', $billingData);
   }
 
@@ -303,6 +425,21 @@ class CSOController extends CI_Controller{
 
     $this->load->model('OrgModel');
     $orgData['initials'] = $this->OrgModel->getAllOrgInitials();
+
+    if($this->session->userdata('acronym') == 'CSO'){
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $orgData['notifList'] = $this->NotifModel->getCSONotification();
+      // number of unseen notifications
+      $orgData['notifCount'] = $this->NotifModel->getCSOcountNotification();
+    } elseif ($this->session->userdata('acronym') == 'CSO-E') {
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $orgData['notifList'] = $this->NotifModel->getExecNotification();
+      // number of unseen notifications
+      $orgData['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
+
 
     $this->load->view('cso_create_bill', $orgData);
   }
@@ -339,6 +476,22 @@ class CSOController extends CI_Controller{
     }
 
     $billings['orgInitials'] = $orgInitials;
+
+    if($this->session->userdata('acronym') == 'CSO'){
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $billings['notifList'] = $this->NotifModel->getCSONotification();
+      // number of unseen notifications
+      $billings['notifCount'] = $this->NotifModel->getCSOcountNotification();
+    } elseif ($this->session->userdata('acronym') == 'CSO-E') {
+      $this->load->model('NotifModel');
+      // list of unseen notifications
+      $billings['notifList'] = $this->NotifModel->getExecNotification();
+      // number of unseen notifications
+      $billings['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
+
+
     $this->load->view('cso_billing_page', $billings);
   }
 

@@ -63,6 +63,54 @@ class NotifModel extends CI_Model{
    return $notifications;
    }
 
+   public function getCSONotification(){
+     $this->db->where('notifType', 'cso-activity create');
+     $this->db->where('status', 'unseen');
+     $this->db->order_by('timedate', 'DESC');
+     $this->db->limit(8);
+
+     $query = $this->db->get('notification');
+     $notifications = array();
+     foreach ($query->result_array() as $row) {
+      array_push($notifications, $row);
+     }
+     return $notifications;
+   }
+
+   public function getCSOcountNotification(){
+     $this->db->from('notification');
+     $this->db->where('notifType', 'cso-activity create');
+     $this->db->where('status', 'unseen');
+
+
+     return $this->db->count_all_results();
+   }
+
+
+   public function getExecNotification(){
+     $this->db->where('notifType', 'exec-activity approve');
+     $this->db->where('status', 'unseen');
+     $this->db->order_by('timedate', 'DESC');
+     $this->db->limit(8);
+
+     $query = $this->db->get('notification');
+     $notifications = array();
+     foreach ($query->result_array() as $row) {
+      array_push($notifications, $row);
+     }
+     return $notifications;
+   }
+
+   public function getExecCountNotification(){
+     $this->db->from('notification');
+     $this->db->where('notifType', 'exec-activity approve');
+     $this->db->where('status', 'unseen');
+
+
+     return $this->db->count_all_results();
+   }
+
+
 
 
 }

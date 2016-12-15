@@ -134,15 +134,49 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle btn btn-white" data-toggle="dropdown">
                     <i class="fa fa-bell"></i>
-                    <span class="notification">2</span>
+										<?php if($notifCount != 0): ?>
+                        <span class='notification'><?= $notifCount ?></span>;
+										<?php endif; ?>
                     <p class="hidden-lg hidden-md">Notifications</p>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Revision Issue at Activity.</a></li>
-                    <li><a href="#">Your Activity has been approved!</a></li>
+                    <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
+										if(!empty($notifList)){
+                      $type = $this->session->userdata('acronym');
+
+                      if($type == 'CSO'){
+                        foreach($notifList as $row) {
+
+                          $timestamp = date("M d, Y g:i A", strtotime($row['timedate']));
+                          $notifText = "An Org submmited a Cash Advance or Direct Payments";
+
+                          echo <<< EOT
+                          <li id={$row['notifID']}>
+                          <a href="#"><strong>{$notifText}</strong> - {$timestamp}</a>
+                          </li>
+EOT;
+                        }
+
+                      }elseif ($type == 'CSO-E') {
+                        foreach($notifList as $row) {
+
+                          $timestamp = date("M d, Y g:i A", strtotime($row['timedate']));
+                          $notifText = "CSO Approved an Activity";
+
+                          echo <<< EOT
+                          <li id={$row['notifID']}>
+                          <a href="#"><strong>{$notifText}</strong> - {$timestamp}</a>
+                          </li>
+EOT;
+                        }
+                      }
+										}else {
+											echo "<li><a>Empty</a></li>";
+										}
+                    ?>
+
                   </ul>
                 </li>
-
                 <!-- Logout -->
                 <li>
                   <a href="<?php echo site_url('logout');?>" class="btn btn-white">
