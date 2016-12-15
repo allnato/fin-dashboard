@@ -47,6 +47,10 @@ class CSOController extends CI_Controller{
       $activities['notifCount'] = $this->NotifModel->getExecCountNotification();
     }
 
+    $this->load->model('OrgModel');
+    foreach ($activities['notifList'] as &$row) {
+      $row['orgID'] = $this->OrgModel->getInitialsbyOrgID($row['orgID']);
+    }
     $this->load->view('cso_activity_list.php', $activities);
   }
 
@@ -85,6 +89,11 @@ class CSOController extends CI_Controller{
       $activity['notifCount'] = $this->NotifModel->getExecCountNotification();
     }
 
+    $this->load->model('OrgModel');
+    foreach ($activity['notifList'] as &$row) {
+      $row['orgID'] = $this->OrgModel->getInitialsbyOrgID($row['orgID']);
+    }
+
     $this->load->view('cso_activity_page', $activity);
   }
 
@@ -115,6 +124,11 @@ class CSOController extends CI_Controller{
       $activities['notifCount'] = $this->NotifModel->getExecCountNotification();
     }
 
+    $this->load->model('OrgModel');
+    foreach ($activities['notifList'] as &$row) {
+      $row['orgID'] = $this->OrgModel->getInitialsbyOrgID($row['orgID']);
+    }
+
     $this->load->view('cso_archive_list.php', $activities);
   }
 
@@ -139,6 +153,11 @@ class CSOController extends CI_Controller{
       $activities['notifList'] = $this->NotifModel->getExecNotification();
       // number of unseen notifications
       $activities['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
+
+    $this->load->model('OrgModel');
+    foreach ($activities['notifList'] as &$row) {
+      $row['orgID'] = $this->OrgModel->getInitialsbyOrgID($row['orgID']);
     }
 
 
@@ -198,7 +217,10 @@ class CSOController extends CI_Controller{
       $activities['notifCount'] = $this->NotifModel->getExecCountNotification();
     }
 
-
+    $this->load->model('OrgModel');
+    foreach ($activities['notifList'] as &$row) {
+      $row['orgID'] = $this->OrgModel->getInitialsbyOrgID($row['orgID']);
+    }
     $this->load->view('cso_org_activity_list.php', $activities);
   }
 
@@ -226,7 +248,10 @@ class CSOController extends CI_Controller{
       $data['notifCount'] = $this->NotifModel->getExecCountNotification();
     }
 
-
+    $this->load->model('OrgModel');
+    foreach ($data['notifList'] as &$row) {
+      $row['orgID'] = $this->OrgModel->getInitialsbyOrgID($row['orgID']);
+    }
     $this->load->view('cso_org_list.php', $data);
   }
 
@@ -287,6 +312,11 @@ class CSOController extends CI_Controller{
       $data['notifList'] = $this->NotifModel->getExecNotification();
       // number of unseen notifications
       $data['notifCount'] = $this->NotifModel->getExecCountNotification();
+    }
+
+    $this->load->model('OrgModel');
+    foreach ($data['notifList'] as &$row) {
+      $row['orgID'] = $this->OrgModel->getInitialsbyOrgID($row['orgID']);
     }
 
     $this->load->view('cso_org_profile.php', $data);
@@ -415,7 +445,10 @@ class CSOController extends CI_Controller{
       // number of unseen notifications
       $billingData['notifCount'] = $this->NotifModel->getExecCountNotification();
     }
-
+    $this->load->model('OrgModel');
+    foreach ($billingData['notifList'] as &$row) {
+      $row['orgID'] = $this->OrgModel->getInitialsbyOrgID($row['orgID']);
+    }
 
     $this->load->view('cso_billing_list', $billingData);
   }
@@ -440,7 +473,10 @@ class CSOController extends CI_Controller{
       $orgData['notifCount'] = $this->NotifModel->getExecCountNotification();
     }
 
-
+    $this->load->model('OrgModel');
+    foreach ($orgData['notifList'] as &$row) {
+      $row['orgID'] = $this->OrgModel->getInitialsbyOrgID($row['orgID']);
+    }
     $this->load->view('cso_create_bill', $orgData);
   }
 
@@ -491,6 +527,10 @@ class CSOController extends CI_Controller{
       $billings['notifCount'] = $this->NotifModel->getExecCountNotification();
     }
 
+    $this->load->model('OrgModel');
+    foreach ($billings['notifList'] as &$row) {
+      $row['orgID'] = $this->OrgModel->getInitialsbyOrgID($row['orgID']);
+    }
 
     $this->load->view('cso_billing_page', $billings);
   }

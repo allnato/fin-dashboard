@@ -66,7 +66,6 @@ class NotifModel extends CI_Model{
 
    public function getCSONotification(){
      $this->db->where('notifType', 'cso-activity create');
-     $this->db->where('status', 'unseen');
      $this->db->order_by('timedate', 'DESC');
      $this->db->limit(8);
 
@@ -90,7 +89,6 @@ class NotifModel extends CI_Model{
 
    public function getExecNotification(){
      $this->db->where('notifType', 'exec-activity approve');
-     $this->db->where('status', 'unseen');
      $this->db->order_by('timedate', 'DESC');
      $this->db->limit(8);
 
