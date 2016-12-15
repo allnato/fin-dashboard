@@ -1009,7 +1009,7 @@ EOT;
 						</h4>
 						<div class="modalButtons text-center">
               <form method="post" action="<?= site_url('admin/approve') ?>">
-							<button type="button" class="btn btn-info btn-lg" id="contEdit">Continue Editing</button>
+							<button type="button" class="btn btn-info btn-lg contEdit" >Continue Editing</button>
                 <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
                 <input type="hidden" name="status" value="Approved" />
                 <input type="hidden" name="acronym" value="<?= $orgInitials ?>" />
@@ -1038,7 +1038,7 @@ EOT;
 						</h4>
 						<div class="modalButtons text-center">
               <form method="post" action="<?= site_url('admin/decline') ?>">
-							<button class="btn btn-info btn-lg" data-dismiss="modal" id="contEdit">Continue Editing</button>
+							<button class="btn btn-info btn-lg contEdit" type="button" >Continue Editing</button>
                 <input type="hidden" name="activityID" value="<?= $activityData['activityID'] ?>" />
                 <input type="hidden" name="acronym" value="<?= $activityData['acronym'] ?>" />
                 <input type="hidden" name="status" value="Declined" />
@@ -1066,7 +1066,7 @@ EOT;
                </span>
 						</h4>
 						<div class="modalButtons text-center">
-							<button class="btn btn-info btn-lg" data-dismiss="modal" id="contEdit">Continue Editing</button>
+							<button class="btn btn-info btn-lg contEdit" data-dismiss="modal">Continue Editing</button>
 							<button type="button" class="btn btn-success btn-lg" id="submitBTN">Remark Activity</button>
 						</div>
 
@@ -1094,7 +1094,7 @@ EOT;
               Do you want to Continue?<br>
 						</h4>
 						<div class="modalButtons text-center">
-							<button class="btn btn-info btn-lg" data-dismiss="modal" id="contEdit">Continue Editing</button>
+							<button class="btn btn-info btn-lg contEdit" data-dismiss="modal" >Continue Editing</button>
 							<button type="button" class="btn btn-success btn-lg" id="saveDetailsModalBtn">Save Changes</button>
 						</div>
 
@@ -1121,7 +1121,7 @@ EOT;
               Do you want to Continue?<br>
 						</h4>
 						<div class="modalButtons text-center">
-							<button class="btn btn-info btn-lg" data-dismiss="modal" id="contEdit">Continue Editing</button>
+							<button class="btn btn-info btn-lg contEdit" data-dismiss="modal" >Continue Editing</button>
 							<button type="button" class="btn btn-success btn-lg" id="saveProcessModalBtn">Save Changes</button>
 						</div>
 
