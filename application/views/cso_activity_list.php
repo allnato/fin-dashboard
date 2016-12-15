@@ -37,6 +37,16 @@
         width: auto !important;
       }
     </style>
+
+    <style media="screen">
+    .navbar .dropdown-menu li a:hover{
+      background-color: #2196F3 !important;
+    }
+
+    .badge{
+      background-color: crimson !important;
+    }
+    </style>
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
   </head>
 
@@ -129,17 +139,47 @@
             <div class="collapse navbar-collapse">
               <!-- Navbar Items (Right) -->
               <ul class="nav navbar-nav navbar-right">
-
                 <!-- Notification -->
-                <li class="dropdown">
+                <li class="dropdown org">
                   <a href="#" class="dropdown-toggle btn btn-white" data-toggle="dropdown">
                     <i class="fa fa-bell"></i>
-                    <span class="notification">2</span>
+										<?php if($notifCount != 0): ?>
+                        <span class='notification'><?= $notifCount ?></span>
+										<?php endif; ?>
                     <p class="hidden-lg hidden-md">Notifications</p>
                   </a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Revision Issue at Activity.</a></li>
-                    <li><a href="#">Your Activity has been approved!</a></li>
+                  <ul class="dropdown-menu notifications">
+                    <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
+										if(!empty($notifList)){
+											foreach($notifList as $row) {
+												$badge = "";
+												if($row['status'] == 'unseen'){
+													$badge = '<span class="badge">New</span>';
+												}
+												$timestamp = date("M d, Y g:i A", strtotime($row['timedate']));
+
+												if($this->session->userdata('acronym') == 'CSO'){
+													$notifID = $row['notifID'];
+													$typeID = $row['typeID'];
+                          $orgInit = $row['orgID'];
+													$notifText = 'An created a new CA or DP';
+													$url = site_url("admin/activity-page/$orgInit/$typeID");
+													echo "<li id = '$notifID'><a href = '$url'><strong>$notifText</strong> - $timestamp $badge </a></li>";
+												}
+												elseif($this->session->userdata('acronym') == 'CSO-E'){
+													$notifID = $row['notifID'];
+													$typeID = $row['typeID'];
+                          $orgInit = $row['orgID'];
+													$notifText = 'An activity has been approved';
+													$url = site_url("admin/activity-page/$orgInit/$typeID");
+													echo "<li id = '$notifID'><a href = '$url'><strong>$notifText</strong> - $timestamp $badge </a></li>";
+												}
+											}
+										} else {
+											echo "<li><a>Empty</a></li>";
+										}
+                		?>
+
                   </ul>
                 </li>
 
@@ -334,5 +374,41 @@ EOT;
 
     });
   </script>
+
+  <script type="text/javascript">
+		var notifIDs = new Array();
+		$('.dropdown.org').click(function(event) {
+			notifIDs = new Array();
+			getAllNotificationIDs();
+
+			$.ajax({
+				url: "<?= site_url('clearNotification') ?>",
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					notifIDs: notifIDs}
+			})
+			.done(function() {
+				console.log("success");
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+
+			$('.notification').remove();
+
+		});
+
+
+		function getAllNotificationIDs(){
+			var p = $('.notifications li').length;
+			$('.notifications li').each(function(index, el) {
+				notifIDs.push($(this).attr('id'));
+			});
+		}
+	</script>
 
 </html>

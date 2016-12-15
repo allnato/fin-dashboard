@@ -107,7 +107,7 @@ class CSOmodel extends CI_Model{
 
      $this->db->where('orgID', $orgData['orgID']);
      $this->db->delete('organization');
-     
+
      $this->db->where('fundID', $fundID[0]['fundID']);
      $this->db->delete('fund');
    }
@@ -115,6 +115,7 @@ class CSOmodel extends CI_Model{
    public function updateActivityStatus($activityData, $acronym) {
      array_filter($activityData, 'strlen');
 
+     $this->db->trans_start();
      $this->db->where('activityID', $activityData['activityID']);
      $this->db->update('remark', $activityData);
 
@@ -172,16 +173,18 @@ class CSOmodel extends CI_Model{
          $this->db->update('fund', $newBalance);
      }
 
-
-     return ($this->db->affected_rows() != 1) ? false : true;
+     $this->db->trans_complete();
+     return $this->db->trans_status();
    }
 
    public function updateRemarks($remarkData) {
 
+     $this->db->trans_start();
      $this->db->where('activityID', $remarkData['activityID']);
      $this->db->update('remark', $remarkData);
+     $this->db->trans_complete();
 
-     return ($this->db->affected_rows() != 1) ? false : true;
+     return $this->db->trans_status();
    }
 
 }

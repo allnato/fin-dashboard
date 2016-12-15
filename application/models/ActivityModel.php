@@ -41,7 +41,7 @@ class ActivityModel extends CI_Model{
       $orgId['revisions'] = 0;
       $this->db->insert('remark', $orgId);
 
-     return ($this->db->affected_rows() != 1) ? false : true;
+     return ($this->db->affected_rows() != 1) ? false : $orgId['activityID'];
    }
 
    /**
@@ -59,14 +59,14 @@ class ActivityModel extends CI_Model{
           $remarks = $this->getActivityRemarksForTable($row['activityID']);
           // In case datePendedCSO is still null, provide a message instead
           $row['datePendedCSO'] = "Not yet provided.";
-          if($remarks[0]['datePendedCSO'] != null && $remarks[0]['datePendedCSO'] != "" && $remarks[0]['datePendedCSO'] != "0000-00-00") {
-            $row['datePendedCSO'] = $remarks[0]['datePendedCSO'];
+          if($remarks['datePendedCSO'] != null && $remarks['datePendedCSO'] != "" && $remarks['datePendedCSO'] != "0000-00-00") {
+            $row['datePendedCSO'] = $remarks['datePendedCSO'];
           }
 
           // In case status is still null. Defaults to pending.
           $row['status'] = "Pending";
-          if($remarks[0]['status'] != null) {
-            $row['status'] = $remarks[0]['status'];
+          if($remarks['status'] != null) {
+            $row['status'] = $remarks['status'];
           }
 
           $row['processType'] = $this->wordify($row['processType']);
@@ -83,7 +83,10 @@ class ActivityModel extends CI_Model{
       $this->db->select('datePendedCSO, status ');
       $this->db->where('activityID', $activityID);
       $query = $this->db->get('remark');
-      return $query->result_array();
+
+      $row = $query->row_array();
+      // Return false if page does not exist within an org
+      return ($query->num_rows() != 1) ? false : $row;
     }
 
     public function getActivityData($pageID){
@@ -121,18 +124,18 @@ class ActivityModel extends CI_Model{
       foreach ($query->result_array() as $row) {
         $remarks = $this->getActivityRemarksForTable($row['activityID']);
         // In case datePendedCSO is still null, provide a message instead
-        if($remarks[0]['datePendedCSO'] == null) {
+        if($remarks['datePendedCSO'] == null) {
           $row['datePendedCSO'] = "Not yet provided.";
         }
         else {
-          $row['datePendedCSO'] = $remarks[0]['datePendedCSO'];
+          $row['datePendedCSO'] = $remarks['datePendedCSO'];
         }
         // In case status is still null. Defaults to pending.
-        if($remarks[0]['status'] == null) {
+        if($remarks['status'] == null) {
             $row['status'] = "Pending";
         }
         else {
-          $row['status'] = $remarks[0]['status'];
+          $row['status'] = $remarks['status'];
 
         }
 
@@ -145,7 +148,7 @@ class ActivityModel extends CI_Model{
 
         $row['processType'] = $this->wordify($row['processType']);
         $acronym = $this->getOrgAcronym($row['orgID']);
-        $row['acronym'] = $acronym[0]['acronym'];
+        $row['acronym'] = $acronym['acronym'];
         if($row['status'] == 'Pending' || $row['status'] == 'Declined') {
             array_push($activity, $row);
         }
@@ -164,13 +167,13 @@ class ActivityModel extends CI_Model{
           $remarks = $this->getActivityRemarksForTable($row['activityID']);
 
           // In case datePendedCSO is still null, provide a message instead
-          if($remarks[0]['datePendedCSO'] == null) {
+          if($remarks['datePendedCSO'] == null) {
             $row['datePendedCSO'] = "Not yet provided.";
           }
           else {
-            $row['datePendedCSO'] = $remarks[0]['datePendedCSO'];
+            $row['datePendedCSO'] = $remarks['datePendedCSO'];
           }
-          $row['status'] = $remarks[0]['status'];
+          $row['status'] = $remarks['status'];
           if($row['PRSno'] == null) {
             $row['PRSno'] = "N/A";
           }
@@ -180,7 +183,7 @@ class ActivityModel extends CI_Model{
 
           $row['processType'] = $this->wordify($row['processType']);
           $acronym = $this->getOrgAcronym($row['orgID']);
-          $row['acronym'] = $acronym[0]['acronym'];
+          $row['acronym'] = $acronym['acronym'];
 
           if($row['status'] == 'Approved') {
               array_push($activity, $row);
@@ -191,6 +194,15 @@ class ActivityModel extends CI_Model{
 
 
       return $activity;
+    }
+
+    public function getOrgIdByActivityId($activityID){
+      $this->db->select('orgID');
+      $this->db->where('activityID', $activityID);
+
+      $query = $this->db->get('activity');
+      $result = $query->row();
+      return $result->orgID;
     }
 
     public function updateActivityDetails($pageID, $data){
@@ -216,7 +228,7 @@ class ActivityModel extends CI_Model{
       $this->db->where('orgID', $orgID);
       $query = $this->db->get('organization');
 
-      return $query->result_array();
+      return $query->row_array();
     }
 
     function wordify($processType) {

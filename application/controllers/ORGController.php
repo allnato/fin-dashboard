@@ -28,7 +28,13 @@ class OrgController extends CI_Controller{
   public function new_activity(){
     // Redirect to login if session does not exists.
     $this->checkSession();
-    $this->load->view('org_create_activity');
+
+    $this->load->model('NotifModel');
+    // list of unseen notifications
+    $activities['notifList'] = $this->NotifModel->getLatestNotification($this->session->userdata('orgID'));
+    // number of unseen notifications
+    $activities['notifCount'] = $this->NotifModel->getUnseenNotificationCount($this->session->userdata('orgID'));
+    $this->load->view('org_create_activity', $activities);
   }
 
 
@@ -41,12 +47,18 @@ class OrgController extends CI_Controller{
      $this->load->model('ActivityModel');
     // Get formfields from $POST
      $formfields = $this->input->post(NULL, true);
-    // Set flashdata to true
-     $this->session->set_flashdata('submitActivity', 'true');
+    // Set flashdata to false
+     $this->session->set_flashdata('submitActivity', 'false');
+     $activityID = $this->ActivityModel->addNewActivity($formfields);
+     if($activityID){
+       $this->session->set_flashdata('submitActivity', 'true');
 
-     // Submit to model which is then inserted to the database. This function returns true row is affected.
-     if(!$this->ActivityModel->addNewActivity($formfields)){
-       $this->session->set_flashdata('submitActivity', 'false');
+       // Create a notification to CSO if process is CA or DP
+       if($formfields['processType'] == 'CA' || $formfields['processType'] == 'DP'){
+         $orgID = $this->session->userdata('orgID');
+         $this->load->model('NotifModel');
+         $this->NotifModel->createNewNotif('cso-activity create',$activityID, $orgID);
+       }
      }
 
      redirect(site_url('org/activity-list'));
@@ -64,6 +76,13 @@ class OrgController extends CI_Controller{
     $this->load->model('ActivityModel');
     // Retrieves an array of activities that belongs to the org with the provided orgID
     $activities['activityList'] = $this->ActivityModel->getOrgActivities($this->session->userdata('orgID'));
+
+    $this->load->model('NotifModel');
+    // list of unseen notifications
+    $activities['notifList'] = $this->NotifModel->getLatestNotification($this->session->userdata('orgID'));
+    // number of unseen notifications
+    $activities['notifCount'] = $this->NotifModel->getUnseenNotificationCount($this->session->userdata('orgID'));
+
     $this->load->view('org_activity_list', $activities);
   }
 
@@ -90,6 +109,12 @@ class OrgController extends CI_Controller{
       show_404();
     }
 
+    $this->load->model('NotifModel');
+    // list of unseen notifications
+    $activity['notifList'] = $this->NotifModel->getLatestNotification($this->session->userdata('orgID'));
+    // number of unseen notifications
+    $activity['notifCount'] = $this->NotifModel->getUnseenNotificationCount($this->session->userdata('orgID'));
+
     $this->load->view('org_activity_page', $activity);
   }
 
@@ -109,6 +134,12 @@ class OrgController extends CI_Controller{
     $activities['activityList'] = $this->ActivityModel->getOrgActivities($orgID);
     $orgFundID = $this->OrgModel->getFundID($orgID);
     $activities['orgFundData'] = $this->FundModel->retrieveOrgTotalFunds($orgFundID[0]['fundID']);
+
+    $this->load->model('NotifModel');
+    // list of unseen notifications
+    $activities['notifList'] = $this->NotifModel->getLatestNotification($this->session->userdata('orgID'));
+    // number of unseen notifications
+    $activities['notifCount'] = $this->NotifModel->getUnseenNotificationCount($this->session->userdata('orgID'));
 
     $this->load->view('org_profile', $activities);
   }
@@ -131,6 +162,12 @@ class OrgController extends CI_Controller{
     $this->load->model('BillingModel');
 
     $billingData['billingList'] = $this->BillingModel->getOrgBillings($orgID);
+    $this->load->model('NotifModel');
+    // list of unseen notifications
+    $billingData['notifList'] = $this->NotifModel->getLatestNotification($this->session->userdata('orgID'));
+    // number of unseen notifications
+    $billingData['notifCount'] = $this->NotifModel->getUnseenNotificationCount($this->session->userdata('orgID'));
+
     $this->load->view('org_billing_list', $billingData);
   }
 
@@ -146,6 +183,12 @@ class OrgController extends CI_Controller{
     }
 
     $billings['orgInitials'] = $orgInitials;
+
+    $this->load->model('NotifModel');
+    // list of unseen notifications
+    $billings['notifList'] = $this->NotifModel->getLatestNotification($this->session->userdata('orgID'));
+    // number of unseen notifications
+    $billings['notifCount'] = $this->NotifModel->getUnseenNotificationCount($this->session->userdata('orgID'));
     $this->load->view('org_billing_page', $billings);
   }
 
