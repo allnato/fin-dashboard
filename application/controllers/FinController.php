@@ -103,4 +103,16 @@ class FinController extends CI_Controller{
     redirect(site_url('login'));
   }
 
+  public function clearNotification(){
+    $notyID = $this->input->post('notifIDs');
+    $result = true;
+
+    $this->load->model('NotifModel');
+    foreach ($notyID as $id) {
+      $result = $this->NotifModel->setSeen($id) && $result;
+    }
+
+    echo json_encode($result);
+  }
+
 }

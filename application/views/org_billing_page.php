@@ -28,6 +28,16 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/activitypage.css">
     <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/img/icon/favicon-96x96.png">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
+
+    <style media="screen">
+    .navbar .dropdown-menu li a:hover{
+      background-color: #2196F3 !important;
+    }
+
+    .badge{
+      background-color: crimson !important;
+    }
+    </style>
   </head>
 
   <body>
@@ -97,44 +107,57 @@
               <ul class="nav navbar-nav navbar-right">
 
                 <!-- Notification -->
-                <li class="dropdown">
+                <li class="dropdown org">
                   <a href="#" class="dropdown-toggle btn btn-white" data-toggle="dropdown">
                     <i class="fa fa-bell"></i>
-                    <?php if($notifCount != 0): ?>
-                        <span class='notification'><?= $notifCount ?></span>;
-                    <?php endif; ?>
+										<?php if($notifCount != 0): ?>
+                        <span class='notification'><?= $notifCount ?></span>
+										<?php endif; ?>
                     <p class="hidden-lg hidden-md">Notifications</p>
                   </a>
-                  <ul class="dropdown-menu">
+                  <ul class="dropdown-menu notifications">
                     <?php # This block uses HEREDOC to print out, check PHP's HEREDOC documentation.
-                    if(!empty($notifList)){
-                      foreach($notifList as $row) {
+										if(!empty($notifList)){
+											foreach($notifList as $row) {
+												$badge = "";
+												if($row['status'] == 'unseen'){
+													$badge = '<span class="badge">New</span>';
+												}
+												$timestamp = date("M d, Y g:i A", strtotime($row['timedate']));
 
-                        $timestamp = date("M d, Y g:i A", strtotime($row['timedate']));
-
-                        if($row['notifType'] == 'org-billing create'){
-                          $notifText = 'New Billing Statement';
-                        }
-                        elseif($row['notifType'] == 'org-activity remark'){
-                          $notifText = 'An Activity has been remarked';
-                        }
-                        elseif($row['notifType'] == 'org-activity approve'){
-                          $notifText = 'An Activity has been approved';
-                        }
-                        elseif ($row['notifType'] == 'org-activity decline') {
-                          $notifText = 'An Activity has been declined';
-                        }
-
-                        echo <<< EOT
-                        <li id={$row['notifID']}>
-                        <a href="#"><strong>{$notifText}</strong> - {$timestamp}</a>
-                        </li>
-EOT;
-                      }
-                    } else {
-                      echo "<li><a>Empty</a></li>";
-                    }
-                ?>
+												if($row['notifType'] == 'org-billing create'){
+													$notifID = $row['notifID'];
+													$typeID = $row['typeID'];
+													$notifText = 'New Billing Statement';
+													$url = site_url("org/billing-page/$typeID");
+													echo "<li id = '$notifID'><a href = '$url'><strong>$notifText</strong> - $timestamp $badge </a></li>";
+												}
+												elseif($row['notifType'] == 'org-activity remark'){
+													$notifID = $row['notifID'];
+													$typeID = $row['typeID'];
+													$notifText = 'An activity has been remarked';
+													$url = site_url("org/activity-page/$typeID");
+													echo "<li id = '$notifID'><a href = '$url'><strong>$notifText</strong> - $timestamp $badge </a></li>";
+												}
+												elseif($row['notifType'] == 'org-activity approve'){
+													$notifID = $row['notifID'];
+													$typeID = $row['typeID'];
+													$notifText = 'An activity has been approved';
+													$url = site_url("org/activity-page/$typeID");
+													echo "<li id = '$notifID'><a href = '$url'><strong>$notifText</strong> - $timestamp $badge </a></li>";
+												}
+												elseif ($row['notifType'] == 'org-activity decline') {
+													$notifID = $row['notifID'];
+													$typeID = $row['typeID'];
+													$notifText = 'An activity has been declined';
+													$url = site_url("org/activity-page/$typeID");
+													echo "<li id = '$notifID'><a href = '$url'><strong>$notifText</strong> - $timestamp $badge </a></li>";
+												}
+											}
+										} else {
+											echo "<li><a>Empty</a></li>";
+										}
+                		?>
 
                   </ul>
                 </li>
@@ -322,6 +345,42 @@ EOT;
     initDatePicker();
     clearInvalid();
   </script>
+
+  <script type="text/javascript">
+		var notifIDs = new Array();
+		$('.dropdown.org').click(function(event) {
+			notifIDs = new Array();
+			getAllNotificationIDs();
+
+			$.ajax({
+				url: "<?= site_url('clearNotification') ?>",
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					notifIDs: notifIDs}
+			})
+			.done(function() {
+				console.log("success");
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+
+			$('.notification').remove();
+
+		});
+
+
+		function getAllNotificationIDs(){
+			var p = $('.notifications li').length;
+			$('.notifications li').each(function(index, el) {
+				notifIDs.push($(this).attr('id'));
+			});
+		}
+	</script>
 
 
 </html>

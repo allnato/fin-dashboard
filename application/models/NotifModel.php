@@ -20,6 +20,7 @@ class NotifModel extends CI_Model{
     $this->db->from('notification');
     $this->db->where('orgID', $orgID);
     $this->db->where('status', 'unseen');
+    $this->db->like('notifType', 'org');
 
 
     return $this->db->count_all_results();
@@ -50,7 +51,7 @@ class NotifModel extends CI_Model{
 
    public function getLatestNotification($orgID){
     $this->db->where('orgID', $orgID);
-    $this->db->where('status', 'unseen');
+    $this->db->like('notifType', 'org');
     $this->db->order_by('timedate', 'DESC');
     $this->db->limit(8);
 
@@ -108,6 +109,14 @@ class NotifModel extends CI_Model{
 
 
      return $this->db->count_all_results();
+   }
+
+   public function setSeen($notifID){
+     $status['status'] = 'seen';
+
+     $this->db->where('notifID', $notifID);
+     $this->db->update('notification', $status);
+     return ($this->db->affected_rows() != 1) ? false : true;
    }
 
 
