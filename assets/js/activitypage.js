@@ -59,8 +59,10 @@ $('#saveProcessModalBtn').click(function(event) {
   $('#editProcessForm').submit();
 });
 
-$('#contEdit').click(function(event) {
+$('.contEdit').click(function() {
   $('#confirmModal').modal('hide');
+  $('#remarkModal').modal('hide');
+  $('#declineModal').modal('hide');
   $('#saveDetailsModal').modal('hide');
   $('#saveProcessModal').modal('hide');
 });
