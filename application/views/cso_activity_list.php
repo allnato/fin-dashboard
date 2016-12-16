@@ -162,7 +162,7 @@
 													$notifID = $row['notifID'];
 													$typeID = $row['typeID'];
                           $orgInit = $row['orgID'];
-													$notifText = 'An created a new CA or DP';
+													$notifText = 'An Org created a new CA or DP';
 													$url = site_url("admin/activity-page/$orgInit/$typeID");
 													echo "<li id = '$notifID'><a href = '$url'><strong>$notifText</strong> - $timestamp $badge </a></li>";
 												}
